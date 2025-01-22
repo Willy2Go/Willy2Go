@@ -42,7 +42,7 @@
             color: #4B0082;
         }
         .form-group input {
-            width: 100%;
+            width: 97%;
             padding: 10px;
             border: 1px solid #6A0DAD;
             border-radius: 5px;
@@ -87,7 +87,12 @@
     </header>
 
     <div class="container">
-        <h2>Enter Your Order</h2>
+        <header>
+            <h1>Enter Your Order</h1>
+        </header>
+        <h3>Note that we operate during the following days and times:</h2>
+        <h4>Friday: 8:00 PM - 2:30 AM</h4>
+        <h4>Saturday: 8:00 PM - 2:30 AM</h4>
         <form id="orderForm">
             <div class="form-group">
                 <label for="bigMac">Big Mac Quantity:</label>
@@ -141,6 +146,8 @@
         // Function to handle form submission
         function submitOrder() {
             alert('Order submitted! Check the live total above.');
+
+            // ------------- // STRIPE API PAYMENT PROCESSING // ------------- //
         }
     </script>
 </body>
