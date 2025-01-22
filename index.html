@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WillyGo</title>
     <style>
-        /* Styling remains the same */
         body {
             font-family: Arial, sans-serif;
             background-color: #4B0082;
@@ -17,7 +16,7 @@
             text-align: center;
             padding: 20px;
             background-color: #6A0DAD;
-            border-radius: 10px; /* Rounds the edges */
+            border-radius: 10px;
             color: #efbf04;
         }
         header h1 {
@@ -28,7 +27,7 @@
             margin: 20px auto;
             padding: 20px;
             background-color: #FFFFFF;
-            border-radius: 20px; /* Rounds the edges */
+            border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .container h2 {
@@ -37,23 +36,47 @@
         }
         .form-group {
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .form-group label {
-            display: block;
+            flex: 2;
             margin-bottom: 5px;
             color: #4B0082;
             font-family: Georgia;
         }
-        .form-group input {
-            width: 97%;
-            padding: 10px;
+        .quantity-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .quantity-wrapper button {
+            width: 30px;
+            height: 30px;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 5px;
+            color: #4B0082;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .quantity-wrapper button:hover {
+            background-color: #E6BE8A;
+        }
+        .quantity-wrapper input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
             border: 1px solid #6A0DAD;
             border-radius: 5px;
+            font-size: 16px;
         }
-        .form-group input:focus {
-            outline: none;
-            border-color: #FFD700;
-            box-shadow: 0 0 5px #FFD700;
+        #totalCost {
+            font-size: 1.5rem;
+            color: #4B0082;
+            text-align: center;
+            margin-top: 15px;
         }
         .submit-btn {
             width: 100%;
@@ -75,12 +98,6 @@
             background-color: #6A0DAD;
             color: #FFD700;
         }
-        #totalCost {
-            font-size: 1.5rem;
-            color: #4B0082;
-            text-align: center;
-            margin-top: 15px;
-        }
     </style>
 </head>
 <body>
@@ -93,29 +110,49 @@
         <header>
             <h1 style="font-family:Georgia"> Enter Your Order</h1>
         </header>
-        <h3 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Note that we operate during the following days and times:</h2>
+        <h3 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Note that we operate during the following days and times:</h3>
         <h4 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Friday: 8:00 PM - 2:30 AM</h4>
         <h4 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Saturday: 8:00 PM - 2:30 AM</h4>
         <form id="orderForm">
             <div class="form-group">
                 <label for="bigMac">Big Mac Quantity:</label>
-                <input type="number" id="bigMac" name="bigMac" min="0" placeholder="Enter quantity" data-price="5.99">
+                <div class="quantity-wrapper">
+                    <button type="button" onclick="adjustQuantity('bigMac', -1)">-</button>
+                    <input type="number" id="bigMac" name="bigMac" value="0" min="0" data-price="5.99" readonly>
+                    <button type="button" onclick="adjustQuantity('bigMac', 1)">+</button>
+                </div>
             </div>
             <div class="form-group">
                 <label for="mcNuggets">Chicken McNuggets Quantity:</label>
-                <input type="number" id="mcNuggets" name="mcNuggets" min="0" placeholder="Enter quantity" data-price="4.99">
+                <div class="quantity-wrapper">
+                    <button type="button" onclick="adjustQuantity('mcNuggets', -1)">-</button>
+                    <input type="number" id="mcNuggets" name="mcNuggets" value="0" min="0" data-price="4.99" readonly>
+                    <button type="button" onclick="adjustQuantity('mcNuggets', 1)">+</button>
+                </div>
             </div>
             <div class="form-group">
                 <label for="friesLarge">Large French Fries Quantity:</label>
-                <input type="number" id="friesLarge" name="friesLarge" min="0" placeholder="Enter quantity" data-price="2.99">
+                <div class="quantity-wrapper">
+                    <button type="button" onclick="adjustQuantity('friesLarge', -1)">-</button>
+                    <input type="number" id="friesLarge" name="friesLarge" value="0" min="0" data-price="2.99" readonly>
+                    <button type="button" onclick="adjustQuantity('friesLarge', 1)">+</button>
+                </div>
             </div>
             <div class="form-group">
                 <label for="friesSmall">Small French Fries Quantity:</label>
-                <input type="number" id="friesSmall" name="friesSmall" min="0" placeholder="Enter quantity" data-price="1.99">
+                <div class="quantity-wrapper">
+                    <button type="button" onclick="adjustQuantity('friesSmall', -1)">-</button>
+                    <input type="number" id="friesSmall" name="friesSmall" value="0" min="0" data-price="1.99" readonly>
+                    <button type="button" onclick="adjustQuantity('friesSmall', 1)">+</button>
+                </div>
             </div>
             <div class="form-group">
                 <label for="drinks">Sprite Quantity:</label>
-                <input type="number" id="drinks" name="drinks" min="0" placeholder="Enter quantity" data-price="1.49">
+                <div class="quantity-wrapper">
+                    <button type="button" onclick="adjustQuantity('drinks', -1)">-</button>
+                    <input type="number" id="drinks" name="drinks" value="0" min="0" data-price="1.49" readonly>
+                    <button type="button" onclick="adjustQuantity('drinks', 1)">+</button>
+                </div>
             </div>
             <div id="totalCost">
                 <p style="font-family:Georgia"> Total: $0.00 </p>
@@ -129,7 +166,14 @@
     </footer>
 
     <script>
-        // Function to calculate the total cost
+        function adjustQuantity(id, change) {
+            const input = document.getElementById(id);
+            let value = parseInt(input.value) || 0;
+            value = Math.max(0, value + change);
+            input.value = value;
+            calculateTotal();
+        }
+
         function calculateTotal() {
             let total = 0;
             const inputs = document.querySelectorAll('#orderForm input[type="number"]');
@@ -143,16 +187,10 @@
             document.getElementById('totalCost').innerText = `Total: $${total.toFixed(2)}`;
         }
 
-        // Add event listeners to all input fields
-        document.querySelectorAll('#orderForm input[type="number"]').forEach(input => {
-            input.addEventListener('input', calculateTotal);
-        });
-
-        // Function to handle form submission
         function submitOrder() {
             alert('Order submitted! Check the live total below.');
 
-            // ------------- // STRIPE API PAYMENT PROCESSING // ------------- //
+            // Stripe API integration placeholder
         }
     </script>
 </body>
