@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WillyGo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4B0082; /* Deep purple background */
+            color: #FFD700; /* Gold text */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #6A0DAD; /* A slightly lighter purple */
+            color: #FFD700;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFFFFF; /* White background for the form */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .container h2 {
+            color: #4B0082;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4B0082;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #6A0DAD;
+            border-radius: 5px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 5px #FFD700;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFD700;
+            color: #4B0082;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #E6BE8A; /* Softer gold */
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #6A0DAD;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>WillyGo</h1>
+        <p>Order your McDonald's favorites in seconds!</p>
+    </header>
+
+    <div class="container">
+        <header>
+            <h1>Enter Your Order</h1>
+        </header>
+        <h2>Note that we operate during the following days and times:</h2>
+        <h4>Friday: 8:00 PM - 2:30 AM</h4>
+        <h4>Saturday: 8:00 PM - 2:30 AM</h4>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="bigMac">Big Mac Quantity:</label>
+                <input type="number" id="bigMac" name="bigMac" min="0" placeholder="Enter quantity">
+            </div>
+            <div class="form-group">
+                <label for="mcNuggets">Chicken McNuggets Quantity:</label>
+                <input type="number" id="mcNuggets" name="mcNuggets" min="0" placeholder="Enter quantity">
+            </div>
+            <div class="form-group">
+                <label for="fries">Large French Fries Quantity:</label>
+                <input type="number" id="fries" name="fries" min="0" placeholder="Enter quantity">
+            </div>
+            <div class="form-group">
+                <label for="fries">Small French Fries Quantity:</label>
+                <input type="number" id="fries" name="fries" min="0" placeholder="Enter quantity">
+            </div>
+            <div class="form-group">
+                <label for="drinks">Sprite Quantity:</label>
+                <input type="number" id="drinks" name="drinks" min="0" placeholder="Enter quantity">
+            </div>
+            <button type="button" class="submit-btn" onclick="submitOrder()">Submit Order</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>WillyGo &copy; 2025. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function submitOrder() {
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+            const orderDetails = {};
+
+            formData.forEach((value, key) => {
+                orderDetails[key] = value;
+            });
+
+            console.log('Order Submitted:', orderDetails);
+            alert('Order submitted! Check the console for details.');
+
+            // Here, you would integrate with Stripe's API for payment processing
+        }
+    </script>
+</body>
+</html>
