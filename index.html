@@ -17,7 +17,8 @@
             text-align: center;
             padding: 20px;
             background-color: #6A0DAD;
-            color: #FFD700;
+            border-radius: 10px; /* Rounds the edges */
+            color: #efbf04;
         }
         header h1 {
             margin: 0;
@@ -27,11 +28,12 @@
             margin: 20px auto;
             padding: 20px;
             background-color: #FFFFFF;
-            border-radius: 10px;
+            border-radius: 20px; /* Rounds the edges */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .container h2 {
             color: #4B0082;
+            border-radius: 10px; 
         }
         .form-group {
             margin-bottom: 15px;
@@ -40,6 +42,7 @@
             display: block;
             margin-bottom: 5px;
             color: #4B0082;
+            font-family: Georgia;
         }
         .form-group input {
             width: 97%;
@@ -82,17 +85,17 @@
 </head>
 <body>
     <header>
-        <h1>WillyGo</h1>
-        <p>Order your McDonald's favorites in seconds!</p>
+        <h1 style="font-family:Georgia">WillyGo</h1>
+        <p style="font-family:Georgia"> Order your McDonald's favorites in seconds!</p>
     </header>
 
     <div class="container">
         <header>
-            <h1>Enter Your Order</h1>
+            <h1 style="font-family:Georgia"> Enter Your Order</h1>
         </header>
-        <h3>Note that we operate during the following days and times:</h2>
-        <h4>Friday: 8:00 PM - 2:30 AM</h4>
-        <h4>Saturday: 8:00 PM - 2:30 AM</h4>
+        <h3 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Note that we operate during the following days and times:</h2>
+        <h4 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Friday: 8:00 PM - 2:30 AM</h4>
+        <h4 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Saturday: 8:00 PM - 2:30 AM</h4>
         <form id="orderForm">
             <div class="form-group">
                 <label for="bigMac">Big Mac Quantity:</label>
@@ -114,8 +117,10 @@
                 <label for="drinks">Sprite Quantity:</label>
                 <input type="number" id="drinks" name="drinks" min="0" placeholder="Enter quantity" data-price="1.49">
             </div>
-            <div id="totalCost">Total: $0.00</div>
-            <button type="button" class="submit-btn" onclick="submitOrder()">Submit Order</button>
+            <div id="totalCost">
+                <p style="font-family:Georgia"> Total: $0.00 </p>
+            </div>
+            <button style="font-family:Georgia" type="button" class="submit-btn" onclick="submitOrder()">Submit Order</button>
         </form>
     </div>
 
