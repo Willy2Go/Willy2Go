@@ -80,7 +80,12 @@
     </header>
 
     <div class="container">
-        <h2>Enter Your Order</h2>
+        <header>
+            <h1>Enter Your Order</h1>
+        </header>
+        <h2>Note that we operate during the following days and times:</h2>
+        <h4>Friday: 8:00 PM - 2:30 AM</h4>
+        <h4>Saturday: 8:00 PM - 2:30 AM</h4>
         <form id="orderForm">
             <div class="form-group">
                 <label for="bigMac">Big Mac Quantity:</label>
@@ -91,11 +96,15 @@
                 <input type="number" id="mcNuggets" name="mcNuggets" min="0" placeholder="Enter quantity">
             </div>
             <div class="form-group">
-                <label for="fries">French Fries Quantity:</label>
+                <label for="fries">Large French Fries Quantity:</label>
                 <input type="number" id="fries" name="fries" min="0" placeholder="Enter quantity">
             </div>
             <div class="form-group">
-                <label for="drinks">Drinks Quantity:</label>
+                <label for="fries">Small French Fries Quantity:</label>
+                <input type="number" id="fries" name="fries" min="0" placeholder="Enter quantity">
+            </div>
+            <div class="form-group">
+                <label for="drinks">Sprite Quantity:</label>
                 <input type="number" id="drinks" name="drinks" min="0" placeholder="Enter quantity">
             </div>
             <button type="button" class="submit-btn" onclick="submitOrder()">Submit Order</button>
