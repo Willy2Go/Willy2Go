@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WillyGo</title>
     <style>
+        /* Styling remains the same */
         body {
             font-family: Arial, sans-serif;
-            background-color: #4B0082; /* Deep purple background */
-            color: #FFD700; /* Gold text */
+            background-color: #4B0082;
+            color: #FFD700;
             margin: 0;
             padding: 0;
         }
         header {
             text-align: center;
             padding: 20px;
-            background-color: #6A0DAD; /* A slightly lighter purple */
+            background-color: #6A0DAD;
             color: #FFD700;
         }
         header h1 {
@@ -25,7 +26,7 @@
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #FFFFFF; /* White background for the form */
+            background-color: #FFFFFF;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -62,7 +63,7 @@
             cursor: pointer;
         }
         .submit-btn:hover {
-            background-color: #E6BE8A; /* Softer gold */
+            background-color: #E6BE8A;
         }
         footer {
             text-align: center;
@@ -70,6 +71,12 @@
             margin-top: 20px;
             background-color: #6A0DAD;
             color: #FFD700;
+        }
+        #totalCost {
+            font-size: 1.5rem;
+            color: #4B0082;
+            text-align: center;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -80,33 +87,29 @@
     </header>
 
     <div class="container">
-        <header>
-            <h1>Enter Your Order</h1>
-        </header>
-        <h2>Note that we operate during the following days and times:</h2>
-        <h4>Friday: 8:00 PM - 2:30 AM</h4>
-        <h4>Saturday: 8:00 PM - 2:30 AM</h4>
+        <h2>Enter Your Order</h2>
         <form id="orderForm">
             <div class="form-group">
                 <label for="bigMac">Big Mac Quantity:</label>
-                <input type="number" id="bigMac" name="bigMac" min="0" placeholder="Enter quantity">
+                <input type="number" id="bigMac" name="bigMac" min="0" placeholder="Enter quantity" data-price="5.99">
             </div>
             <div class="form-group">
                 <label for="mcNuggets">Chicken McNuggets Quantity:</label>
-                <input type="number" id="mcNuggets" name="mcNuggets" min="0" placeholder="Enter quantity">
+                <input type="number" id="mcNuggets" name="mcNuggets" min="0" placeholder="Enter quantity" data-price="4.99">
             </div>
             <div class="form-group">
-                <label for="fries">Large French Fries Quantity:</label>
-                <input type="number" id="fries" name="fries" min="0" placeholder="Enter quantity">
+                <label for="friesLarge">Large French Fries Quantity:</label>
+                <input type="number" id="friesLarge" name="friesLarge" min="0" placeholder="Enter quantity" data-price="2.99">
             </div>
             <div class="form-group">
-                <label for="fries">Small French Fries Quantity:</label>
-                <input type="number" id="fries" name="fries" min="0" placeholder="Enter quantity">
+                <label for="friesSmall">Small French Fries Quantity:</label>
+                <input type="number" id="friesSmall" name="friesSmall" min="0" placeholder="Enter quantity" data-price="1.99">
             </div>
             <div class="form-group">
                 <label for="drinks">Sprite Quantity:</label>
-                <input type="number" id="drinks" name="drinks" min="0" placeholder="Enter quantity">
+                <input type="number" id="drinks" name="drinks" min="0" placeholder="Enter quantity" data-price="1.49">
             </div>
+            <div id="totalCost">Total: $0.00</div>
             <button type="button" class="submit-btn" onclick="submitOrder()">Submit Order</button>
         </form>
     </div>
@@ -116,19 +119,28 @@
     </footer>
 
     <script>
-        function submitOrder() {
-            const form = document.getElementById('orderForm');
-            const formData = new FormData(form);
-            const orderDetails = {};
-
-            formData.forEach((value, key) => {
-                orderDetails[key] = value;
+        // Function to calculate the total cost
+        function calculateTotal() {
+            let total = 0;
+            const inputs = document.querySelectorAll('#orderForm input[type="number"]');
+            
+            inputs.forEach(input => {
+                const quantity = parseInt(input.value) || 0;
+                const price = parseFloat(input.dataset.price);
+                total += quantity * price;
             });
 
-            console.log('Order Submitted:', orderDetails);
-            alert('Order submitted! Check the console for details.');
+            document.getElementById('totalCost').innerText = `Total: $${total.toFixed(2)}`;
+        }
 
-            // Here, you would integrate with Stripe's API for payment processing
+        // Add event listeners to all input fields
+        document.querySelectorAll('#orderForm input[type="number"]').forEach(input => {
+            input.addEventListener('input', calculateTotal);
+        });
+
+        // Function to handle form submission
+        function submitOrder() {
+            alert('Order submitted! Check the live total above.');
         }
     </script>
 </body>
