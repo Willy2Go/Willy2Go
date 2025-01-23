@@ -23,20 +23,37 @@
             margin: 0;
             text-align: center;
         }
-        header img { 
+        header img.align-left { 
             position: absolute; left: 15px; top: 35px; 
         }
+        header img.align-right { 
+            position: absolute; right: 15px; top: auto; 
+        }
+        
         .container {
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #FFFFFF;
+            background-color: #E6E6FA;
+            /* background-image: url('WC Background.jpeg'); */
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .container h2 {
             color: #4B0082;
             border-radius: 10px; 
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Add spacing between the images */
+            margin-top: 10px; /* Space between the text and the images */
+        }
+
+        .header-image {
+            width: 100px; /* Adjust the size of the images */
+            height: auto;
         }
         .form-group {
             margin-bottom: 15px;
@@ -131,10 +148,14 @@
 </head>
 <body>
     <header>
-        <img src="Logo.jpg" alt="WillyGo Logo" class = "align-left" style="width: 100px; height: auto; display: block; margin: 0 auto;">
         <h1 style="font-family:Georgia">WillyGo</h1>
-        <p style="font-family:Georgia"> Order your McDonald's favorites in seconds!</p>
+        <p style="font-family:Georgia">Order your McDonald's favorites in seconds!</p>
+        <div class="image-container">
+            <img src="Logo.jpg" alt="WillyGo Logo" class="header-image">
+            <img src="McDonalds.jpg" alt="McDonald's Logo" class="header-image">
+        </div>
     </header>
+    
 
     <div class="container">
         <header>
