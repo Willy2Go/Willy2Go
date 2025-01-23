@@ -6,10 +6,14 @@ import stripe
 stripe.api_key = 'sk_test_51QjwHnRqYeNsFUyVMdUyRsajmL8FTvxu3c3QnhCbkC0JLbyZsfIDbHvWqGCJDaNsRxAts5PXQiWCPv08ETtIFl5500juYs2S8U'
 
 app = Flask(__name__,
-            static_url_path='',
+            static_url_path='/static',
             static_folder='public')
 
 DOMAIN = 'https://willy2go.github.io/Willy2Go/'
+
+@app.before_request
+def log_request_info():
+    print(f"Method: {request.method}, Path: {request.path}")
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
