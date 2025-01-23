@@ -128,6 +128,24 @@
         .submit-btn:hover {
             background-color: #E6BE8A;
         }
+
+        /* style="flex: 2; padding: 5px; border: 1px solid gray border-radius: 5px; color: #4B0082; font-family: Georgia; */
+        select {
+            flex: 0.6;
+            width: 100%; /* Adjust width */
+            height: 28px; /* Adjust height */
+            padding: 5px; /* Add padding for better appearance */
+            border: 1px solid gray;
+            border-radius: 5px; 
+            font-size: 13px; /* Control text size within the dropdown */
+            color: gray; /* Text color */
+            background-color: #FFFFFF; /* Background color */
+            font-family: Georgia; 
+        }
+        select:focus,
+        select:valid {
+            color: black;
+        }
         footer {
             text-align: center;
             padding: 10px;
@@ -156,7 +174,7 @@
         <h3 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Hours of Operation:</h3>
         <h4 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Friday: 8:00 PM - 2:30 AM</h4>
         <h4 style="font-family:Georgia; color: #6A0DAD; text-align: center;"> Saturday: 8:00 PM - 2:30 AM</h4>
-        <form id="orderForm">
+        <form id="orderForm" action="/create-checkout-session" method="POST">
             <hr>
             <div class="form-group">
                 <label for="Name">Name:</label>
@@ -164,7 +182,39 @@
             </div>
             <div class="form-group">
                 <label for="Dorm">Dorm:</label>
-                <input placeholder="Enter Dorm">
+                <select id="Dorm" name="Dorm" required>
+                    <option value="" disabled selected>Select Your Dorm</option>
+                    <option value="Dorm1">Agard</option>
+                    <option value="Dorm2">Brooks</option>
+                    <option value="Dorm3">Bryant</option>
+                    <option value="Dorm4">Carter</option>
+                    <option value="Dorm1">Currier</option>
+                    <option value="Dorm5">Dodd</option>
+                    <option value="Dorm1">East</option>
+                    <option value="Dorm1">Fayerweather</option>
+                    <option value="Dorm1">Fitch</option>
+                    <option value="Dorm1">Garfield</option>
+                    <option value="Dorm2">Gladden</option>
+                    <option value="Dorm3">Goodrich</option>
+                    <option value="Dorm4">Horn</option>
+                    <option value="Dorm5">Hubbell</option>
+                    <option value="Dorm1">Lehman</option>
+                    <option value="Dorm2">Mark Hopkins</option>
+                    <option value="Dorm3">Mission</option>
+                    <option value="Dorm4">Morgan</option>
+                    <option value="Dorm5">Perry</option>
+                    <option value="Dorm1">Prospect</option>
+                    <option value="Dorm1">Sage</option>
+                    <option value="Dorm1">Sewall</option>
+                    <option value="Dorm2">Specer</option>
+                    <option value="Dorm3">Thompson</option>
+                    <option value="Dorm4">Tyler</option>
+                    <option value="Dorm5">Tyler Annex</option>
+                    <option value="Dorm1">West</option>
+                    <option value="Dorm1">Williams (Willy)</option>
+                    <option value="Dorm2">Wood</option>
+                </select>
+                
             </div>
             <div class="form-group">
                 <label for="Phone Number">Phone Number:</label>
@@ -215,7 +265,7 @@
             <div id="totalCost">
                 <p style="font-family:Georgia"> Total: $0.00 </p>
             </div>
-            <button style="font-family:Georgia" type="button" class="submit-btn" onclick="submitOrder()">Submit Order</button>
+            <button style="font-family:Georgia" type="submit" class="submit-btn" onclick="submitOrder()">Submit Order</button>
         </form>
     </div>
 
@@ -223,7 +273,7 @@
         <p>Willy2Go&#8482; 2025</p>
     </footer>
 
-    <script>
+    <script src="https://js.stripe.com/v3/">
         function adjustQuantity(id, change) {
             const input = document.getElementById(id);
             let value = parseInt(input.value) || 0;
