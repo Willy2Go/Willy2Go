@@ -21,6 +21,10 @@
         }
         header h1 {
             margin: 0;
+            text-align: center;
+        }
+        header img { 
+            position: absolute; left: 15px; top: 35px; 
         }
         .container {
             max-width: 600px;
@@ -91,6 +95,14 @@
         .submit-btn:hover {
             background-color: #E6BE8A;
         }
+        .align-left {
+            float: left;
+            margin-right: 10px; /* Optional: Add space to the right */
+        }
+        .align-right {
+            float: right;
+            margin-left: 10px; /* Optional: Add space to the right */
+        }
         footer {
             text-align: center;
             padding: 10px;
@@ -102,7 +114,7 @@
 </head>
 <body>
     <header>
-        <img src="Logo.jpg" alt="WillyGo Logo" style="width: 100px; height: auto; display: block; margin: 0 auto;">
+        <img src="Logo.jpg" alt="WillyGo Logo" class = "align-left" style="width: 100px; height: auto; display: block; margin: 0 auto;">
         <h1 style="font-family:Georgia">WillyGo</h1>
         <p style="font-family:Georgia"> Order your McDonald's favorites in seconds!</p>
     </header>
@@ -185,7 +197,9 @@
                 total += quantity * price;
             });
 
-            document.getElementById('totalCost').innerText = `Total: $${total.toFixed(2)}`;
+            // Update only the numeric part of the "Total"
+            const totalCostElement = document.querySelector('#totalCost p');
+            totalCostElement.innerText = `Total: $${total.toFixed(2)}`;
         }
 
         function submitOrder() {
