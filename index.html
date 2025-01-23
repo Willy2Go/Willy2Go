@@ -265,7 +265,7 @@
             <div id="totalCost">
                 <p style="font-family:Georgia"> Total: $0.00 </p>
             </div>
-            <button style="font-family:Georgia" type="submit" class="submit-btn" onclick="submitOrder()">Submit Order</button>
+            <button style="font-family:Georgia" type="submit" class="submit-btn" id="checkout-button" onclick="submitOrder()">Submit Order</button>
         </form>
     </div>
 
@@ -273,7 +273,8 @@
         <p>Willy2Go&#8482; 2025</p>
     </footer>
 
-    <script src="https://js.stripe.com/v3/">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
         function adjustQuantity(id, change) {
             const input = document.getElementById(id);
             let value = parseInt(input.value) || 0;
