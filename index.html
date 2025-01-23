@@ -304,10 +304,12 @@
             totalCostElement.innerText = `Total: $${total.toFixed(2)}`;
         }
 
-        function submitOrder() {
-            alert('Order submitted! Check the live total below.');
+        function submitOrder(event) {
+            // Prevent the default form submission (if you're using the onclick handler)
+            event.preventDefault();
 
-            // Stripe API integration placeholder
+            // Call the form submit method manually
+            document.getElementById('orderForm').submit();
         }
     </script>
 </body>
