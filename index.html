@@ -75,6 +75,23 @@
             border: 1px solid #6A0DAD;
             border-radius: 5px;
             font-size: 16px;
+            color: #4B0082; /* Default text color */
+            box-sizing: border-box; /* Ensures consistent padding and width behavior */
+        }
+
+        .quantity-wrapper input::placeholder {
+            color: gray; /* Placeholder color */
+            text-align: center; /* Center placeholder text */
+        }
+
+        .quantity-wrapper input[type="number"] {
+            appearance: textfield; /* Removes number spinner for better alignment */
+        }
+
+        .quantity-wrapper input[type="number"]::-webkit-inner-spin-button,
+        .quantity-wrapper input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none; /* Hides spinner in Chrome, Safari, Edge */
+            margin: 0; /* Ensures no extra margin is applied */
         }
         #totalCost {
             font-size: 1.5rem;
@@ -131,7 +148,7 @@
                 <label for="bigMac">Big Mac ($5.99): </label>
                 <div class="quantity-wrapper">
                     <button type="button" onclick="adjustQuantity('bigMac', -1)">-</button>
-                    <input type="number" id="bigMac" name="bigMac" value="0" min="0" data-price="5.99" readonly>
+                    <input type="number" id="bigMac" name="bigMac" placeholder="0" min="0" data-price="5.99" readonly>
                     <button type="button" onclick="adjustQuantity('bigMac', 1)">+</button>
                 </div>
             </div>
@@ -139,7 +156,7 @@
                 <label for="mcNuggets">Chicken McNuggets ($4.99):</label>
                 <div class="quantity-wrapper">
                     <button type="button" onclick="adjustQuantity('mcNuggets', -1)">-</button>
-                    <input type="number" id="mcNuggets" name="mcNuggets" value="0" min="0" data-price="4.99" readonly>
+                    <input type="number" id="mcNuggets" name="mcNuggets" placeholder="0" min="0" data-price="4.99" readonly>
                     <button type="button" onclick="adjustQuantity('mcNuggets', 1)">+</button>
                 </div>
             </div>
@@ -147,7 +164,7 @@
                 <label for="friesLarge">Large French Fries ($2.99):</label>
                 <div class="quantity-wrapper">
                     <button type="button" onclick="adjustQuantity('friesLarge', -1)">-</button>
-                    <input type="number" id="friesLarge" name="friesLarge" value="0" min="0" data-price="2.99" readonly>
+                    <input type="number" id="friesLarge" name="friesLarge" placeholder="0" min="0" data-price="2.99" readonly>
                     <button type="button" onclick="adjustQuantity('friesLarge', 1)">+</button>
                 </div>
             </div>
@@ -155,7 +172,7 @@
                 <label for="friesSmall">Small French Fries ($1.99):</label>
                 <div class="quantity-wrapper">
                     <button type="button" onclick="adjustQuantity('friesSmall', -1)">-</button>
-                    <input type="number" id="friesSmall" name="friesSmall" value="0" min="0" data-price="1.99" readonly>
+                    <input type="number" id="friesSmall" name="friesSmall" placeholder="0" min="0" data-price="1.99" readonly>
                     <button type="button" onclick="adjustQuantity('friesSmall', 1)">+</button>
                 </div>
             </div>
@@ -163,7 +180,7 @@
                 <label for="drinks">Sprite ($1.49):</label>
                 <div class="quantity-wrapper">
                     <button type="button" onclick="adjustQuantity('drinks', -1)">-</button>
-                    <input type="number" id="drinks" name="drinks" value="0" min="0" data-price="1.49" readonly>
+                    <input type="number" id="drinks" name="drinks" placeholder="0" min="0" data-price="1.49" readonly>
                     <button type="button" onclick="adjustQuantity('drinks', 1)">+</button>
                 </div>
             </div>
@@ -183,7 +200,14 @@
             const input = document.getElementById(id);
             let value = parseInt(input.value) || 0;
             value = Math.max(0, value + change);
-            input.value = value;
+
+            if (value === 0) {
+                input.value = ''; // Clear the value to show the placeholder
+                input.placeholder = '0'; // Reset placeholder to "0"
+            } else {
+                input.value = value; // Update the value as usual
+            }
+
             calculateTotal();
         }
 
