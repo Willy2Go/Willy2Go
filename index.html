@@ -238,19 +238,16 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="friesLarge">Large French Fries ($2.99):</label>
+                <label for="fries">French Fries:</label>
                 <div class="quantity-wrapper">
-                    <button type="button" onclick="adjustQuantity('friesLarge', -1)">-</button>
-                    <input type="number" id="friesLarge" name="friesLarge" placeholder="0" min="0" data-price="2.99" readonly>
-                    <button type="button" onclick="adjustQuantity('friesLarge', 1)">+</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="friesSmall">Small French Fries ($1.99):</label>
-                <div class="quantity-wrapper">
-                    <button type="button" onclick="adjustQuantity('friesSmall', -1)">-</button>
-                    <input type="number" id="friesSmall" name="friesSmall" placeholder="0" min="0" data-price="1.99" readonly>
-                    <button type="button" onclick="adjustQuantity('friesSmall', 1)">+</button>
+                    <select id="friesSize" onchange="updateFriesPrice()">
+                        <option value="2.49" selected>Small ($2.49)</option>
+                        <option value="2.99">Medium ($2.99)</option>
+                        <option value="3.49">Large ($3.49)</option>
+                    </select>
+                    <button type="button" onclick="adjustQuantity('fries', -1)">-</button>
+                    <input type="number" id="fries" name="fries" placeholder="0" min="0" data-price="2.49" readonly>
+                    <button type="button" onclick="adjustQuantity('fries', 1)">+</button>
                 </div>
             </div>
             <div class="form-group">
@@ -275,6 +272,15 @@
 
     <script src="https://js.stripe.com/v3/"></script>
     <script>
+        function updateFriesPrice() {
+            const friesInput = document.getElementById('fries');
+            const friesSize = document.getElementById('friesSize');
+            const selectedPrice = friesSize.value;
+
+            friesInput.dataset.price = selectedPrice;
+            calculateTotal();
+        }
+
         function adjustQuantity(id, change) {
             const input = document.getElementById(id);
             let value = parseInt(input.value) || 0;
