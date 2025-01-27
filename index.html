@@ -238,16 +238,34 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="fries">French Fries:</label>
+                <label for="friesSection">French Fries:</label>
                 <div class="quantity-wrapper">
-                    <select id="friesSize" onchange="updateFriesPrice()">
-                        <option value="2.49" selected>Small ($2.49)</option>
-                        <option value="2.99">Medium ($2.99)</option>
-                        <option value="3.49">Large ($3.49)</option>
-                    </select>
-                    <button type="button" onclick="adjustQuantity('fries', -1)">-</button>
-                    <input type="number" id="fries" name="fries" placeholder="0" min="0" data-price="2.49" readonly>
-                    <button type="button" onclick="adjustQuantity('fries', 1)">+</button>
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-family:Georgia; color: #6A0DAD; text-align: left;">Small </span>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('friesSmall', -1)">-</button>
+                                <input type="number" id="friesSmall" name="friesSmall" placeholder="0" min="0" data-price="1.99" readonly>
+                                <button type="button" onclick="adjustQuantity('friesSmall', 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <span style="font-family:Georgia; color: #6A0DAD; text-align: left;">Medium </span>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('friesMedium', -1)">-</button>
+                                <input type="number" id="friesMedium" name="friesMedium" placeholder="0" min="0" data-price="2.49" readonly>
+                                <button type="button" onclick="adjustQuantity('friesMedium', 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <span style="font-family:Georgia; color: #6A0DAD; text-align: left;">Large </span>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('friesLarge', -1)">-</button>
+                                <input type="number" id="friesLarge" name="friesLarge" placeholder="0" min="0" data-price="2.99" readonly>
+                                <button type="button" onclick="adjustQuantity('friesLarge', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
