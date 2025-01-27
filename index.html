@@ -11,7 +11,6 @@
             color: #FFD700;
             margin: 0;
             padding: 0;
-            display: flex;
         }
         header {
             text-align: center;
@@ -30,7 +29,7 @@
         header img.align-right { 
             position: absolute; right: 15px; top: auto; 
         }
-
+        
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -38,42 +37,23 @@
             background-color: #E6E6FA;
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            flex-grow: 1;
         }
-
-        .cart {
-            position: fixed;
-            right: 0;
-            top: 20px;
-            width: 250px;
-            background-color: #E6E6FA;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .cart h3 {
-            text-align: center;
-            font-family: Georgia;
-        }
-
-        .cart-items {
-            margin-top: 10px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
+        .container h2 {
             color: #4B0082;
+            border-radius: 10px; 
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Add spacing between the images */
+            margin-top: 10px; /* Space between the text and the images */
         }
 
-        .cart-item span {
-            font-family: Georgia;
+        .header-image {
+            background-color: transparent; /* Removes background */
+            border: none; /* Removes any borders */
         }
-
         .form-group {
             margin-bottom: 15px;
             display: flex;
@@ -129,7 +109,6 @@
             -webkit-appearance: none; /* Hides spinner in Chrome, Safari, Edge */
             margin: 0; /* Ensures no extra margin is applied */
         }
-
         #totalCost {
             font-size: 1.5rem;
             color: #4B0082;
@@ -183,9 +162,10 @@
         <h4 style="font-family:Georgia">Order your McDonald's favorites in seconds!</h4>
     </header>
     
+
     <div class="container">
         <header>
-            <h1 style="font-family:Georgia">Enter Your Order</h1>
+            <h1 style="font-family:Georgia"> Enter Your Order</h1>
         </header>
         <div class="image-container">
             <img src="McDonalds.jpg" alt="McDonald's Logo" class="header-image" style="width:130px; height: auto;">
@@ -203,8 +183,37 @@
                 <label for="Dorm">Dorm:</label>
                 <select id="Dorm" name="Dorm" required>
                     <option value="" disabled selected>Select Your Dorm</option>
-                    <!-- Options omitted for brevity -->
+                    <option value="Dorm1">Agard</option>
+                    <option value="Dorm2">Brooks</option>
+                    <option value="Dorm3">Bryant</option>
+                    <option value="Dorm4">Carter</option>
+                    <option value="Dorm1">Currier</option>
+                    <option value="Dorm5">Dodd</option>
+                    <option value="Dorm1">East</option>
+                    <option value="Dorm1">Fayerweather</option>
+                    <option value="Dorm1">Fitch</option>
+                    <option value="Dorm1">Garfield</option>
+                    <option value="Dorm2">Gladden</option>
+                    <option value="Dorm3">Goodrich</option>
+                    <option value="Dorm4">Horn</option>
+                    <option value="Dorm5">Hubbell</option>
+                    <option value="Dorm1">Lehman</option>
+                    <option value="Dorm2">Mark Hopkins</option>
+                    <option value="Dorm3">Mission</option>
+                    <option value="Dorm4">Morgan</option>
+                    <option value="Dorm5">Perry</option>
+                    <option value="Dorm1">Prospect</option>
+                    <option value="Dorm1">Sage</option>
+                    <option value="Dorm1">Sewall</option>
+                    <option value="Dorm2">Specer</option>
+                    <option value="Dorm3">Thompson</option>
+                    <option value="Dorm4">Tyler</option>
+                    <option value="Dorm5">Tyler Annex</option>
+                    <option value="Dorm1">West</option>
+                    <option value="Dorm1">Williams (Willy)</option>
+                    <option value="Dorm2">Wood</option>
                 </select>
+                
             </div>
             <div class="form-group">
                 <label for="Phone Number">Phone Number:</label>
@@ -231,6 +240,8 @@
                 <div style="display: flex; flex-direction: column; width: 100%;">
                     <!-- Label for fries section -->
                     <label for="friesSection" style="color: #4B0082; font-weight: bold; margin-bottom: 10px;">French Fries</label>
+                    
+                    <!-- Fries Size and Quantity Options -->
                     <div style="display: flex; flex-direction: column;">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span style="color: #4B0082; font-family:Georgia;">Small</span>
@@ -262,92 +273,79 @@
             <div class="form-group">
                 <label for="drinks">Sprite ($1.49):</label>
                 <div class="quantity-wrapper">
-                    <button type="button" onclick="adjustQuantity('drinks', -1)">-</button>
-                    <input type="number" id="drinks" name="drinks" placeholder="0" min="0" data-price="1.49" readonly>
-                    <button type="button" onclick="adjustQuantity('drinks', 1)">+</button>
+                    <button type="button" onclick="adjustQuantity('sprite', -1)">-</button>
+                    <input type="number" id="sprite" name="sprite" placeholder="0" min="0" data-price="1.49" readonly>
+                    <button type="button" onclick="adjustQuantity('sprite', 1)">+</button>
                 </div>
             </div>
             <hr>
-            <div id="totalCost">
-                <p style="font-family:Georgia">Total: $0.00</p>
+            
+            <!-- Cart Section -->
+            <div>
+                <h3 style="color: #6A0DAD;">Your Cart:</h3>
+                <ul id="cartItems" style="color: #4B0082; font-family: Georgia; font-size: 16px;"></ul>
+                <div id="totalCost"></div>
             </div>
-            <button style="font-family:Georgia" type="submit" class="submit-btn" id="checkout-button" onclick="submitOrder()">Submit Order</button>
+            
+            <button class="submit-btn" type="submit" onclick="submitOrder(event)">Submit Order</button>
         </form>
     </div>
 
-    <div class="cart">
-        <h3 style="color: #6A0DAD;">Your Cart</h3>
-        <div class="cart-items" id="cartItems">
-            <!-- Cart items will be dynamically added here -->
-        </div>
-    </div>
-
     <footer>
-        <p>Willy2Go&#8482; 2025</p>
+        <p>Thank you for choosing Willy2Go!</p>
     </footer>
 
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
-        let cart = [];
-
-        function updateCart() {
-            const cartItemsContainer = document.getElementById("cartItems");
-            cartItemsContainer.innerHTML = ''; // Clear previous items
-
-            cart.forEach(item => {
-                const itemElement = document.createElement("div");
-                itemElement.classList.add("cart-item");
-                itemElement.innerHTML = `<span>${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}</span>`;
-                cartItemsContainer.appendChild(itemElement);
-            });
+        // Handle adding/removing items in the cart and calculating total
+        const cart = [];
+        
+        function adjustQuantity(item, quantityChange) {
+            const inputElement = document.getElementById(item);
+            let quantity = parseInt(inputElement.value) || 0;
+            quantity = Math.max(0, quantity + quantityChange); // Prevent negative quantities
+            inputElement.value = quantity;
+            updateCart(item, quantity);
+            updateTotalCost();
         }
 
-        function adjustQuantity(id, change) {
-            const input = document.getElementById(id);
-            let value = parseInt(input.value) || 0;
-            value = Math.max(0, value + change);
+        function updateCart(item, quantity) {
+            const cartItems = document.getElementById('cartItems');
+            const existingItem = cartItems.querySelector(`#${item}-cart`);
+            const price = document.getElementById(item).dataset.price;
+            const itemName = item.replace(/([A-Z])/g, ' $1').toLowerCase();
 
-            if (value === 0) {
-                input.value = ''; 
-                input.placeholder = '0'; 
+            if (quantity === 0) {
+                if (existingItem) {
+                    cartItems.removeChild(existingItem);
+                }
             } else {
-                input.value = value;
-            }
-
-            // Update cart
-            const price = parseFloat(input.dataset.price);
-            const name = input.id.charAt(0).toUpperCase() + input.id.slice(1).replace(/([A-Z])/g, ' $1');
-            
-            // Find item in cart or add new item
-            const cartItemIndex = cart.findIndex(item => item.name === name);
-            if (cartItemIndex >= 0) {
-                if (value === 0) {
-                    cart.splice(cartItemIndex, 1); // Remove item from cart
+                if (!existingItem) {
+                    const li = document.createElement('li');
+                    li.id = `${item}-cart`;
+                    li.innerText = `${quantity} x ${itemName.charAt(0).toUpperCase() + itemName.slice(1)}`;
+                    cartItems.appendChild(li);
                 } else {
-                    cart[cartItemIndex].quantity = value; // Update item quantity
-                }
-            } else {
-                if (value > 0) {
-                    cart.push({ name, quantity: value, price }); // Add new item to cart
+                    existingItem.innerText = `${quantity} x ${itemName.charAt(0).toUpperCase() + itemName.slice(1)}`;
                 }
             }
-
-            updateCart();
-            updateTotalCost();
         }
 
         function updateTotalCost() {
             let total = 0;
-            cart.forEach(item => {
-                total += item.price * item.quantity;
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => {
+                const price = input.dataset.price;
+                const quantity = parseInt(input.value) || 0;
+                total += price * quantity;
             });
-            document.getElementById("totalCost").innerHTML = `<p style="font-family:Georgia">Total: $${total.toFixed(2)}</p>`;
+            document.getElementById('totalCost').innerHTML = `<p style="font-family:Georgia"> Total: $${total.toFixed(2)} </p>`;
         }
 
-        function submitOrder() {
-            // Prepare cart data for checkout
-            // You can integrate with a checkout service (e.g., Stripe) here
-            alert("Order Submitted!");
+        function submitOrder(event) {
+            event.preventDefault();
+            alert('Your order has been submitted!');
         }
     </script>
 </body>
