@@ -414,7 +414,7 @@
             for (let itemId in cart) {
                 const itemData = cart[itemId];
 
-                if (itemId === 'fries' || itemId === 'mcNuggets') {
+                if (!('quantity' in itemData)) {
                     // For size-based items like fries and McNuggets
                     for (let size in itemData) {
                         const sizeData = itemData[size];
@@ -444,9 +444,9 @@
             const quantity = parseInt(inputElement.value, 10) || 0; // Default to 0 if the input is empty or invalid
             const price = parseFloat(inputElement.getAttribute('data-price')) || 0; // Price from the element's data attribute
 
-            if (itemId === 'fries' || itemId === 'mcNuggets') {
+            if (inputElement.hasAttribute('size')) {
                 // Handle size-based items
-                const sizeDropdownId = itemId === 'fries' ? 'friesSize' : 'mcNuggetSize'; // Map itemId to the correct size dropdown
+                const sizeDropdownId = itemId + "Size"; // Map itemId to the correct size dropdown
                 const sizeDropdown = document.getElementById(sizeDropdownId);
                 const selectedOption = sizeDropdown.options[sizeDropdown.selectedIndex];
                 const size = selectedOption.getAttribute('data-size'); // Get the size (like '10pc', '20pc', etc.)
@@ -470,7 +470,6 @@
 
             updateCartDisplay(); // Refresh the cart display
         }
-
 
         function calculateFee(totalPrice) {
             if (totalPrice <= 10) {
