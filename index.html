@@ -339,7 +339,8 @@
                     <tr>
                         <td>McNuggets</td>
                         <td>
-                            <select id="mcNuggetSize" onchange="updatePriceAndQuantity('mcNuggets', 'mcNuggetSize')">
+                            <select id="mcNuggetsSize" onchange="updatePriceAndQuantity('mcNuggets', 'mcNuggetsSize')
+                            ">
                                 <option value="4.99" data-size="10pc">10pc ($4.99)</option>
                                 <option value="7.99" data-size="20pc">20pc ($7.99)</option>
                                 <option value="10.99" data-size="40pc">40pc ($10.99)</option>
@@ -446,7 +447,7 @@
 
             if (inputElement.hasAttribute('size')) {
                 // Handle size-based items
-                const sizeDropdownId = itemId + "Size"; // Map itemId to the correct size dropdown
+                const sizeDropdownId = itemId + 'Size';
                 const sizeDropdown = document.getElementById(sizeDropdownId);
                 const selectedOption = sizeDropdown.options[sizeDropdown.selectedIndex];
                 const size = selectedOption.getAttribute('data-size'); // Get the size (like '10pc', '20pc', etc.)
@@ -470,6 +471,7 @@
 
             updateCartDisplay(); // Refresh the cart display
         }
+
 
         function calculateFee(totalPrice) {
             if (totalPrice <= 10) {
