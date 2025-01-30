@@ -509,8 +509,19 @@
 
         // Helper function to format item names (capitalize first letter)
         function formatItemName(itemKey) {
-            return itemKey.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            // Split the itemKey by underscores (assumed to be in "category_name" format)
+            const parts = itemKey.split('_');
+
+            // If the name has multiple parts (e.g., "soda_cocaCola"), remove the first part
+            if (parts.length > 1) {
+                return parts.slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            }
+
+            // If the name is a single word (e.g., "bigMac"), just capitalize it
+            return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
         }
+
+
 
 
         function updateCart(itemId) {
