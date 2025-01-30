@@ -322,16 +322,16 @@
                         <td>Fries</td>
                         <td>
                             <select id="friesSize" onchange="updatePriceAndQuantity('fries', 'friesSize')">
-                                <option value="1.99" data-size="small">Small ($1.99)</option>
-                                <option value="2.49" data-size="medium">Medium ($2.49)</option>
-                                <option value="2.99" data-size="large">Large ($2.99)</option>
+                                <option value="4.79" data-size="small">Small ($4.79)</option>
+                                <option value="5.79" data-size="medium">Medium ($5.79)</option>
+                                <option value="7.09" data-size="large">Large ($7.09)</option>
                             </select>
                         </td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('fries', -1)">-</button>
                                 <input type="number" id="fries" name="fries" placeholder="0" min="0" value="0"
-                                    size="small" data-price="1.99" readonly>
+                                    size="small" data-price="4.79" readonly>
                                 <button type="button" onclick="adjustQuantity('fries', 1)">+</button>
                             </div>
                         </td>
@@ -341,17 +341,41 @@
                         <td>
                             <select id="mcNuggetsSize" onchange="updatePriceAndQuantity('mcNuggets', 'mcNuggetsSize')
                             ">
-                                <option value="4.99" data-size="10pc">10pc ($4.99)</option>
-                                <option value="7.99" data-size="20pc">20pc ($7.99)</option>
-                                <option value="10.99" data-size="40pc">40pc ($10.99)</option>
+                                <option value="6.79" data-size="4pc">4pc ($6.79)</option>
+                                <option value="8.99" data-size="6pc">6pc ($8.99)</option>
+                                <option value="11.89" data-size="10pc">10pc ($11.89)</option>
                             </select>
                         </td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('mcNuggets', -1)">-</button>
                                 <input type="number" id="mcNuggets" name="mcNuggets" placeholder="0" min="0" value="0"
-                                    size="ten piece" data-price="4.99" readonly>
+                                    size="4pc" data-price="6.79" readonly>
                                 <button type="button" onclick="adjustQuantity('mcNuggets', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="sodaFlavor" onchange="updateProductFlavor(soda, sodaFlavor)">
+                                <option value="0.99" data-flavor="sprite">Sprite</option>
+                                <option value="0.99" data-flavor="cocaCola">Coca Cola</option>
+                                <option value="0.99" data-flavor="orangeFanta">Orange Fanta</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="sodaSize" onchange="updatePriceAndQuantity('soda', 'sodaSize')">
+                                <option value="0.99" data-size="small">Small ($0.99)</option>
+                                <option value="1.99" data-size="medium">Medium ($1.99)</option>
+                                <option value="2.99" data-size="large">Large ($2.99)</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('soda', -1)">-</button>
+                                <input type="number" id="soda" name="soda" placeholder="0" min="0" value="0" +
+                                    size="small" data-price="0.99" data-flavor="None" readonly>
+                                <button type="button" onclick="adjustQuantity('soda', 1)">+</button>
                             </div>
                         </td>
                     </tr>
@@ -376,6 +400,49 @@
         // General object to store product quantities
         const cart = {};
 
+        function updateProductFlavor() {
+            const sodaFlavorSelect = document.getElementById("sodaFlavor");
+            sodaFlavorSelect.addEventListener("change", function () {
+                const selectedFlavorOption = this.options[this.selectedIndex];
+                const flavor = selectedFlavorOption.getAttribute("data-flavor"); // Get selected flavor
+                const sodaInput = document.getElementById("soda");
+
+                // Update the name attribute dynamically based on flavor
+                const newItemId = `soda_${flavor}`;
+                sodaInput.name = newItemId;
+
+                // Fetch the current selected size
+                const sodaSizeSelect = document.getElementById("sodaSize");
+                const selectedSizeOption = sodaSizeSelect.options[sodaSizeSelect.selectedIndex];
+                const size = selectedSizeOption.getAttribute("data-size");
+
+                // Reset quantity to 0 if switching to a new flavor
+                if (!(newItemId in cart) || !(size in cart[newItemId])) {
+                    sodaInput.value = 0;
+                } else {
+                    sodaInput.value = cart[newItemId][size].quantity; // Retrieve quantity from cart if exists
+                }
+
+                // Ensure cart is structured correctly for new flavor
+                if (!(newItemId in cart)) {
+                    cart[newItemId] = {};
+                }
+                if (!(size in cart[newItemId])) {
+                    cart[newItemId][size] = { price: parseFloat(selectedSizeOption.value), quantity: 0 };
+                }
+
+                // Update price and quantity based on size
+                updatePriceAndQuantity(newItemId, "sodaSize");
+            });
+        }
+
+
+        // Ensure the function runs on page load to initialize correct values
+        updateProductFlavor();
+
+
+
+
         function updatePriceAndQuantity(itemId, itemSizeId) {
             const optionElement = document.getElementById(itemSizeId);
             const selectedOption = optionElement.options[optionElement.selectedIndex];
@@ -383,20 +450,22 @@
             const size = selectedOption.getAttribute('data-size');  // Size (like '10pc', '20pc', etc.)
 
             const itemElement = document.getElementById(itemId);
+            const itemKey = itemElement.name;  // Use the name attribute as the key
             itemElement.setAttribute('data-price', value);  // Update price
 
-            if (!(itemId in cart)) {
-                cart[itemId] = {};
+            if (!(itemKey in cart)) {
+                cart[itemKey] = {};
             }
 
             // Initialize the size with quantity 0 if not present in cart
-            if (!(size in cart[itemId])) {
-                cart[itemId][size] = { "price": value, "quantity": 0 };
+            if (!(size in cart[itemKey])) {
+                cart[itemKey][size] = { "price": value, "quantity": 0 };
             }
 
             // Set input field value to the quantity stored in cart
-            itemElement.value = cart[itemId][size].quantity;
+            itemElement.value = cart[itemKey][size].quantity;
         }
+
 
         function adjustQuantity(itemId, quantityChange) {
             const inputElement = document.getElementById(itemId);
@@ -412,8 +481,8 @@
             const cartItemsList = document.getElementById('cartItems');
             cartItemsList.innerHTML = ''; // Clear the previous list
 
-            for (let itemId in cart) {
-                const itemData = cart[itemId];
+            for (let itemKey in cart) {
+                const itemData = cart[itemKey];
 
                 if (!('quantity' in itemData)) {
                     // For size-based items like fries and McNuggets
@@ -422,14 +491,14 @@
                         if (sizeData.quantity > 0) { // Only display if quantity is greater than 0
                             const capitalizedSize = size.charAt(0).toUpperCase() + size.slice(1); // Capitalize size
                             const li = document.createElement('li');
-                            li.textContent = `${capitalizedSize} ${itemId.charAt(0).toUpperCase() + itemId.slice(1)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}`;
+                            li.textContent = `${capitalizedSize} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}`;
                             cartItemsList.appendChild(li);
                         }
                     }
                 } else {
                     if (itemData.quantity > 0) { // Only display if quantity is greater than 0
                         const li = document.createElement('li');
-                        li.textContent = `${itemId.charAt(0).toUpperCase() + itemId.slice(1)}: ${itemData.quantity} x $${itemData.price.toFixed(2)}`;
+                        li.textContent = `${formatItemName(itemKey)}: ${itemData.quantity} x $${itemData.price.toFixed(2)}`;
                         cartItemsList.appendChild(li);
                     }
                 }
@@ -438,25 +507,36 @@
             updateTotalCost();
         }
 
+        // Helper function to format item names (capitalize first letter)
+        function formatItemName(itemKey) {
+            return itemKey.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
 
 
         function updateCart(itemId) {
             const inputElement = document.getElementById(itemId);
-            const quantity = parseInt(inputElement.value, 10) || 0; // Default to 0 if the input is empty or invalid
-            const price = parseFloat(inputElement.getAttribute('data-price')) || 0; // Price from the element's data attribute
+            const quantity = parseInt(inputElement.value, 10) || 0;
+            const price = parseFloat(inputElement.getAttribute("data-price")) || 0;
 
-            if (inputElement.hasAttribute('size')) {
+            if (inputElement.hasAttribute("size")) {
                 // Handle size-based items
-                const sizeDropdownId = itemId + 'Size';
+                const sizeDropdownId = itemId + "Size";
                 const sizeDropdown = document.getElementById(sizeDropdownId);
                 const selectedOption = sizeDropdown.options[sizeDropdown.selectedIndex];
-                const size = selectedOption.getAttribute('data-size'); // Get the size (like '10pc', '20pc', etc.)
+                const size = selectedOption.getAttribute("data-size");
+
+                // Check for soda flavor
+                if (itemId === "soda") {
+                    const sodaFlavorDropdown = document.getElementById("sodaFlavor");
+                    const selectedFlavorOption = sodaFlavorDropdown.options[sodaFlavorDropdown.selectedIndex];
+                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
+                    itemId = `soda_${flavor}`;
+                }
 
                 if (!(itemId in cart)) {
                     cart[itemId] = {};
                 }
 
-                // Update the quantity and price for the selected size
                 cart[itemId][size] = {
                     price: price,
                     quantity: quantity
@@ -469,8 +549,9 @@
                 };
             }
 
-            updateCartDisplay(); // Refresh the cart display
+            updateCartDisplay();
         }
+
 
 
         function calculateFee(totalPrice) {
@@ -491,8 +572,8 @@
             let subTotal = 0;
 
             // Iterate through the cart to calculate the subtotal
-            for (let itemId in cart) {
-                const itemData = cart[itemId];
+            for (let itemKey in cart) { // Use itemKey (which is now the name attribute)
+                const itemData = cart[itemKey];
 
                 if (itemData.quantity !== undefined && itemData.price !== undefined) {
                     subTotal += itemData.quantity * itemData.price;
@@ -514,6 +595,7 @@
                 document.getElementById('totalCost').innerText = '';
             }
         }
+
 
         function submitOrder(event) {
             event.preventDefault();
