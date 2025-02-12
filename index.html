@@ -319,6 +319,42 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Quarter Pounder</td>
+                        <td>-</td>
+                        <td>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('quarterPounder', -1)">-</button>
+                                <input type="number" id="quarterPounder" name="quarterPounder" placeholder="0" value="0" min="0"
+                                    data-price="7.09" readonly>
+                                <button type="button" onclick="adjustQuantity('quarterPounder', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Double Quarter Pounder</td>
+                        <td>-</td>
+                        <td>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('doubleQuarterPounder', -1)">-</button>
+                                <input type="number" id="doubleQuarterPounder" name="doubleQuarterPounder" placeholder="0" value="0" min="0"
+                                    data-price="7.99" readonly>
+                                <button type="button" onclick="adjustQuantity('doubleQuarterPounder', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>McCrispy</td>
+                        <td>-</td>
+                        <td>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('mcCrispy', -1)">-</button>
+                                <input type="number" id="mcCrispy" name="mcCrispy" placeholder="0" value="0" min="0"
+                                    data-price="7.99" readonly>
+                                <button type="button" onclick="adjustQuantity('mcCrispy', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Fries</td>
                         <td>
                             <select id="friesSize" onchange="updatePriceAndQuantity('fries', 'friesSize')">
@@ -356,26 +392,87 @@
                         </td>
                     </tr>
                     <tr>
+                        <td colspan="3" style="text-align: left; font-weight: bold; font-size: 1.1em; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Drinks
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             <select id="sodaFlavor" onchange="updateProductFlavor(soda, sodaFlavor)">
                                 <option value="0.99" data-flavor="sprite">Sprite</option>
                                 <option value="0.99" data-flavor="cocaCola">Coca Cola</option>
+                                <option value="0.99" data-flavor="cokeZero">Coke Zero</option>
                                 <option value="0.99" data-flavor="orangeFanta">Orange Fanta</option>
+                                <option value="0.99" data-flavor="drPepper">Dr. Pepper</option>
+                                <option value="0.99" data-flavor="rootBeer">Root Beer</option>
+                                <option value="0.99" data-flavor="lemonade">Lemonade</option>
                             </select>
                         </td>
                         <td>
                             <select id="sodaSize" onchange="updatePriceAndQuantity('soda', 'sodaSize')">
-                                <option value="0.99" data-size="small">Small ($0.99)</option>
-                                <option value="1.99" data-size="medium">Medium ($1.99)</option>
-                                <option value="2.99" data-size="large">Large ($2.99)</option>
+                                <option value="2.19" data-size="small">Small ($2.19)</option>
+                                <option value="2.49" data-size="medium">Medium ($2.49)</option>
+                                <option value="2.59" data-size="large">Large ($2.59)</option>
                             </select>
                         </td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('soda', -1)">-</button>
                                 <input type="number" id="soda" name="soda" placeholder="0" min="0" value="0" +
-                                    size="small" data-price="0.99" data-flavor="None" readonly>
+                                    size="small" data-price="2.19" data-flavor="cocaCola" readonly>
                                 <button type="button" onclick="adjustQuantity('soda', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: left; font-weight: bold; font-size: 1.1em; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Sweets
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="mcflurryFlavor" onchange="updateProductFlavor(mcflurry, mcflurryFlavor)">
+                                <option value="6.59" data-flavor="oreoMcFlurry">Oreo McFlurry</option>
+                                <option value="6.59" data-flavor="m&MMcFlurry">M&M McFlurry</option>
+                                <option value="6.59" data-flavor="oreoShamrockMcFlurry">Shamrock Oreo McFlurry</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="mcflurrySize" onchange="updatePriceAndQuantity('mcflurry', 'mcflurrySize')">
+                                <option value="6.59" data-size="standard">Standard ($6.59)</option>
+                                <option value="4.19" data-size="mini">Mini ($4.19)</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('mcflurry', -1)">-</button>
+                                <input type="number" id="mcflurry" name="mcflurry" placeholder="0" min="0" value="0" +
+                                    size="standard" data-price="6.59" data-flavor="oreoMcFlurry" readonly>
+                                <button type="button" onclick="adjustQuantity('mcflurry', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="shakeFlavor" onchange="updateProductFlavor(shake, shakeFlavor)">
+                                <option value="5.59" data-flavor="chocolateShake">Chocolate Shake</option>
+                                <option value="6.19" data-flavor="vanillaShake">Vanilla Shake</option>
+                                <option value="6.59" data-flavor="strawberryShake">Strawberry Shake</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="shakeSize" onchange="updatePriceAndQuantity('shake', 'shakeSize')">
+                                <option value="5.59" data-size="small">Small ($5.59)</option>
+                                <option value="6.19" data-size="medium">Medium ($6.19)</option>
+                                <option value="6.59" data-size="large">Large ($6.59)</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('shake', -1)">-</button>
+                                <input type="number" id="shake" name="shake" placeholder="0" min="0" value="0" +
+                                    size="small" data-price="5.59" data-flavor="chocolate" readonly>
+                                <button type="button" onclick="adjustQuantity('shake', 1)">+</button>
                             </div>
                         </td>
                     </tr>
@@ -400,20 +497,20 @@
         // General object to store product quantities
         const cart = {};
 
-        function updateProductFlavor() {
-            const sodaFlavorSelect = document.getElementById("sodaFlavor");
-            sodaFlavorSelect.addEventListener("change", function () {
+        function updateProductFlavor(product,productFlavor) {
+            const productFlavorSelect = document.getElementById(productFlavor);
+            productFlavorSelect.addEventListener("change", function () {
                 const selectedFlavorOption = this.options[this.selectedIndex];
                 const flavor = selectedFlavorOption.getAttribute("data-flavor"); // Get selected flavor
-                const sodaInput = document.getElementById("soda");
+                const sodaInput = document.getElementById(product);
 
                 // Update the name attribute dynamically based on flavor
-                const newItemId = `soda_${flavor}`;
+                const newItemId = `${product}_${flavor}`;
                 sodaInput.name = newItemId;
 
                 // Fetch the current selected size
-                const sodaSizeSelect = document.getElementById("sodaSize");
-                const selectedSizeOption = sodaSizeSelect.options[sodaSizeSelect.selectedIndex];
+                const productSizeSelect = document.getElementById(product+"Size");
+                const selectedSizeOption = productSizeSelect.options[productSizeSelect.selectedIndex];
                 const size = selectedSizeOption.getAttribute("data-size");
 
                 // Reset quantity to 0 if switching to a new flavor
@@ -432,16 +529,12 @@
                 }
 
                 // Update price and quantity based on size
-                updatePriceAndQuantity(newItemId, "sodaSize");
+                updatePriceAndQuantity(newItemId, product+"Size");
             });
         }
 
-
         // Ensure the function runs on page load to initialize correct values
         updateProductFlavor();
-
-
-
 
         function updatePriceAndQuantity(itemId, itemSizeId) {
             const optionElement = document.getElementById(itemSizeId);
@@ -465,7 +558,6 @@
             // Set input field value to the quantity stored in cart
             itemElement.value = cart[itemKey][size].quantity;
         }
-
 
         function adjustQuantity(itemId, quantityChange) {
             const inputElement = document.getElementById(itemId);
@@ -522,8 +614,6 @@
         }
 
 
-
-
         function updateCart(itemId) {
             const inputElement = document.getElementById(itemId);
             const quantity = parseInt(inputElement.value, 10) || 0;
@@ -542,6 +632,27 @@
                     const selectedFlavorOption = sodaFlavorDropdown.options[sodaFlavorDropdown.selectedIndex];
                     const flavor = selectedFlavorOption.getAttribute("data-flavor");
                     itemId = `soda_${flavor}`;
+                }
+
+                if (itemId === "mcflurry") {
+                    const mcflurryFlavorDropdown = document.getElementById("mcflurryFlavor");
+                    const selectedFlavorOption = mcflurryFlavorDropdown.options[mcflurryFlavorDropdown.selectedIndex];
+                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
+                    itemId = `mcflurry_${flavor}`;
+                }
+
+                if (itemId === "shake") {
+                    const shakeFlavorDropdown = document.getElementById("shakeFlavor");
+                    const selectedFlavorOption = shakeFlavorDropdown.options[shakeFlavorDropdown.selectedIndex];
+                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
+                    itemId = `shake_${flavor}`;
+                }
+
+                if (itemId === "quarterPounder") {
+                    const quarterPounderFlavorDropdown = document.getElementById("quarterPounderFlavor");
+                    const selectedFlavorOption = quarterPounderFlavorDropdown.options[quarterPounderFlavorDropdown.selectedIndex];
+                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
+                    itemId = `quarterPounder_${flavor}`;
                 }
 
                 if (!(itemId in cart)) {
@@ -564,7 +675,6 @@
         }
 
 
-
         function calculateFee(totalPrice) {
             if (totalPrice <= 10) {
                 return 4.00;
@@ -578,6 +688,7 @@
                 return 10.00;
             }
         }
+
 
         function updateTotalCost() {
             let subTotal = 0;
