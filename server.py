@@ -1,5 +1,6 @@
 import os
 from flask import Flask, redirect, request
+from flask_cors import CORS
 import stripe
 
 # Stripe Secret Key (Make sure this is secure and NOT hardcoded in production)
@@ -9,9 +10,11 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='public')
 
+CORS(app)
+
 # Use local domain for testing
-# DOMAIN = 'http://localhost:4242'
-DOMAIN = 'https://willy2go.github.io/Willy2Go/'
+DOMAIN = 'http://localhost:3000'
+# DOMAIN = 'https://willy2go.github.io/Willy2Go/'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
@@ -59,4 +62,4 @@ def create_checkout_session():
     return redirect(checkout_session.url, code=303)
 
 if __name__ == '__main__':
-    app.run(port=4242, debug=True)
+    app.run(port=3000, debug=True)
