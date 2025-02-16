@@ -13,8 +13,8 @@ app = Flask(__name__,
 CORS(app)
 
 # Use local domain for testing
-DOMAIN = 'http://localhost:3000'
-# DOMAIN = 'https://willy2go.github.io/Willy2Go/'
+# DOMAIN = 'http://localhost:3000'
+DOMAIN = 'https://willy2go.github.io/'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
