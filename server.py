@@ -16,8 +16,8 @@ app = Flask(__name__,
 
 # Use local domain for testing
 # DOMAIN = 'http://localhost:3000'
-DOMAIN = 'https://willy2go.github.io/Willy2Go'
-# DOMAIN = 'http://127.0.0.1:3000'
+# DOMAIN = 'https://willy2go.github.io/Willy2Go'
+DOMAIN = 'http://127.0.0.1:3000/index.html'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
@@ -65,7 +65,7 @@ def create_checkout_session():
     return redirect(checkout_session.url, code=303)
 
 if __name__ == '__main__':
-    app.run(port=8889, debug=True)
+    app.run(port=3000, debug=True)
     # app.run()
     # from waitress import serve
     # serve(app, host="0.0.0.0", port=8080)

@@ -725,8 +725,40 @@
 
 
         function submitOrder(event) {
-            event.preventDefault();
-            document.getElementById('orderForm').submit();
+            const form = document.getElementById('orderForm');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                try {
+                    const response = await fetch('/.netlify/functions/create-checkout-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();  // Parse JSON response
+                        window.location.href = result.redirect_url;  // Redirect
+
+                    } else {
+                        console.error('Form submission failed:', response.status, response.statusText);
+                        alert(`Form submission failed: ${response.status} ${response.statusText}`);
+                    }
+                } catch (error) {
+                    console.error('Network error occurred:', error);
+                    alert(`Network error occurred: ${error.message}`);
+                }
+            });
+
         }
     </script>
 
