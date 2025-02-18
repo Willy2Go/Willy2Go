@@ -52,7 +52,7 @@ def handler(event, context):
         checkout_session = stripe.checkout.Session.create(
             line_items=line_items,
             mode='payment',
-            success_url=DOMAIN + '/success.html?session_id={CHECKOUT_SESSION_ID}',
+            success_url=DOMAIN + '/success.html',
             cancel_url=DOMAIN + '/cancel.html',
         )
 
