@@ -15,9 +15,9 @@ if not stripe.api_key:
 def handler(event, context):
     try:
         # Determine the domain dynamically
-        # domain = event['headers'].get('origin')
-        # if not domain:
-        #     domain = "https://your-default-domain.com"  # Replace with your actual default domain
+        domain = event['headers'].get('origin')
+        if not domain:
+            domain = "https://willy2go.com"  # Replace with your actual default domain
 
         # Parse the request body (assuming it's JSON)
         big_mac_qty = int(event['меру'].get('bigMac', 0))
