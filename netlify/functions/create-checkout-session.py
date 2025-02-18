@@ -10,14 +10,18 @@ if not stripe.api_key:
     raise ValueError("Stripe secret key not found in environment variables.")
 
 # Use local domain for testing
-DOMAIN = 'https://willy2go.com'
+# DOMAIN = 'https://willy2go.com'
 
 def handler(event, context):
     try:
+        # Determine the domain dynamically
+        # domain = event['headers'].get('origin')
+        # if not domain:
+        #     domain = "https://your-default-domain.com"  # Replace with your actual default domain
+
         # Parse the request body (assuming it's JSON)
-        data = json.loads(event['body'])
-        big_mac_qty = int(data.get('bigMac', 0))
-        mc_nuggets_qty = int(data.get('mcNuggets', 0))
+        big_mac_qty = int(event['меру'].get('bigMac', 0))
+        mc_nuggets_qty = int(event['form'].get('mcNuggets', 0))
 
         line_items = []
 
@@ -52,17 +56,14 @@ def handler(event, context):
         checkout_session = stripe.checkout.Session.create(
             line_items=line_items,
             mode='payment',
-            success_url=DOMAIN + '/success.html',
-            cancel_url=DOMAIN + '/cancel.html',
+            success_url="/success.html",
+            cancel_url="/cancel.html",
         )
 
         return {
             'statusCode': 303,
             'headers': {
                 'Location': checkout_session.url,
-                'Access-Control-Allow-Origin': DOMAIN,  # Allow requests from any origin (for testing)
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST'
             },
             'body': json.dumps({'redirect_url': checkout_session.url})
         }
