@@ -57,17 +57,19 @@ def handler(event, context):
         checkout_session = stripe.checkout.Session.create(
             line_items=line_items,
             mode='payment',
-            success_url="/success.html",
-            cancel_url="/cancel.html",
+            success_url="https://willy2go.com/success.html",
+            cancel_url="https://willy2go.com//cancel.html",
         )
 
         return {
             'statusCode': 303,
             'headers': {
+                'Access-Control-Allow-Origin': '*',
                 'Location': checkout_session.url,
             },
             'body': json.dumps({'redirect_url': checkout_session.url})
         }
+
 
     except Exception as e:
         print(e)
