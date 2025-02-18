@@ -57,11 +57,15 @@ def handler(event, context):
         )
 
         return {
-            'statusCode': 303,  # Use 303 for redirect after POST
-            'headers': {'Location': checkout_session.url},
-            'body': json.dumps({'redirect_url': checkout_session.url})  # Return the redirect URL
+            'statusCode': 303,
+            'headers': {
+                'Location': checkout_session.url,
+                'Access-Control-Allow-Origin': DOMAIN,  # Allow requests from any origin (for testing)
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST'
+            },
+            'body': json.dumps({'redirect_url': checkout_session.url})
         }
-
 
     except Exception as e:
         print(e)
