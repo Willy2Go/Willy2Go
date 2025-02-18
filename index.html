@@ -725,6 +725,8 @@
 
 
         function submitOrder(event) {
+            // event.preventDefault();
+            // document.getElementById('orderForm').submit();
             const form = document.getElementById('orderForm');
 
             form.addEventListener('submit', async (event) => {
@@ -758,7 +760,6 @@
                     alert(`Network error occurred: ${error.message}`);
                 }
             });
-
         }
     </script>
 
