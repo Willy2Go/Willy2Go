@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Willy2Go</title>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    
+
     <style>
         body {
             font-family: Roboto Mono;
@@ -27,7 +28,7 @@
         header h1 {
             margin: 0;
             text-align: center;
-            font-family:Montserrat
+            font-family: Montserrat
         }
 
         header img.align-left {
@@ -254,8 +255,10 @@
             <img src="McDonalds.jpg" alt="McDonald's Logo" class="header-image" style="width:130px; height: auto;">
         </div>
         <h3 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:26px;"> Open:</h3>
-        <h4 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:22px"> Friday: 8:00 PM - 2:30 AM</h4>
-        <h4 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:22px"> Saturday: 8:00 PM - 2:30 AM</h4>
+        <h4 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:22px"> Friday: 8:00 PM - 2:30 AM
+        </h4>
+        <h4 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:22px"> Saturday: 8:00 PM - 2:30 AM
+        </h4>
         <hr>
         <div class="form-group">
             <label for="Name" style="font-family: Inter;">Name:</label>
@@ -319,13 +322,15 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="3" style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="3"
+                            style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Burgers
                         </td>
                     </tr>
                     <tr>
                         <td>Big Mac<br><br>
-                            <img src="big_mac.jpeg" alt="Big Mac" width="150" height="150" style="vertical-align: middle;">
+                            <img src="big_mac.jpeg" alt="Big Mac" width="150" height="150"
+                                style="vertical-align: middle;">
                         </td>
                         <td>-</td>
                         <td>
@@ -343,8 +348,8 @@
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('quarterPounder', -1)">-</button>
-                                <input type="number" id="quarterPounder" name="quarterPounder" placeholder="0" value="0" min="0"
-                                    data-price="7.09" readonly>
+                                <input type="number" id="quarterPounder" name="quarterPounder" placeholder="0" value="0"
+                                    min="0" data-price="7.09" readonly>
                                 <button type="button" onclick="adjustQuantity('quarterPounder', 1)">+</button>
                             </div>
                         </td>
@@ -355,8 +360,8 @@
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('doubleQuarterPounder', -1)">-</button>
-                                <input type="number" id="doubleQuarterPounder" name="doubleQuarterPounder" placeholder="0" value="0" min="0"
-                                    data-price="7.99" readonly>
+                                <input type="number" id="doubleQuarterPounder" name="doubleQuarterPounder"
+                                    placeholder="0" value="0" min="0" data-price="7.99" readonly>
                                 <button type="button" onclick="adjustQuantity('doubleQuarterPounder', 1)">+</button>
                             </div>
                         </td>
@@ -376,7 +381,8 @@
                     <tr>
                         <td>Fries</td>
                         <td>
-                            <select style="font-family: Inter;" id="friesSize" onchange="updatePriceAndQuantity('fries', 'friesSize')">
+                            <select style="font-family: Inter;" id="friesSize"
+                                onchange="updatePriceAndQuantity('fries', 'friesSize')">
                                 <option value="4.79" data-size="small">Small ($4.79)</option>
                                 <option value="5.79" data-size="medium">Medium ($5.79)</option>
                                 <option value="7.09" data-size="large">Large ($7.09)</option>
@@ -394,7 +400,7 @@
                     <tr>
                         <td>McNuggets</td>
                         <td>
-                            <select id="mcNuggetsSize"  style="font-family: Inter;" onchange="updatePriceAndQuantity('mcNuggets', 'mcNuggetsSize')
+                            <select id="mcNuggetsSize" style="font-family: Inter;" onchange="updatePriceAndQuantity('mcNuggets', 'mcNuggetsSize')
                             ">
                                 <option value="6.79" data-size="4pc">4pc ($6.79)</option>
                                 <option value="8.99" data-size="6pc">6pc ($8.99)</option>
@@ -411,13 +417,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="font-size: 22px;text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="3"
+                            style="font-size: 22px;text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Drinks
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <select id="sodaFlavor" style="font-family: Inter;" onchange="updateProductFlavor(soda, sodaFlavor)">
+                            <select id="sodaFlavor" style="font-family: Inter;"
+                                onchange="updateProductFlavor(soda, sodaFlavor)">
                                 <option value="0.99" data-flavor="sprite">Sprite</option>
                                 <option value="0.99" data-flavor="cocaCola">Coca Cola</option>
                                 <option value="0.99" data-flavor="cokeZero">Coke Zero</option>
@@ -428,7 +436,8 @@
                             </select>
                         </td>
                         <td>
-                            <select id="sodaSize"  style="font-family: Inter;" onchange="updatePriceAndQuantity('soda', 'sodaSize')">
+                            <select id="sodaSize" style="font-family: Inter;"
+                                onchange="updatePriceAndQuantity('soda', 'sodaSize')">
                                 <option value="2.19" data-size="small">Small ($2.19)</option>
                                 <option value="2.49" data-size="medium">Medium ($2.49)</option>
                                 <option value="2.59" data-size="large">Large ($2.59)</option>
@@ -444,20 +453,23 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style=" font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="3"
+                            style=" font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Sweets
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <select id="mcflurryFlavor"  style="font-family: Inter;" onchange="updateProductFlavor(mcflurry, mcflurryFlavor)">
+                            <select id="mcflurryFlavor" style="font-family: Inter;"
+                                onchange="updateProductFlavor(mcflurry, mcflurryFlavor)">
                                 <option value="6.59" data-flavor="oreoMcFlurry">Oreo McFlurry</option>
                                 <option value="6.59" data-flavor="m&MMcFlurry">M&M McFlurry</option>
                                 <option value="6.59" data-flavor="oreoShamrockMcFlurry">Shamrock Oreo McFlurry</option>
                             </select>
                         </td>
                         <td>
-                            <select id="mcflurrySize" style="font-family: Inter;" onchange="updatePriceAndQuantity('mcflurry', 'mcflurrySize')">
+                            <select id="mcflurrySize" style="font-family: Inter;"
+                                onchange="updatePriceAndQuantity('mcflurry', 'mcflurrySize')">
                                 <option value="6.59" data-size="standard">Standard ($6.59)</option>
                                 <option value="4.19" data-size="mini">Mini ($4.19)</option>
                             </select>
@@ -473,14 +485,16 @@
                     </tr>
                     <tr>
                         <td>
-                            <select id="shakeFlavor" style="font-family: Inter;" onchange="updateProductFlavor(shake, shakeFlavor)">
+                            <select id="shakeFlavor" style="font-family: Inter;"
+                                onchange="updateProductFlavor(shake, shakeFlavor)">
                                 <option value="5.59" data-flavor="chocolateShake">Chocolate Shake</option>
                                 <option value="6.19" data-flavor="vanillaShake">Vanilla Shake</option>
                                 <option value="6.59" data-flavor="strawberryShake">Strawberry Shake</option>
                             </select>
                         </td>
                         <td>
-                            <select id="shakeSize"  style="font-family: Inter;" onchange="updatePriceAndQuantity('shake', 'shakeSize')">
+                            <select id="shakeSize" style="font-family: Inter;"
+                                onchange="updatePriceAndQuantity('shake', 'shakeSize')">
                                 <option value="5.59" data-size="small">Small ($5.59)</option>
                                 <option value="6.19" data-size="medium">Medium ($6.19)</option>
                                 <option value="6.59" data-size="large">Large ($6.59)</option>
@@ -501,7 +515,8 @@
             <ul id="cartItems"></ul>
             <div id="totalCost"></div>
             <hr>
-            <button type="button" class="submit-btn" id = "checkout-button" onclick="submitOrder(event)">Submit Order</button>
+            <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)">Submit
+                Order</button>
         </form>
 
     </div>
@@ -516,7 +531,7 @@
         // General object to store product quantities
         const cart = {};
 
-        function updateProductFlavor(product,productFlavor) {
+        function updateProductFlavor(product, productFlavor) {
             const productFlavorSelect = document.getElementById(productFlavor);
             productFlavorSelect.addEventListener("change", function () {
                 const selectedFlavorOption = this.options[this.selectedIndex];
@@ -528,7 +543,7 @@
                 sodaInput.name = newItemId;
 
                 // Fetch the current selected size
-                const productSizeSelect = document.getElementById(product+"Size");
+                const productSizeSelect = document.getElementById(product + "Size");
                 const selectedSizeOption = productSizeSelect.options[productSizeSelect.selectedIndex];
                 const size = selectedSizeOption.getAttribute("data-size");
 
@@ -548,7 +563,7 @@
                 }
 
                 // Update price and quantity based on size
-                updatePriceAndQuantity(newItemId, product+"Size");
+                updatePriceAndQuantity(newItemId, product + "Size");
             });
         }
 
@@ -708,12 +723,11 @@
             }
         }
 
-
         function updateTotalCost() {
             let subTotal = 0;
 
             // Iterate through the cart to calculate the subtotal
-            for (let itemKey in cart) { // Use itemKey (which is now the name attribute)
+            for (let itemKey in cart) {
                 const itemData = cart[itemKey];
 
                 if (itemData.quantity !== undefined && itemData.price !== undefined) {
@@ -729,11 +743,22 @@
             const fee = calculateFee(subTotal);
             const total = subTotal + fee;
 
+            const totalCostElement = document.getElementById('totalCost');
+
             if (total > 0) {
-                document.getElementById('totalCost').innerText =
-                    `Subtotal: $${subTotal.toFixed(2)} | Fee: $${fee.toFixed(2)} | Total: $${total.toFixed(2)}`;
+                totalCostElement.innerHTML = `
+            <div style="display: flex; justify-content: space-between;">
+                <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span>Fee</span> <span>$${fee.toFixed(2)}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                <span>Total</span> <span>$${total.toFixed(2)}</span>
+            </div>
+        `;
             } else {
-                document.getElementById('totalCost').innerText = '';
+                totalCostElement.innerHTML = '';
             }
         }
 
