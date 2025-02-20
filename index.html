@@ -426,6 +426,7 @@
                         <td>
                             <select id="sodaFlavor" style="font-family: Inter;"
                                 onchange="updateProductFlavor(soda, sodaFlavor)">
+                                <option value="" disabled selected hidden>Soft Drinks</option>
                                 <option value="0.99" data-flavor="sprite">Sprite</option>
                                 <option value="0.99" data-flavor="cocaCola">Coca Cola</option>
                                 <option value="0.99" data-flavor="cokeZero">Coke Zero</option>
@@ -462,6 +463,7 @@
                         <td>
                             <select id="mcflurryFlavor" style="font-family: Inter;"
                                 onchange="updateProductFlavor(mcflurry, mcflurryFlavor)">
+                                <option value="" disabled selected hidden>McFlurry</option>
                                 <option value="6.59" data-flavor="oreoMcFlurry">Oreo McFlurry</option>
                                 <option value="6.59" data-flavor="m&MMcFlurry">M&M McFlurry</option>
                                 <option value="6.59" data-flavor="oreoShamrockMcFlurry">Shamrock Oreo McFlurry</option>
@@ -487,6 +489,7 @@
                         <td>
                             <select id="shakeFlavor" style="font-family: Inter;"
                                 onchange="updateProductFlavor(shake, shakeFlavor)">
+                                <option value="" disabled selected hidden>Milkshake</option>
                                 <option value="5.59" data-flavor="chocolateShake">Chocolate Shake</option>
                                 <option value="6.19" data-flavor="vanillaShake">Vanilla Shake</option>
                                 <option value="6.59" data-flavor="strawberryShake">Strawberry Shake</option>
@@ -595,12 +598,17 @@
 
         function adjustQuantity(itemId, quantityChange) {
             const inputElement = document.getElementById(itemId);
-            let currentValue = parseInt(inputElement.value, 10);  // Convert the current value to a number
-            currentValue += quantityChange;   // Adjust the value by quantity change
-            inputElement.value = currentValue;  // Update the input's value
+            let currentValue = parseInt(inputElement.value, 10);
 
+            currentValue += quantityChange;
+            if (currentValue < 0) {
+                currentValue = 0;  // Prevent the value from going negative
+            }
+
+            inputElement.value = currentValue;
             updateCart(itemId);
         }
+
 
 
         function updateCartDisplay() {
@@ -722,7 +730,6 @@
                 return 10.00;
             }
         }
-
         function updateTotalCost() {
             let subTotal = 0;
 
@@ -751,17 +758,28 @@
                 <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
             </div>
             <div style="display: flex; justify-content: space-between;">
-                <span>Fee</span> <span>$${fee.toFixed(2)}</span>
+                <span>Delivery Fee</span> <span>$${fee.toFixed(2)}</span>
             </div>
             <div style="display: flex; justify-content: space-between; font-weight: bold;">
                 <span>Total</span> <span>$${total.toFixed(2)}</span>
             </div>
+        `;
+
+                // Show the textarea below the total cost display
+                totalCostElement.innerHTML += `
+            <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
+                      placeholder="Enter any special requests (e.g., no pickles, extra sauce)"></textarea>
         `;
             } else {
                 totalCostElement.innerHTML = '';
             }
         }
 
+        // Ensure the textarea is empty on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const specialInstructions = document.getElementById("specialInstructions");
+            specialInstructions.value = "";  // Ensure the textarea is empty on load
+        });
 
         function submitOrder(event) {
             // event.preventDefault();
