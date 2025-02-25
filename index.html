@@ -74,6 +74,23 @@
             /* Space between the text and the images */
         }
 
+        #cartItems {
+            list-style: none;
+            /* Remove bullets */
+            padding: 0;
+            /* Remove left indentation */
+            margin: 0;
+            color: #4B0082;
+            /* Ensure no extra space */
+        }
+
+        #cartItems div {
+            text-align: left;
+            /* Ensure text aligns to the left */
+            margin-bottom: 5px;
+            /* Optional: Add space between items */
+        }
+
         .menu-table {
             width: 100%;
             border-collapse: collapse;
@@ -133,7 +150,7 @@
             color: #4B0082;
             font-size: 16px;
             cursor: pointer;
-            display:flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
@@ -603,22 +620,31 @@
 
         function adjustQuantity(itemId, quantityChange) {
             const inputElement = document.getElementById(itemId);
-            let currentValue = parseInt(inputElement.value, 10);
 
+            // Check if there's an associated flavor dropdown
+            const flavorDropdown = document.getElementById(itemId + "Flavor");
+            if (flavorDropdown) {
+                const selectedFlavorOption = flavorDropdown.options[flavorDropdown.selectedIndex];
+
+                if (!selectedFlavorOption || !selectedFlavorOption.getAttribute("data-flavor")) {
+                    alert(`Please select a valid flavor for ${itemId} before adjusting quantity.`);
+                    return; // Prevent quantity change
+                }
+            }
+
+            let currentValue = parseInt(inputElement.value, 10);
             currentValue += quantityChange;
             if (currentValue < 0) {
-                currentValue = 0;  // Prevent the value from going negative
+                currentValue = 0; // Prevent negative values
             }
 
             inputElement.value = currentValue;
             updateCart(itemId);
         }
 
-
-
         function updateCartDisplay() {
             const cartItemsList = document.getElementById('cartItems');
-            cartItemsList.innerHTML = ''; // Clear the previous list
+            cartItemsList.innerHTML = ''; // Clear previous items
 
             for (let itemKey in cart) {
                 const itemData = cart[itemKey];
@@ -627,24 +653,26 @@
                     // For size-based items like fries and McNuggets
                     for (let size in itemData) {
                         const sizeData = itemData[size];
-                        if (sizeData.quantity > 0) { // Only display if quantity is greater than 0
+                        if (sizeData.quantity > 0) {
                             const capitalizedSize = size.charAt(0).toUpperCase() + size.slice(1); // Capitalize size
-                            const li = document.createElement('li');
-                            li.textContent = `${capitalizedSize} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}`;
-                            cartItemsList.appendChild(li);
+                            const itemDiv = document.createElement('div');
+                            itemDiv.textContent = `${capitalizedSize} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}`;
+                            cartItemsList.appendChild(itemDiv);
                         }
                     }
                 } else {
-                    if (itemData.quantity > 0) { // Only display if quantity is greater than 0
-                        const li = document.createElement('li');
-                        li.textContent = `${formatItemName(itemKey)}: ${itemData.quantity} x $${itemData.price.toFixed(2)}`;
-                        cartItemsList.appendChild(li);
+                    if (itemData.quantity > 0) {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.textContent = `${formatItemName(itemKey)}: ${itemData.quantity} x $${itemData.price.toFixed(2)}`;
+                        cartItemsList.appendChild(itemDiv);
                     }
                 }
             }
 
             updateTotalCost();
         }
+
+
 
         // Helper function to format item names (capitalize first letter)
         function formatItemName(itemKey) {
@@ -666,41 +694,29 @@
             const quantity = parseInt(inputElement.value, 10) || 0;
             const price = parseFloat(inputElement.getAttribute("data-price")) || 0;
 
-            if (inputElement.hasAttribute("size")) {
-                // Handle size-based items
-                const sizeDropdownId = itemId + "Size";
-                const sizeDropdown = document.getElementById(sizeDropdownId);
-                const selectedOption = sizeDropdown.options[sizeDropdown.selectedIndex];
-                const size = selectedOption.getAttribute("data-size");
+            // Check if there's an associated flavor dropdown
+            const flavorDropdown = document.getElementById(itemId + "Flavor");
+            let flavor = "";
 
-                // Check for soda flavor
-                if (itemId === "soda") {
-                    const sodaFlavorDropdown = document.getElementById("sodaFlavor");
-                    const selectedFlavorOption = sodaFlavorDropdown.options[sodaFlavorDropdown.selectedIndex];
-                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
-                    itemId = `soda_${flavor}`;
+            if (flavorDropdown) {
+                const selectedFlavorOption = flavorDropdown.options[flavorDropdown.selectedIndex];
+
+                if (!selectedFlavorOption || !selectedFlavorOption.getAttribute("data-flavor")) {
+                    alert(`Please select a valid flavor for ${itemId} before adding to the cart.`);
+                    return; // Prevent adding an invalid item
                 }
 
-                if (itemId === "mcflurry") {
-                    const mcflurryFlavorDropdown = document.getElementById("mcflurryFlavor");
-                    const selectedFlavorOption = mcflurryFlavorDropdown.options[mcflurryFlavorDropdown.selectedIndex];
-                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
-                    itemId = `mcflurry_${flavor}`;
-                }
+                flavor = selectedFlavorOption.getAttribute("data-flavor");
+                itemId = `${itemId}_${flavor}`; // Append flavor to item ID
+            }
 
-                if (itemId === "shake") {
-                    const shakeFlavorDropdown = document.getElementById("shakeFlavor");
-                    const selectedFlavorOption = shakeFlavorDropdown.options[shakeFlavorDropdown.selectedIndex];
-                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
-                    itemId = `shake_${flavor}`;
-                }
+            // Check if the item has a size dropdown
+            const sizeDropdown = document.getElementById(itemId + "Size");
+            let size = "";
 
-                if (itemId === "quarterPounder") {
-                    const quarterPounderFlavorDropdown = document.getElementById("quarterPounderFlavor");
-                    const selectedFlavorOption = quarterPounderFlavorDropdown.options[quarterPounderFlavorDropdown.selectedIndex];
-                    const flavor = selectedFlavorOption.getAttribute("data-flavor");
-                    itemId = `quarterPounder_${flavor}`;
-                }
+            if (sizeDropdown) {
+                const selectedSizeOption = sizeDropdown.options[sizeDropdown.selectedIndex];
+                size = selectedSizeOption.getAttribute("data-size");
 
                 if (!(itemId in cart)) {
                     cart[itemId] = {};
