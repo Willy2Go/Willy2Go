@@ -339,9 +339,9 @@
 
         </div>
         <div class="form-group">
-            <label style="font-family: Inter;" for="Phone Number">Phone Number:</label>
-            <input placeholder="Enter Phone Number">
-        </div>
+            <label style="font-family: Inter;" for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" maxlength="11">
+        </div>        
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
                 <tbody>
@@ -384,7 +384,11 @@
                     </tr>
 
                     <tr>
-                        <td>Double Quarter Pounder</td>
+                        <td>
+                            <img src="double_quarter_pounder.jpg" alt="Double Quarter Pounder" width="100" height="100"
+                                style="vertical-align: middle;"><br>
+                            Double Quarter Pounder
+                        </td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('doubleQuarterPounder', -1)">-</button>
@@ -396,7 +400,11 @@
                     </tr>
 
                     <tr>
-                        <td>McCrispy</td>
+                        <td>
+                            <img src="mc_crispy.jpg" alt="McCrispy" width="100" height="100"
+                                style="vertical-align: middle;"><br>
+                            McCrispy
+                        </td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('mcCrispy', -1)">-</button>
@@ -414,7 +422,11 @@
                         <td style="color: #efbf04;">Quantity</td>
                     </tr>
                     <tr>
-                        <td>Fries</td>
+                        <td>
+                            <img src="french_fries.jpg" alt="fries" width="100" height="100"
+                                style="vertical-align: middle;"><br>
+                            Fries
+                        </td>
                         <td>
                             <select style="font-family: Inter;" id="friesSize"
                                 onchange="updatePriceAndQuantity('fries', 'friesSize')">
@@ -433,7 +445,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>McNuggets</td>
+                        <td>
+                            <img src="mc_nuggets.jpg" alt="McNuggets" width="100" height="100"
+                                style="vertical-align: middle;"><br>
+                            McNuggets
+                        </td>
                         <td>
                             <select id="mcNuggetsSize" style="font-family: Inter;" onchange="updatePriceAndQuantity('mcNuggets', 'mcNuggetsSize')
                             ">
