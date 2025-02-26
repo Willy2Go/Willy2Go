@@ -277,20 +277,28 @@
         <div class="image-container">
             <img src="McDonalds.jpg" alt="McDonald's Logo" class="header-image" style="width:130px; height: auto;">
         </div>
-        <h3 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:26px;"> Open:</h3>
-        <h4 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:22px"> Friday: 8:00 PM - 2:30 AM
-        </h4>
-        <h4 style="font-family:Inter; color: #6A0DAD; text-align: center; font-size:22px"> Saturday: 8:00 PM - 2:30 AM
-        </h4>
+        <div style="display: flex; justify-content: center; gap: 50px;">
+            <div style="font-family: Inter; color: #6A0DAD; text-align: left; font-size: 26px;">
+                <h3>Open:</h3>
+                <h4 style="font-size: 22px;">Friday: 8:00 PM - 2:30 AM</h4>
+                <h4 style="font-size: 22px;">Saturday: 8:00 PM - 2:30 AM</h4>
+            </div>
+        
+            <div style="font-family: Inter; color: #6A0DAD; text-align: left; font-size: 26px;">
+                <h3>Add delivery explanation section</h3>
+                <h4 style="font-size: 22px;">Deliveries are made within ...</h4>
+                <h4 style="font-size: 22px;">*will send you what to put in this section*</h4>
+            </div>
+        </div>        
         <hr>
         <div class="form-group">
             <label for="Name" style="font-family: Inter;">Name:</label>
             <input placeholder="Enter Name">
         </div>
         <div class="form-group">
-            <label for="Dorm" style="font-family: Inter;">Dorm:</label>
+            <label for="Dorm" style="font-family: Inter;">Residence:</label>
             <select style="font-family: Inter;" id="Dorm" name="Dorm" required>
-                <option value="" disabled selected>Select Your Dorm</option>
+                <option value="" disabled selected>Select Your Residence</option>
                 <option value="Dorm1">Agard</option>
                 <option value="Dorm2">Brooks</option>
                 <option value="Dorm3">Bryant</option>
@@ -351,10 +359,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Big Mac<br><br>
-                            <img src="big_mac.jpeg" alt="Big Mac" width="150" height="150"
-                                style="vertical-align: middle;">
-                        </td>
+                        <td>
+                            <img src="big_mac.jpeg" alt="Big Mac" width="150" height="150" style="vertical-align: middle;"><br>
+                            Big Mac
+                        </td>                                        
                         <td>-</td>
                         <td>
                             <div class="quantity-wrapper">
@@ -427,7 +435,8 @@
                             ">
                                 <option value="6.79" data-size="4pc">4pc ($6.79)</option>
                                 <option value="8.99" data-size="6pc">6pc ($8.99)</option>
-                                <option value="11.89" data-size="10pc">10pc ($11.89)</option>
+                                <option value="9.89" data-size="10pc">10pc ($9.89)</option>
+                                <option value="11.89" data-size="20pc">20pc ($11.89)</option>
                             </select>
                         </td>
                         <td>
