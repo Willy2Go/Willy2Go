@@ -760,67 +760,56 @@
             updateCartDisplay();
 
             // Ensure the sauce row updates correctly when McNuggets are changed
-            if (itemId === "mcNuggets") {
+            if (itemId === "mcNuggets" || itemId == "fries") {
                 handleSauceRow();
             }
         }
 
         function handleSauceRow() {
-            const nuggetSizes = ["4pc", "6pc", "10pc", "20pc"];
-            let hasMcNuggets = false;
-
-            for (let size of nuggetSizes) {
-                if (cart.mcNuggets && cart.mcNuggets[size] && cart.mcNuggets[size].quantity > 0) {
-                    hasMcNuggets = true;
-                    break;
-                }
-            }
-
             const menuTable = document.querySelector(".menu-table tbody");
+            const hasMcNuggets = cart.mcNuggets && Object.values(cart.mcNuggets).some(size => size.quantity > 0);
+            const hasFries = cart.fries && Object.values(cart.fries).some(size => size.quantity > 0);
             let sauceRow = document.getElementById("sauceRow");
+            let friesSauceRow = document.getElementById("friesSauceRow");
 
-            if (hasMcNuggets) {
+            if (hasMcNuggets || hasFries) {
                 if (!sauceRow) {
-                    // Create a new row for sauces
                     sauceRow = document.createElement("tr");
                     sauceRow.id = "sauceRow";
                     sauceRow.innerHTML = `
-                <td colspan="1">
-                    <select id="sauceChoice" onchange="updateSauceCart()">
-                        <option value="" disabled selected hidden>Choose a sauce</option>
-                        <option value="BBQ">BBQ</option>
-                        <option value="Sweet and Sour">Sweet and Sour</option>
-                        <option value="Honey Mustard">Honey Mustard</option>
-                        <option value="Ranch">Ranch</option>
-                        <option value="Buffalo">Buffalo</option>
-                    </select>
-                </td>
-                <td>-</td>
-                <td colspan="1">
-                    <div class="quantity-wrapper">
-                        <button type="button" onclick="adjustSauceQuantity(-1)">-</button>
-                        <input type="number" id="sauceQuantity" name="sauceQuantity" placeholder="0" min="0" value="0" readonly>
-                        <button type="button" onclick="adjustSauceQuantity(1)">+</button>
-                    </div>
-                </td>
-            `;
+                    <td colspan="1">
+                        <select id="sauceChoice" onchange="updateSauceCart()">
+                            <option value="" disabled selected hidden>Choose a sauce</option>
+                            <option value="BBQ">BBQ</option>
+                            <option value="Sweet and Sour">Sweet and Sour</option>
+                            <option value="Honey Mustard">Honey Mustard</option>
+                            <option value="Ranch">Ranch</option>
+                            <option value="Buffalo">Buffalo</option>
+                        </select>
+                    </td>
+                    <td>-</td>
+                    <td colspan="1">
+                        <div class="quantity-wrapper">
+                            <button type="button" onclick="adjustSauceQuantity(-1)">-</button>
+                            <input type="number" id="sauceQuantity" name="sauceQuantity" placeholder="0" min="0" value="0" readonly>
+                            <button type="button" onclick="adjustSauceQuantity(1)">+</button>
+                        </div>
+                    </td>
+                `;
                 }
 
-                // Locate McNuggets row and insert sauce row immediately after it
-                const mcNuggetsRow = document.getElementById("mcNuggets").closest("tr");
-                if (mcNuggetsRow && mcNuggetsRow.nextSibling !== sauceRow) {
-                    menuTable.insertBefore(sauceRow, mcNuggetsRow.nextSibling);
+                const referenceRow = hasMcNuggets ? document.getElementById("mcNuggets").closest("tr") : document.getElementById("fries").closest("tr");
+                if (referenceRow && referenceRow.nextSibling !== sauceRow) {
+                    menuTable.insertBefore(sauceRow, referenceRow.nextSibling);
                 }
             } else {
                 if (sauceRow) {
                     sauceRow.remove();
-                    delete cart.sauce; // Remove sauce from cart if no McNuggets are in the cart
+                    delete cart.sauce;
                 }
             }
-
-            updateCartDisplay(); // Ensure cart updates when sauce is modified
+            updateCartDisplay();
         }
-
 
         function adjustSauceQuantity(change) {
             const sauceQuantityInput = document.getElementById("sauceQuantity");
@@ -828,12 +817,17 @@
 
             currentValue += change;
             if (currentValue < 0) {
-                currentValue = 0; // Prevent negative values
+                currentValue = 0;
+            } else if (currentValue > 2) {
+                currentValue = 2;
+                alert("You can select up to 2 sauces per flavor.");
             }
 
             sauceQuantityInput.value = currentValue;
-            updateSauceCart(); // Update cart whenever sauce quantity changes
+            updateSauceCart();
         }
+
+
 
         function updateSauceCart() {
             const sauceChoice = document.getElementById("sauceChoice").value;
@@ -843,12 +837,11 @@
                 cart.sauce = {
                     name: sauceChoice,
                     quantity: sauceQuantity,
-                    price: 0 // Assuming sauce is free, otherwise set appropriate price
+                    price: 0
                 };
             } else {
-                delete cart.sauce; // Remove sauce from cart if quantity is 0 or "None" is selected
+                delete cart.sauce;
             }
-
             updateCartDisplay();
         }
 
