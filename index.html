@@ -344,16 +344,9 @@
         </div>
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Size</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
-                        <td colspan="3"
+                        <td colspan="2"
                             style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Burgers
                         </td>
@@ -364,7 +357,6 @@
                                 style="vertical-align: middle;"><br>
                             Big Mac
                         </td>
-                        <td>-</td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('bigMac', -1)">-</button>
@@ -381,7 +373,6 @@
                                 style="vertical-align: middle;"><br>
                             Quarter Pounder
                         </td>
-                        <td>-</td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('quarterPounder', -1)">-</button>
@@ -391,9 +382,9 @@
                             </div>
                         </td>
                     </tr>
+
                     <tr>
                         <td>Double Quarter Pounder</td>
-                        <td>-</td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('doubleQuarterPounder', -1)">-</button>
@@ -403,9 +394,9 @@
                             </div>
                         </td>
                     </tr>
+
                     <tr>
                         <td>McCrispy</td>
-                        <td>-</td>
                         <td>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('mcCrispy', -1)">-</button>
@@ -414,6 +405,13 @@
                                 <button type="button" onclick="adjustQuantity('mcCrispy', 1)">+</button>
                             </div>
                         </td>
+                    </tr>
+
+                    <tr
+                        style="text-align: center; padding: 7px; background-color: #6A0DAD; border-radius: 15px; color: #efbf04;">
+                        <td style="color: #efbf04;">Item</td>
+                        <td style="color: #efbf04;">Size</td>
+                        <td style="color: #efbf04;">Quantity</td>
                     </tr>
                     <tr>
                         <td>Fries</td>
