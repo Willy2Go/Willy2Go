@@ -341,7 +341,7 @@
         <div class="form-group">
             <label style="font-family: Inter;" for="phoneNumber">Phone Number:</label>
             <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" maxlength="11">
-        </div>        
+        </div>
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
                 <tbody>
@@ -890,6 +890,33 @@
             emailjs.send("service_wfl4qsl", "template_lhun9h5", emailData)
                 .then(response => {
                     alert("Order submitted successfully! 🎉");
+
+                    // Clear the form fields
+                    document.querySelector('input[placeholder="Enter Name"]').value = "";
+                    document.getElementById("Dorm").selectedIndex = 0;
+                    document.querySelector('input[placeholder="Enter Phone Number"]').value = "";
+                    document.getElementById("specialInstructions").value = "";
+
+                    // Reset the cart and update UI
+                    for (let itemKey in cart) {
+                        if (cart[itemKey].quantity !== undefined) {
+                            cart[itemKey].quantity = 0;
+                        } else {
+                            for (let size in cart[itemKey]) {
+                                cart[itemKey][size].quantity = 0;
+                            }
+                        }
+                    }
+
+                    updateCartDisplay(); // Refresh cart display
+                    document.getElementById("cartItems").innerHTML = "";
+                    document.getElementById("totalCost").innerHTML = "";
+
+                    // Reset quantity fields
+                    document.querySelectorAll(".quantity-wrapper input").forEach(input => {
+                        input.value = 0;
+                    });
+
                 })
                 .catch(error => {
                     console.error("Error sending email:", error);
