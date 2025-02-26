@@ -684,12 +684,17 @@
             for (let itemKey in cart) {
                 const itemData = cart[itemKey];
 
-                if (!('quantity' in itemData)) {
+                if (itemKey === "sauce") {
+                    // Display sauce separately
+                    const sauceDiv = document.createElement('div');
+                    sauceDiv.textContent = `${itemData.quantity}x ${itemData.name} Sauce`;
+                    cartItemsList.appendChild(sauceDiv);
+                } else if (!('quantity' in itemData)) {
                     // For size-based items like fries and McNuggets
                     for (let size in itemData) {
                         const sizeData = itemData[size];
                         if (sizeData.quantity > 0) {
-                            const capitalizedSize = size.charAt(0).toUpperCase() + size.slice(1); // Capitalize size
+                            const capitalizedSize = size.charAt(0).toUpperCase() + size.slice(1);
                             const itemDiv = document.createElement('div');
                             itemDiv.textContent = `${capitalizedSize} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}`;
                             cartItemsList.appendChild(itemDiv);
@@ -729,23 +734,7 @@
             const quantity = parseInt(inputElement.value, 10) || 0;
             const price = parseFloat(inputElement.getAttribute("data-price")) || 0;
 
-            // Check if there's an associated flavor dropdown
-            const flavorDropdown = document.getElementById(itemId + "Flavor");
-            let flavor = "";
-
-            if (flavorDropdown) {
-                const selectedFlavorOption = flavorDropdown.options[flavorDropdown.selectedIndex];
-
-                if (!selectedFlavorOption || !selectedFlavorOption.getAttribute("data-flavor")) {
-                    alert(`Please select a valid flavor for ${itemId} before adding to the cart.`);
-                    return; // Prevent adding an invalid item
-                }
-
-                flavor = selectedFlavorOption.getAttribute("data-flavor");
-                itemId = `${itemId}_${flavor}`; // Append flavor to item ID
-            }
-
-            // Check if the item has a size dropdown
+            // Check if the item has a size dropdown (like McNuggets)
             const sizeDropdown = document.getElementById(itemId + "Size");
             let size = "";
 
@@ -762,7 +751,6 @@
                     quantity: quantity
                 };
             } else {
-                // Handle items without size variations
                 cart[itemId] = {
                     price: price,
                     quantity: quantity
@@ -770,8 +758,99 @@
             }
 
             updateCartDisplay();
+
+            // Ensure the sauce row updates correctly when McNuggets are changed
+            if (itemId === "mcNuggets") {
+                handleSauceRow();
+            }
         }
 
+        function handleSauceRow() {
+            const nuggetSizes = ["4pc", "6pc", "10pc", "20pc"];
+            let hasMcNuggets = false;
+
+            for (let size of nuggetSizes) {
+                if (cart.mcNuggets && cart.mcNuggets[size] && cart.mcNuggets[size].quantity > 0) {
+                    hasMcNuggets = true;
+                    break;
+                }
+            }
+
+            const menuTable = document.querySelector(".menu-table tbody");
+            let sauceRow = document.getElementById("sauceRow");
+
+            if (hasMcNuggets) {
+                if (!sauceRow) {
+                    // Create a new row for sauces
+                    sauceRow = document.createElement("tr");
+                    sauceRow.id = "sauceRow";
+                    sauceRow.innerHTML = `
+                <td colspan="1">
+                    <select id="sauceChoice" onchange="updateSauceCart()">
+                        <option value="" disabled selected hidden>Choose a sauce</option>
+                        <option value="BBQ">BBQ</option>
+                        <option value="Sweet and Sour">Sweet and Sour</option>
+                        <option value="Honey Mustard">Honey Mustard</option>
+                        <option value="Ranch">Ranch</option>
+                        <option value="Buffalo">Buffalo</option>
+                    </select>
+                </td>
+                <td>-</td>
+                <td colspan="1">
+                    <div class="quantity-wrapper">
+                        <button type="button" onclick="adjustSauceQuantity(-1)">-</button>
+                        <input type="number" id="sauceQuantity" name="sauceQuantity" placeholder="0" min="0" value="0" readonly>
+                        <button type="button" onclick="adjustSauceQuantity(1)">+</button>
+                    </div>
+                </td>
+            `;
+                }
+
+                // Locate McNuggets row and insert sauce row immediately after it
+                const mcNuggetsRow = document.getElementById("mcNuggets").closest("tr");
+                if (mcNuggetsRow && mcNuggetsRow.nextSibling !== sauceRow) {
+                    menuTable.insertBefore(sauceRow, mcNuggetsRow.nextSibling);
+                }
+            } else {
+                if (sauceRow) {
+                    sauceRow.remove();
+                    delete cart.sauce; // Remove sauce from cart if no McNuggets are in the cart
+                }
+            }
+
+            updateCartDisplay(); // Ensure cart updates when sauce is modified
+        }
+
+
+        function adjustSauceQuantity(change) {
+            const sauceQuantityInput = document.getElementById("sauceQuantity");
+            let currentValue = parseInt(sauceQuantityInput.value, 10) || 0;
+
+            currentValue += change;
+            if (currentValue < 0) {
+                currentValue = 0; // Prevent negative values
+            }
+
+            sauceQuantityInput.value = currentValue;
+            updateSauceCart(); // Update cart whenever sauce quantity changes
+        }
+
+        function updateSauceCart() {
+            const sauceChoice = document.getElementById("sauceChoice").value;
+            const sauceQuantity = parseInt(document.getElementById("sauceQuantity").value, 10) || 0;
+
+            if (sauceChoice !== "None" && sauceQuantity > 0) {
+                cart.sauce = {
+                    name: sauceChoice,
+                    quantity: sauceQuantity,
+                    price: 0 // Assuming sauce is free, otherwise set appropriate price
+                };
+            } else {
+                delete cart.sauce; // Remove sauce from cart if quantity is 0 or "None" is selected
+            }
+
+            updateCartDisplay();
+        }
 
         function calculateFee(totalPrice) {
             if (totalPrice <= 10) {
