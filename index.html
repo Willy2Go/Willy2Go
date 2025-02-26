@@ -283,13 +283,13 @@
                 <h4 style="font-size: 22px;">Friday: 8:00 PM - 2:30 AM</h4>
                 <h4 style="font-size: 22px;">Saturday: 8:00 PM - 2:30 AM</h4>
             </div>
-        
+
             <div style="font-family: Inter; color: #6A0DAD; text-align: left; font-size: 26px;">
                 <h3>Add delivery explanation section</h3>
                 <h4 style="font-size: 22px;">Deliveries are made within ...</h4>
                 <h4 style="font-size: 22px;">*will send you what to put in this section*</h4>
             </div>
-        </div>        
+        </div>
         <hr>
         <div class="form-group">
             <label for="Name" style="font-family: Inter;">Name:</label>
@@ -360,9 +360,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="big_mac.jpeg" alt="Big Mac" width="100" height="100" style="vertical-align: middle;"><br>
+                            <img src="big_mac.jpeg" alt="Big Mac" width="100" height="100"
+                                style="vertical-align: middle;"><br>
                             Big Mac
-                        </td>                                        
+                        </td>
                         <td>-</td>
                         <td>
                             <div class="quantity-wrapper">
@@ -373,12 +374,13 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td>
-                            <img src="quarter_pounder.jpeg" alt="Quarter Pounder" width="100" height="100" style="vertical-align: middle;"><br>
+                            <img src="quarter_pounder.jpeg" alt="Quarter Pounder" width="100" height="100"
+                                style="vertical-align: middle;"><br>
                             Quarter Pounder
-                        </td> 
+                        </td>
                         <td>-</td>
                         <td>
                             <div class="quantity-wrapper">
@@ -765,6 +767,7 @@
                 return 10.00;
             }
         }
+
         function updateTotalCost() {
             let subTotal = 0;
 
@@ -787,7 +790,8 @@
 
             const totalCostElement = document.getElementById('totalCost');
 
-            if (total > 0) {
+            // Only display totals if the subtotal is greater than 0
+            if (subTotal > 0) {
                 totalCostElement.innerHTML = `
             <div style="display: flex; justify-content: space-between;">
                 <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
@@ -798,17 +802,14 @@
             <div style="display: flex; justify-content: space-between; font-weight: bold;">
                 <span>Total</span> <span>$${total.toFixed(2)}</span>
             </div>
-        `;
-
-                // Show the textarea below the total cost display
-                totalCostElement.innerHTML += `
             <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
                       placeholder="Enter any special requests (e.g., no pickles, extra sauce)"></textarea>
         `;
             } else {
-                totalCostElement.innerHTML = '';
+                totalCostElement.innerHTML = ''; // Clear the total cost display when cart is empty
             }
         }
+
 
         // Ensure the textarea is empty on page load
         document.addEventListener("DOMContentLoaded", function () {
