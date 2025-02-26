@@ -568,6 +568,11 @@
 
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("P-flo4QhLrSH5apSe"); // Replace with your actual EmailJS Public Key
+    </script>
+
     <script>
         // General object to store product quantities
         const cart = {};
@@ -818,42 +823,66 @@
         });
 
         function submitOrder(event) {
-            // event.preventDefault();
-            document.getElementById('orderForm').submit();
-            const form = document.getElementById('orderForm');
+            event.preventDefault(); // Prevent default form submission
 
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault(); // Prevent default form submission
+            // Collect user details
+            const name = document.querySelector('input[placeholder="Enter Name"]').value.trim();
+            const residence = document.getElementById("Dorm").value;
+            const phoneNumber = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
+            const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
-                const formData = new FormData(form);
-                const data = {};
-                formData.forEach((value, key) => {
-                    data[key] = value;
-                });
+            if (!name || !residence || !phoneNumber) {
+                alert("Please fill out your name, residence, and phone number.");
+                return;
+            }
 
-                try {
-                    const response = await fetch('/.netlify/functions/create-checkout-session', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    });
+            // Gather cart details
+            let orderDetails = "";
+            for (let itemKey in cart) {
+                const itemData = cart[itemKey];
 
-                    if (response.ok) {
-                        const result = await response.json();  // Parse JSON response
-                        window.location.href = result.redirect_url;  // Redirect
-
-                    } else {
-                        console.error('Form submission failed:', response.status, response.statusText);
-                        alert(`Form submission failed: ${response.status} ${response.statusText}`);
+                if (itemData.quantity !== undefined && itemData.quantity > 0) {
+                    orderDetails += `${formatItemName(itemKey)}: ${itemData.quantity} x $${itemData.price.toFixed(2)}\n`;
+                } else {
+                    for (let size in itemData) {
+                        const sizeData = itemData[size];
+                        if (sizeData.quantity > 0) {
+                            orderDetails += `${size} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}\n`;
+                        }
                     }
-                } catch (error) {
-                    console.error('Network error occurred:', error);
-                    alert(`Network error occurred: ${error.message}`);
                 }
-            });
+            }
+
+            if (!orderDetails) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            // Get total cost
+            let totalCost = document.getElementById("totalCost").innerText || "Total not available";
+
+            // Prepare email data
+            const emailData = {
+                to_email: "willycollegego@gmail.com",  // Sending information to our email
+                name: name,
+                residence: residence,
+                phone: phoneNumber,
+                special_instructions: specialInstructions,
+                order_details: orderDetails,
+                total_cost: totalCost
+            };
+
+            // Send email using EmailJS
+            emailjs.send("service_wfl4qsl", "template_lhun9h5", emailData)
+                .then(response => {
+                    alert("Order submitted successfully! 🎉");
+                })
+                .catch(error => {
+                    console.error("Error sending email:", error);
+                    alert("Oops! Something went wrong. Please try again.");
+                });
         }
+
     </script>
 
 </body>
