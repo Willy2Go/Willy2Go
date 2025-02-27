@@ -1,2 +1,4 @@
-- Using EmailJS for sending emails to willycollegego@gmail.com
+- Using EmailJS for sending emails to willy2godelivery@gmail.com
     - https://dashboard.emailjs.com/admin/templates/jmq3rf2
+- Using Render for hosting the server
+    - https://dashboard.render.com/
