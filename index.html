@@ -973,27 +973,45 @@
 
 
 
-            try {
-                const response = await fetch("https://willy2go.onrender.com/create-checkout-session", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ items }),
-                });
-
-                const session = await response.json();
-                if (session.url) {
-                    window.location.href = session.url; // Redirect to Stripe Checkout
-                } else {
-                    throw new Error("Stripe session URL missing");
+                function calculateFee(totalPrice) {
+                    if (totalPrice <= 10) {
+                        return 4.00;
+                    } else if (totalPrice <= 20) {
+                        return 5.50;
+                    } else if (totalPrice <= 30) {
+                        return 6.00;
+                    } else if (totalPrice <= 40) {
+                        return 8.00;
+                    } else {
+                        return 10.00;
+                    }
                 }
-            } catch (error) {
-                console.error("Payment error:", error);
-                alert("Failed to proceed with payment.");
-            }
+
+                const deliveryFee = calculateFee(subTotal);
+                const total = subTotal + deliveryFee;
+
+                console.log("Subtotal:", subTotal);
+                console.log("Delivery Fee:", deliveryFee);
+                console.log("Total Cost (to be sent to Stripe):", total);
+
+                try {
+                    const response = await fetch("https://willy2go.onrender.com/create-checkout-session", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ items, delivery_fee: deliveryFee }),
+                    });
+
+                    const session = await response.json();
+                    if (session.url) {
+                        window.location.href = session.url; // Redirect to Stripe Checkout
+                    } else {
+                        throw new Error("Stripe session URL missing");
+                    }
+                } catch (error) {
+                    console.error("Payment error:", error);
+                    alert("Failed to proceed with payment.");
+                }
         }
-
-
-
     </script>
 
 </body>

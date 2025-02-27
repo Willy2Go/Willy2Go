@@ -44,6 +44,18 @@ def create_checkout_session():
             for item in items
         ]
 
+        # Add the delivery fee as a separate line item
+        delivery_fee = data.get("delivery_fee", 0)  # Get delivery fee from frontend
+        if delivery_fee > 0:
+            line_items.append({
+                "price_data": {
+                    "currency": "usd",
+                    "product_data": {"name": "Delivery Fee"},
+                    "unit_amount": int(delivery_fee * 100),  # Convert dollars to cents
+                },
+                "quantity": 1,
+            })
+
         # Create Stripe Checkout session
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=["card"],
@@ -52,7 +64,6 @@ def create_checkout_session():
             success_url=DOMAIN + '/success.html',  # Redirect after successful payment
             cancel_url=DOMAIN + '/cancel.html',    # Redirect if payment is canceled
         )
-
 
         return jsonify({"url": checkout_session.url})  # Send session URL to frontend
 
