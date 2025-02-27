@@ -55,6 +55,7 @@
     </style>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
+        emailjs.init(config.user_id);  // Initialize EmailJS with user ID
         async function sendEmail() {
             try {
                 const response = await fetch("https://willy2go.onrender.com/emailjs-config");
