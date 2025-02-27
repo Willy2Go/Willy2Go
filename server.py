@@ -12,7 +12,10 @@ if not stripe.api_key:
     raise ValueError("Missing STRIPE_SECRET_KEY in environment variables")
 
 app = Flask(__name__)
-CORS(app, resources={r"/create-checkout-session": {"origins": ["https://willy2go.com", "http://localhost:4242"]}})
+CORS(app, resources={
+    r"/create-checkout-session": {"origins": ["https://willy2go.com", "http://localhost:4242"]},
+    r"/emailjs-config": {"origins": ["https://willy2go.com", "http://localhost:4242"]}
+})
 
 DOMAIN = 'https://willy2go.com'
 
@@ -52,6 +55,14 @@ def create_checkout_session():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/emailjs-config')
+def emailjs_config():
+    return jsonify({
+        "service_id": os.getenv("EMAILJS_SERVICE_ID"),
+        "template_id": os.getenv("EMAILJS_TEMPLATE_ID"),
+        "user_id": os.getenv("EMAILJS_USER_ID")
+    })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000, debug=True)
