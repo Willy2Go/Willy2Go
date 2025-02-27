@@ -27,6 +27,7 @@ def create_checkout_session():
     try:
         data = request.json  # Extract JSON from frontend request
         items = data.get("items", [])
+        delivery_fee = data.get("delivery_fee", 0)  # Get delivery fee from frontend
 
         # Validate items
         if not items:
@@ -44,14 +45,13 @@ def create_checkout_session():
             for item in items
         ]
 
-        # Add the delivery fee as a separate line item
-        delivery_fee = data.get("delivery_fee", 0)  # Get delivery fee from frontend
+        # Add delivery fee as a separate line item
         if delivery_fee > 0:
             line_items.append({
                 "price_data": {
                     "currency": "usd",
                     "product_data": {"name": "Delivery Fee"},
-                    "unit_amount": int(delivery_fee * 100),  # Convert dollars to cents
+                    "unit_amount": int(delivery_fee * 100),  # Convert to cents
                 },
                 "quantity": 1,
             })
@@ -69,6 +69,7 @@ def create_checkout_session():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route('/emailjs-config')
 def emailjs_config():
