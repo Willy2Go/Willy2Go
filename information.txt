@@ -2,3 +2,5 @@
     - https://dashboard.emailjs.com/admin/templates/jmq3rf2
 - Using Render for hosting the server
     - https://dashboard.render.com/
+- Using Netlify to access git and deploy to https://willy2go.com domain
+    - https://app.netlify.com/teams/willy2go/sites

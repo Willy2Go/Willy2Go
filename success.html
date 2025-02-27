@@ -53,6 +53,31 @@
             background-color: #45a049;
         }
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        async function sendEmail() {
+            try {
+                const response = await fetch("https://willy2go.onrender.com/emailjs-config");
+                const config = await response.json();
+
+                emailjs.init(config.user_id);  // Initialize EmailJS with user ID
+
+                const emailData = JSON.parse(sessionStorage.getItem("emailData"));
+                if (emailData) {
+                    emailjs.send(config.service_id, config.template_id, emailData)
+                        .then(response => {
+                            console.log("Email sent successfully!", response);
+                            sessionStorage.removeItem("emailData");  // Clear stored data after sending
+                        })
+                        .catch(error => console.error("Email sending failed:", error));
+                }
+            } catch (error) {
+                console.error("Error fetching EmailJS config:", error);
+            }
+        }
+
+        window.onload = sendEmail;
+    </script>
 </head>
 <body>
     <div class="container">
@@ -61,10 +86,10 @@
             Your order has been successfully placed. Thank you for choosing Willy2Go!
         </div>
         <div class="order-details">
-          <p>
-            We appreciate your business! If you have any questions, please email
-            <a href="mailto:willycollegego@gmail.com">willycollegego@gmail.com</a>.
-          </p>
+            <p>
+                We appreciate your business! If you have any questions, please email
+                <a href="mailto:willycollegego@gmail.com">willycollegego@gmail.com</a>.
+            </p>
             <p>Estimated Delivery Time: 30-60 minutes</p>
         </div>
         <a href="/" class="button">Back to Home</a>
