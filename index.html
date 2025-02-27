@@ -908,10 +908,9 @@
             specialInstructions.value = "";  // Ensure the textarea is empty on load
         });
 
-        function submitOrder(event) {
-            event.preventDefault(); // Prevent default form submission
+        async function submitOrder(event) {
+            event.preventDefault();
 
-            // Collect user details
             const name = document.querySelector('input[placeholder="Enter Name"]').value.trim();
             const residence = document.getElementById("Dorm").value;
             const phoneNumber = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
@@ -922,79 +921,54 @@
                 return;
             }
 
-            // Gather cart details
-            let orderDetails = "";
+            let items = [];
             for (let itemKey in cart) {
                 const itemData = cart[itemKey];
 
                 if (itemData.quantity !== undefined && itemData.quantity > 0) {
-                    orderDetails += `${formatItemName(itemKey)}: ${itemData.quantity} x $${itemData.price.toFixed(2)}\n`;
+                    items.push({
+                        name: formatItemName(itemKey),
+                        price: itemData.price,
+                        quantity: itemData.quantity
+                    });
                 } else {
                     for (let size in itemData) {
                         const sizeData = itemData[size];
                         if (sizeData.quantity > 0) {
-                            orderDetails += `${size} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}\n`;
+                            items.push({
+                                name: `${size} ${formatItemName(itemKey)}`,
+                                price: sizeData.price,
+                                quantity: sizeData.quantity
+                            });
                         }
                     }
                 }
             }
 
-            if (!orderDetails) {
+            if (items.length === 0) {
                 alert("Your cart is empty!");
                 return;
             }
 
-            // Get total cost
-            let totalCost = document.getElementById("totalCost").innerText || "Total not available";
-
-            // Prepare email data
-            const emailData = {
-                to_email: "willycollegego@gmail.com",  // Sending information to our email
-                name: name,
-                residence: residence,
-                phone: phoneNumber,
-                special_instructions: specialInstructions,
-                order_details: orderDetails,
-                total_cost: totalCost
-            };
-
-            // Send email using EmailJS
-            emailjs.send("service_wfl4qsl", "template_lhun9h5", emailData)
-                .then(response => {
-                    alert("Order submitted successfully! 🎉");
-
-                    // Clear the form fields
-                    document.querySelector('input[placeholder="Enter Name"]').value = "";
-                    document.getElementById("Dorm").selectedIndex = 0;
-                    document.querySelector('input[placeholder="Enter Phone Number"]').value = "";
-                    document.getElementById("specialInstructions").value = "";
-
-                    // Reset the cart and update UI
-                    for (let itemKey in cart) {
-                        if (cart[itemKey].quantity !== undefined) {
-                            cart[itemKey].quantity = 0;
-                        } else {
-                            for (let size in cart[itemKey]) {
-                                cart[itemKey][size].quantity = 0;
-                            }
-                        }
-                    }
-
-                    updateCartDisplay(); // Refresh cart display
-                    document.getElementById("cartItems").innerHTML = "";
-                    document.getElementById("totalCost").innerHTML = "";
-
-                    // Reset quantity fields
-                    document.querySelectorAll(".quantity-wrapper input").forEach(input => {
-                        input.value = 0;
-                    });
-
-                })
-                .catch(error => {
-                    console.error("Error sending email:", error);
-                    alert("Oops! Something went wrong. Please try again.");
+            try {
+                const response = await fetch("http://127.0.0.1:4242/create-checkout-session", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ items }),
                 });
+
+                const session = await response.json();
+                if (session.url) {
+                    window.location.href = session.url; // Redirect to Stripe Checkout
+                } else {
+                    throw new Error("Stripe session URL missing");
+                }
+            } catch (error) {
+                console.error("Payment error:", error);
+                alert("Failed to proceed with payment.");
+            }
         }
+
 
     </script>
 

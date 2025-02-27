@@ -15,10 +15,10 @@ app = Flask(__name__,
 # CORS(app)
 
 # Use local domain for testing
-# DOMAIN = 'http://localhost:3000'
+DOMAIN = 'http://localhost:4242'
 # DOMAIN = 'https://willy2go.github.io/Willy2Go'
 # DOMAIN = 'http://127.0.0.1:3000/index.html'
-DOMAIN = 'https://willy2go.com'
+# DOMAIN = 'https://willy2go.com'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
@@ -66,7 +66,7 @@ def create_checkout_session():
     return redirect(checkout_session.url, code=303)
 
 if __name__ == '__main__':
-    app.run(port=3000, debug=True)
+    app.run(port=4242, debug=True)
     # app.run()
     # from waitress import serve
     # serve(app, host="0.0.0.0", port=8080)
