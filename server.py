@@ -58,11 +58,13 @@ def create_checkout_session():
 
 @app.route('/emailjs-config')
 def emailjs_config():
-    return jsonify({
+    config = {
         "service_id": os.getenv("EMAILJS_SERVICE_ID"),
         "template_id": os.getenv("EMAILJS_TEMPLATE_ID"),
-        "user_id": os.getenv("EMAILJS_USER_ID")
-    })
+        "user_id": os.getenv("EMAILJS_USER_ID"),
+    }
+    print("Serving EmailJS Config:", config)  # Debugging: Check if user_id is present
+    return jsonify(config)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000, debug=True)
