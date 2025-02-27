@@ -1,15 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Thanks for your order!</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success - Willy2Go</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            font-size: 36px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .success-message {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .order-details {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-  <section>
-    <p>
-      We appreciate your business! If you have any questions, please email
-      <a href="mailto:willycollegego@gmail.com">willycollegego@gmail.com</a>.
-    </p>
-  </section>
+    <div class="container">
+        <div class="header">Success!</div>
+        <div class="success-message">
+            Your order has been successfully placed. Thank you for choosing Willy2Go!
+        </div>
+        <div class="order-details">
+          <p>
+            We appreciate your business! If you have any questions, please email
+            <a href="mailto:willycollegego@gmail.com">willycollegego@gmail.com</a>.
+          </p>
+            <p>Estimated Delivery Time: 30-60 minutes</p>
+        </div>
+        <a href="/" class="button">Back to Home</a>
+    </div>
 </body>
 </html>

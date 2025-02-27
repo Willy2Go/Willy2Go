@@ -11,20 +11,9 @@ stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 if not stripe.api_key:
     raise ValueError("Missing STRIPE_SECRET_KEY in environment variables")
 
-# app = Flask(__name__,
-#             static_url_path='',
-#             static_folder='public')
-
 app = Flask(__name__)
 CORS(app, resources={r"/create-checkout-session": {"origins": ["https://willy2go.com", "http://localhost:4242"]}})
-# CORS(app, resources={r"/*": {"origins": "*"}})
 
-
-
-# Use local domain for testing
-# DOMAIN = 'http://localhost:4242'
-# DOMAIN = 'https://willy2go.github.io/Willy2Go'
-# DOMAIN = 'http://127.0.0.1:3000/index.html'
 DOMAIN = 'https://willy2go.com'
 
 @app.route('/create-checkout-session', methods=['POST'])
@@ -66,7 +55,3 @@ def create_checkout_session():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000, debug=True)
-
-    # app.run()
-    # from waitress import serve
-    # serve(app, host="0.0.0.0", port=8080)
