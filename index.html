@@ -966,10 +966,11 @@
                     name: name,
                     residence: residence,
                     phone: phoneNumber,
-                    special_instructions: specialInstructions ? specialInstructions.toString() : "None", // Ensure it's a string
+                    special_instructions: document.getElementById("specialInstructions").value.trim() || "None", // Get value from textarea
                     order_details: orderDetails.join("\n"), // Convert order details array into a newline-separated string
                     total_cost: document.getElementById("totalCost").innerText.trim() // Convert total cost to plain text
                 }));
+
 
 
             try {
