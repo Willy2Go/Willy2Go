@@ -953,7 +953,7 @@
             }
 
             try {
-                const response = await fetch("http://willy2go.com", {
+                const response = await fetch("http://127.0.0.1:4242/create-checkout-session", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ items }),
