@@ -6,7 +6,10 @@ from flask_cors import CORS
 import stripe
 
 # Stripe Secret Key (Make sure this is secure and NOT hardcoded in production)
-stripe.api_key = 'sk_test_51QjwHnRqYeNsFUyVMdUyRsajmL8FTvxu3c3QnhCbkC0JLbyZsfIDbHvWqGCJDaNsRxAts5PXQiWCPv08ETtIFl5500juYs2S8U'
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+
+if not stripe.api_key:
+    raise ValueError("Missing STRIPE_SECRET_KEY in environment variables")
 
 # app = Flask(__name__,
 #             static_url_path='',
