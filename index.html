@@ -896,29 +896,34 @@
             }
 
             const fee = calculateFee(subTotal);
-            const total = subTotal + fee;
+            const tipAmount = parseFloat(document.getElementById("tipAmount").value) || 0; // Get the tip amount
+            const total = subTotal + fee + tipAmount;
 
             const totalCostElement = document.getElementById('totalCost');
 
             // Only display totals if the subtotal is greater than 0
             if (subTotal > 0) {
                 totalCostElement.innerHTML = `
-            <div style="display: flex; justify-content: space-between;">
-                <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span>Delivery Fee</span> <span>$${fee.toFixed(2)}</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-weight: bold;">
-                <span>Total</span> <span>$${total.toFixed(2)}</span>
-            </div>
-            <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
-                      placeholder="Enter any special requests (e.g., no pickles, extra sauce)"></textarea>
-        `;
+                <div style="display: flex; justify-content: space-between; font-size: 18px;">
+                    <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 18px;">
+                    <span>Delivery Fee</span> <span>$${fee.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 18px;">
+                    <span>Tip</span> <span>$${tipAmount.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                    <span>Total</span> <span>$${total.toFixed(2)}</span>
+                </div>
+                <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
+                          placeholder="Enter any special requests (e.g., no pickles, extra sauce)"></textarea>
+                `;
             } else {
                 totalCostElement.innerHTML = ''; // Clear the total cost display when cart is empty
             }
         }
+
 
 
         // Ensure the textarea is empty on page load
