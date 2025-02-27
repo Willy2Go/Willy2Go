@@ -914,7 +914,6 @@
             const name = document.querySelector('input[placeholder="Enter Name"]').value.trim();
             const residence = document.getElementById("Dorm").value;
             const phoneNumber = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
-            const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
             if (!name || !residence || !phoneNumber) {
                 alert("Please fill out your name, residence, and phone number.");
@@ -968,6 +967,7 @@
                 alert("Failed to proceed with payment.");
             }
         }
+
 
 
     </script>

@@ -2,17 +2,18 @@
 
 import os
 from flask import Flask, redirect, request
-# from flask_cors import CORS
+from flask_cors import CORS
 import stripe
 
 # Stripe Secret Key (Make sure this is secure and NOT hardcoded in production)
 stripe.api_key = 'sk_test_51QjwHnRqYeNsFUyVMdUyRsajmL8FTvxu3c3QnhCbkC0JLbyZsfIDbHvWqGCJDaNsRxAts5PXQiWCPv08ETtIFl5500juYs2S8U'
 
-app = Flask(__name__,
-            static_url_path='',
-            static_folder='public')
+# app = Flask(__name__,
+#             static_url_path='',
+#             static_folder='public')
 
-# CORS(app)
+app = Flask(__name__, static_url_path='', static_folder='public')
+CORS(app)  # ✅ Enable CORS for all routes
 
 # Use local domain for testing
 DOMAIN = 'http://localhost:4242'
