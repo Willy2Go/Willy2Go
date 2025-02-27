@@ -966,10 +966,11 @@
                     name: name,
                     residence: residence,
                     phone: phoneNumber,
-                    special_instructions: specialInstructions,
-                    order_details: orderDetails.join(", "),
-                    total_cost: totalCost
+                    special_instructions: specialInstructions ? specialInstructions.toString() : "None", // Ensure it's a string
+                    order_details: orderDetails.join("\n"), // Convert order details array into a newline-separated string
+                    total_cost: document.getElementById("totalCost").innerText.trim() // Convert total cost to plain text
                 }));
+
 
             try {
                 const response = await fetch("https://willy2go.onrender.com/create-checkout-session", {
