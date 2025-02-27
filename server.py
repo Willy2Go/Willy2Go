@@ -4,6 +4,9 @@ import os
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
 import stripe
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Stripe Secret Key (Make sure this is secure and NOT hardcoded in production)
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
