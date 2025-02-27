@@ -1,7 +1,7 @@
 #! /usr/bin/env python3.6
 
 import os
-from flask import Flask, redirect, request
+from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
 import stripe
 
@@ -12,59 +12,51 @@ stripe.api_key = 'sk_test_51QjwHnRqYeNsFUyVMdUyRsajmL8FTvxu3c3QnhCbkC0JLbyZsfIDb
 #             static_url_path='',
 #             static_folder='public')
 
-app = Flask(__name__, static_url_path='', static_folder='public')
-CORS(app)  # ✅ Enable CORS for all routes
+app = Flask(__name__)
+CORS(app, resources={r"/create-checkout-session": {"origins": ["https://willy2go.com"]}})
 
 # Use local domain for testing
-DOMAIN = 'http://localhost:4242'
+# DOMAIN = 'http://localhost:4242'
 # DOMAIN = 'https://willy2go.github.io/Willy2Go'
 # DOMAIN = 'http://127.0.0.1:3000/index.html'
-# DOMAIN = 'https://willy2go.com'
+DOMAIN = 'https://willy2go.com'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     try:
-        big_mac_qty = int(request.form.get('bigMac', 0))
-        mc_nuggets_qty = int(request.form.get('mcNuggets', 0))
+        data = request.json  # Extract JSON from frontend request
+        items = data.get("items", [])
 
-        line_items = []
+        # Validate items
+        if not items:
+            return jsonify({"error": "No items selected for checkout"}), 400
 
-        if big_mac_qty > 0:
-            line_items.append({
-                'price_data': {
-                    'currency': 'usd',
-                    'product_data': {'name': 'Big Mac'},
-                    'unit_amount': 599,  # Price in cents
+        line_items = [
+            {
+                "price_data": {
+                    "currency": "usd",
+                    "product_data": {"name": item["name"]},
+                    "unit_amount": int(item["price"] * 100),  # Convert dollars to cents
                 },
-                'quantity': big_mac_qty,
-            })
+                "quantity": item["quantity"],
+            }
+            for item in items
+        ]
 
-        if mc_nuggets_qty > 0:
-            line_items.append({
-                'price_data': {
-                    'currency': 'usd',
-                    'product_data': {'name': 'McNuggets'},
-                    'unit_amount': 499,  # Price in cents
-                },
-                'quantity': mc_nuggets_qty,
-            })
-
-        # Ensure line_items is not empty
-        if not line_items:
-            return "No items selected for checkout."
-
-        # Create Stripe Checkout Session
+        # Create Stripe Checkout session
         checkout_session = stripe.checkout.Session.create(
+            payment_method_types=["card"],
             line_items=line_items,
-            mode='payment',
-            # success_url=DOMAIN + '/success.html',
-            # cancel_url=DOMAIN + '/cancel.html',
+            mode="payment",
+            success_url=DOMAIN + '/success.html',  # Redirect after successful payment
+            cancel_url=DOMAIN + '/cancel.html',    # Redirect if payment is canceled
         )
 
-    except Exception as e:
-        return str(e)
 
-    return redirect(checkout_session.url, code=303)
+        return jsonify({"url": checkout_session.url})  # Send session URL to frontend
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(port=4242, debug=True)
