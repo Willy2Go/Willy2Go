@@ -917,6 +917,7 @@
             const name = document.querySelector('input[placeholder="Enter Name"]').value.trim();
             const residence = document.getElementById("Dorm").value;
             const phoneNumber = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
+            const userEmail = document.getElementById("emailAddress").value.trim();
 
             if (!name || !residence || !phoneNumber) {
                 alert("Please fill out your name, residence, and phone number.");
@@ -966,11 +967,11 @@
                     name: name,
                     residence: residence,
                     phone: phoneNumber,
+                    user_email: user_email,
                     special_instructions: document.getElementById("specialInstructions").value.trim() || "None", // Get value from textarea
                     order_details: orderDetails.join("\n"), // Convert order details array into a newline-separated string
                     total_cost: document.getElementById("totalCost").innerText.trim() // Convert total cost to plain text
                 }));
-
 
 
             // Calculate delivery fee

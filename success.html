@@ -68,6 +68,7 @@
                 console.log("Email Data:", emailData);
 
                 if (emailData) {
+                    emailData.to_email = `willy2godelivery@gmail.com, ${emailData.user_email}`;
                     emailjs.send(config.service_id, config.template_id, emailData)
                         .then(response => {
                             console.log("Email sent successfully!", response);
