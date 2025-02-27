@@ -14,6 +14,8 @@ stripe.api_key = 'sk_test_51QjwHnRqYeNsFUyVMdUyRsajmL8FTvxu3c3QnhCbkC0JLbyZsfIDb
 
 app = Flask(__name__)
 CORS(app, resources={r"/create-checkout-session": {"origins": ["https://willy2go.com", "http://localhost:4242"]}})
+# CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 
 # Use local domain for testing
