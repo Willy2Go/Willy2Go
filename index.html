@@ -568,6 +568,22 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                      <td colspan="3"
+                          style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                          Please Tip Our Drivers
+                      </td>
+                  </tr>
+                  <tr>
+                      <td colspan="2" style="text-align: left;">
+                          <label for="tipAmount" style="font-size: 16px; color: #4B0082;">Tip Amount ($):</label>
+                      </td>
+                      <td>
+                          <input type="text" id="tipAmount" name="tipAmount" placeholder="0.00"
+                              style="width: 80px; text-align: center; padding: 5px; border: 1px solid #6A0DAD; border-radius: 5px; font-size: 16px; color: #4B0082; appearance: none; -moz-appearance: textfield;">
+                      </td>
+                  </tr>
+                  
                 </tbody>
             </table>
             <h3 style="font-family:Georgia;color: #6A0DAD;">Current Cart</h3>
@@ -918,6 +934,7 @@
             const residence = document.getElementById("Dorm").value;
             const phoneNumber = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
             const userEmail = document.getElementById("emailAddress").value.trim();
+            const tipAmount = parseFloat(document.getElementById("tipAmount").value) || 0;
 
             if (!name || !residence || !phoneNumber) {
                 alert("Please fill out your name, residence, and phone number.");
@@ -984,22 +1001,23 @@
                 else return 10.00;
             }
             const deliveryFee = calculateFee(subTotal);
-            const total = subTotal + deliveryFee;
+            const total = subTotal + deliveryFee + tipAmount;
 
             console.log("Subtotal:", subTotal);
             console.log("Delivery Fee:", deliveryFee);
+            console.log("Tip Amount:", tipAmount);
             console.log("Total Cost (to be sent to Stripe):", total);
 
             try {
                 const response = await fetch("https://willy2go.onrender.com/create-checkout-session", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ items, delivery_fee: deliveryFee }), // Send delivery fee
+                    body: JSON.stringify({ items, delivery_fee: deliveryFee, tip_amount: tipAmount }), // Send tip to server
                 });
 
                 const session = await response.json();
                 if (session.url) {
-                    window.location.href = session.url; // Redirect to Stripe Checkout
+                    window.location.href = session.url;
                 } else {
                     throw new Error("Stripe session URL missing");
                 }
