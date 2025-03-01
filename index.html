@@ -355,9 +355,10 @@
             </div>
 
             <div style="font-family: Inter; color: #6A0DAD; text-align: center; font-size: 26px;">
-                <h3 style="font-size: 22px;">*Delivery Info*</h3>
-                <h4 style="font-size: 16px;">Deliveries are made within ...</h4>
-                <h4 style="font-size: 16px;">*will send you what to put in this section*</h4>
+                <h3 style="font-size: 22px;">Delivery Info</h3>
+                <h4 style="font-size: 14px;">Orders placed in the first 30 minutes arrive within an hour. <br>
+                    Orders placed after 30 minutes arrive in the next cycle (top of the hour).<br>
+                    Example: Order at 8:32 PM → Delivery ~10:00 PM</h4>
             </div>
         </div>
 
@@ -376,8 +377,10 @@
                 <option value="Brooks">Brooks</option>
                 <option value="Bryant">Bryant</option>
                 <option value="Carter">Carter</option>
+                <option value="Chadbourne">Chadbourne</option>
                 <option value="Currier">Currier</option>
                 <option value="Dodd">Dodd</option>
+                <option value="Doughty">Doughty</option>
                 <option value="East">East</option>
                 <option value="Fayerweather">Fayerweather</option>
                 <option value="Fitch">Fitch</option>
@@ -390,12 +393,15 @@
                 <option value="Images">Images</option>
                 <option value="Lehman">Lehman</option>
                 <option value="Mark Hopkins">Mark Hopkins</option>
+                <option value="Milham">Milham</option>
                 <option value="Mission">Mission</option>
                 <option value="Morgan">Morgan</option>
                 <option value="Perry">Perry</option>
+                <option value="Poker Flats">Poker Flats</option>
                 <option value="Prospect">Prospect</option>
                 <option value="Sage">Sage</option>
                 <option value="Sewall">Sewall</option>
+                <option value="Susan Hopkins">Susan Hopkins</option>
                 <option value="Sushi Thai">Sushi Thai</option>
                 <option value="Spencer">Spencer</option>
                 <option value="Thompson">Thompson</option>
@@ -404,7 +410,8 @@
                 <option value="West">West</option>
                 <option value="Willy">Williams (Willy)</option>
                 <option value="Wood">Wood</option>
-                <option value="66 Hoxsey">63 Hoxsey</option>
+                <option value="Woodbridge">Woodbridge</option>
+                <option value="63 Hoxsey">63 Hoxsey</option>
                 <option value="66 Hoxsey">66 Hoxsey</option>
                 <option value="70 Hoxsey">70 Hoxsey</option>
                 <option value="71 Hoxsey">71 Hoxsey</option>
@@ -1128,7 +1135,8 @@
                         <td>
 
                             <input type="text" id="tipAmount" name="tipAmount" placeholder="0.00"
-                                style="width: 80px; text-align: center; padding: 5px; align-items: right;border: 1px solid #6A0DAD; border-radius: 5px; font-size: 16px; color: #4B0082; appearance: none; -moz-appearance: textfield;">
+                                style="width: 80px; text-align: center; padding: 5px; align-items: right;border: 1px solid #6A0DAD; border-radius: 5px; 
+                                font-size: 16px; color: #4B0082; appearance: none; -moz-appearance: textfield; border: none;">
                             </input>
                         </td>
                     </tr>
@@ -1138,7 +1146,15 @@
             <h3 style="font-family: Inter;color: #434242;">Current Cart</h3>
             <ul id="cartItems"></ul>
             <div id="totalCost"></div>
-            <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)">Proceed with
+
+            <div style="text-align: center; margin-top: 15px;">
+                <input type="checkbox" id="termsCheckbox" onchange="togglePaymentButton()">
+                <label for="termsCheckbox" style="font-family: Inter; font-size: 14px; color: #808080;">
+                    By ticking, you are confirming that you agree to the <a href="https://willy2go/terms-and-conditions.html">terms and conditions.</a>
+                </label>
+            </div>
+            
+            <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)" disabled>Proceed with
                 Payment</button>
         </form>
 
