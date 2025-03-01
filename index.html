@@ -1154,8 +1154,10 @@
                 </label>
             </div>
             
-            <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)">Proceed with
-                Payment</button>
+            <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)" disabled>
+                Proceed with Payment
+            </button>
+            
         </form>
 
     </div>
@@ -1288,6 +1290,27 @@
 
             updateTotalCost();  // Ensure total updates whenever the cart updates
         }
+
+        function togglePaymentButton() {
+            const nameInput = document.querySelector('input[placeholder="Enter Name"]').value.trim();
+            const phoneInput = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
+            const emailInput = document.getElementById("emailAddress").value.trim();
+            const checkboxChecked = document.getElementById("termsCheckbox").checked;
+            const paymentButton = document.getElementById("checkout-button");
+
+            // Enable button only if all fields are filled and checkbox is checked
+            if (nameInput !== "" && phoneInput !== "" && emailInput !== "" && checkboxChecked) {
+                paymentButton.disabled = false;
+            } else {
+                paymentButton.disabled = true;
+            }
+        }
+
+        // Attach event listeners to all required fields
+        document.getElementById("emailAddress").addEventListener("input", togglePaymentButton);
+        document.getElementById("phoneNumber").addEventListener("input", togglePaymentButton);
+        document.getElementById("termsCheckbox").addEventListener("change", togglePaymentButton);
+        document.querySelector('input[placeholder="Enter Name"]').addEventListener("input", togglePaymentButton);
 
         // Helper function to format item names (capitalize first letter)
         function formatItemName(itemKey) {
@@ -1424,9 +1447,10 @@
             const phoneNumber = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
             const userEmail = document.getElementById("emailAddress").value.trim();
             const tipAmount = parseFloat(document.getElementById("tipAmount").value) || 0;
+            const checkbox = document.getElementById("termsCheckbox").checked;
             // const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
-            if (!name || !residence || !phoneNumber) {
+            if (!name || !residence || !phoneNumber || !checkbox) {
                 alert("Please fill out your name, residence, and phone number.");
                 return;
             }
