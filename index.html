@@ -1105,6 +1105,7 @@
 
         // Ensure the textarea is empty on page load
         document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("tipAmount").addEventListener("input", updateTotalCost);
             const specialInstructions = document.getElementById("specialInstructions");
             specialInstructions.value = "";  // Ensure the textarea is empty on load
         });
