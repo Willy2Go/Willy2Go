@@ -430,10 +430,16 @@
             <table class="menu-table">
                 <tbody>
                     <tr id="sandwiches">
+<<<<<<< HEAD
                         <td colspan="2"
                             style="font-size: 22px; text-align: center; font-weight: bold; color: #000000; background-color: #e9e5e5; padding: 10px; border-radius: 5px;">
+=======
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+>>>>>>> 04c2de452ee2e9a3d5ff5cf46eadd665314cef98
                             Sandwiches
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
@@ -527,12 +533,25 @@
                                 <button type="button" onclick="adjustQuantity('mcCrispy', 1)">+</button>
                             </div>
                         </td>
+                        <td style="font-weight: bold;">
+                            <img src="images/mcChicken.jpeg" alt="mcChicken" width="120" height="80"
+                                style="vertical-align: middle;"><br>
+                            McChicken
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$7.69</div>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('mcChicken', -1)">-</button>
+                                <input type="number" id="mcChicken" name="mcChicken" placeholder="0" value="0" min="0"
+                                    data-price="3.59" readonly>
+                                <button type="button" onclick="adjustQuantity('mcChicken', 1)">+</button>
+                            </div>
+                        </td>
                     </tr>
                     <tr id="nuggets-fries">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Nuggets & Fries
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
@@ -614,10 +633,11 @@
                         </td>
                     </tr>
                     <tr id="drinks">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Drinks
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
@@ -830,15 +850,17 @@
                         </td>
                     </tr>
                     <tr id="sweets">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
-                            Sweets and Treats
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Sweets & Treats
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                <div style="font-size: 3px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
                                 <img src="images/m&m_mcflurry.jpg" alt="m&mMcFlurry" width="100" height="100"
                                     style="vertical-align: middle;">
                                 M&M McFlurry<br>
@@ -886,7 +908,8 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/shamrock_mcflurry.jpg" alt="shamrockMcFlurry" width="100" height="150"
+                                <div style="font-size: 19px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
+                                <img src="images/shamrock_mcflurry.jpg" alt="shamrockMcFlurry" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Shamrock McFlurry<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="shamrockMcFlurrySize"
@@ -911,7 +934,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/choco_Shake.jpg" alt="chocoShake" width="100" height="150"
+                                <img src="images/choco_Shake.jpg" alt="chocoShake" width="75" height="125"
                                     style="vertical-align: middle;">
                                 Chocolate Shake<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="chocoShakeSize"
@@ -937,7 +960,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/strawberry_shake.jpg" alt="strawberryShake" width="100" height="150"
+                                <img src="images/strawberry_shake.jpg" alt="strawberryShake" width="75" height="125"
                                     style="vertical-align: middle;">
                                 Strawberry Shake<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="strawberryShakeSize"
@@ -961,7 +984,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/vanilla_shake.jpg" alt="vanillaShake" width="100" height="150"
+                                <img src="images/vanilla_shake.jpg" alt="vanillaShake" width="75" height="125"
                                     style="vertical-align: middle;">
                                 Vanilla Shake<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="vanillaShakeSize"
@@ -1003,10 +1026,83 @@
                             </div>
                         </td>
                     </tr>
+                    <tr id="sweets">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Condiments
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">
+                            <img src="images/ketchup.jpg" alt="Ketchup" width="125" height="100"
+                                style="vertical-align: middle;"><br>
+                            Ketchup<br>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('ketchup', -1)">-</button>
+                                <input type="number" id="ketchup" name="ketchup" placeholder="0" value="0" min="0"
+                                    data-price="0.25" readonly>
+                                <button type="button" onclick="adjustQuantity('ketchup', 1)">+</button>
+                            </div>
+                        </td>
+                        <td style="font-weight: bold;">
+                            <img src="images/sweet_n_sour_sauce.jpg" alt="sweetNSourSauce" width="125" height="100"
+                                style="vertical-align: middle;"><br>
+                            Sweet 'N Sour<br>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('sweetNSourSauce', -1)">-</button>
+                                <input type="number" id="sweetNSourSauce" name="sweetNSourSauce" placeholder="0"
+                                    value="0" min="0" data-price="0.25" readonly>
+                                <button type="button" onclick="adjustQuantity('sweetNSourSauce', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">
+                            <img src="images/bbq_sauce.jpg" alt="tangyBarbecueSauce" width="125" height="100"
+                                style="vertical-align: middle;"><br>
+                            Tangy BBQ<br>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('tangyBarbecueSauce', -1)">-</button>
+                                <input type="number" id="tangyBarbecueSauce" name="tangyBarbecueSauce" placeholder="0"
+                                    value="0" min="0" data-price="0.25" readonly>
+                                <button type="button" onclick="adjustQuantity('tangyBarbecueSauce', 1)">+</button>
+                            </div>
+                        </td>
+                        <td style="font-weight: bold;">
+                            <img src="images/ranch.jpg" alt="ranch" width="125" height="100"
+                                style="vertical-align: middle;"><br>
+                            Ranch<br>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('ranch', -1)">-</button>
+                                <input type="number" id="ranch" name="ranch" placeholder="0" value="0" min="0"
+                                    data-price="0.25" readonly>
+                                <button type="button" onclick="adjustQuantity('ranch', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">
+                            <img src="images/spicy_buffalo_sauce.jpg" alt="spicyBuffaloSauce" width="125" height="100"
+                                style="vertical-align: middle;"><br>
+                            Spicy Buffalo Sauce<br>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', -1)">-</button>
+                                <input type="number" id="spicyBuffaloSauce" name="spicyBuffaloSauce" placeholder="0"
+                                    value="0" min="0" data-price="0.25" readonly>
+                                <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', 1)">+</button>
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="2"
                             style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
-                            Please Tip Our Drivers
+                            Please Tip Our Drivers!
                         </td>
                     </tr>
                     <tr>
@@ -1014,8 +1110,10 @@
                             <label for="tipAmount" style="font-size: 16px; color: #4B0082;">Tip Amount ($):</label>
                         </td>
                         <td>
+
                             <input type="text" id="tipAmount" name="tipAmount" placeholder="0.00"
                                 style="width: 80px; text-align: center; padding: 5px; align-items: right;border: 1px solid #6A0DAD; border-radius: 5px; font-size: 16px; color: #4B0082; appearance: none; -moz-appearance: textfield;">
+                            </input>
                         </td>
                     </tr>
 
@@ -1140,13 +1238,11 @@
                 const itemData = cart[itemKey];
 
                 if (!('quantity' in itemData)) {
-                    // For size-based items like fries and McNuggets
                     for (let size in itemData) {
                         const sizeData = itemData[size];
                         if (sizeData.quantity > 0) {
-                            const capitalizedSize = size.charAt(0).toUpperCase() + size.slice(1);
                             const itemDiv = document.createElement('div');
-                            itemDiv.textContent = `${capitalizedSize} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}`;
+                            itemDiv.textContent = `${size} ${formatItemName(itemKey)}: ${sizeData.quantity} x $${sizeData.price.toFixed(2)}`;
                             cartItemsList.appendChild(itemDiv);
                         }
                     }
@@ -1159,7 +1255,7 @@
                 }
             }
 
-            updateTotalCost();
+            updateTotalCost();  // Ensure total updates whenever the cart updates
         }
 
         // Helper function to format item names (capitalize first letter)
@@ -1169,6 +1265,8 @@
             }
 
             return itemKey
+                // Handle "sweetNSourSauce" -> "Sweet N Sour Sauce"
+                .replace(/([a-z])([N])([A-Z])/g, '$1 N $3') // Add spaces around 'N' if surrounded by lowercase & uppercase
                 // Capitalize "mc" at the start of a word (e.g., "mcDouble" → "McDouble")
                 .replace(/\bmc([A-Z])/g, 'Mc$1')
                 // Ensure "Mc" stays connected to its following word
@@ -1246,31 +1344,32 @@
             }
 
             const fee = calculateFee(subTotal);
-            const tipAmount = parseFloat(document.getElementById("tipAmount").value) || 0; // Get the tip amount
+            let tipAmount = parseFloat(document.getElementById("tipAmount").value.replace(/[^0-9.]/g, '')) || 0; // Remove non-numeric characters
+            console.log("Updated Tip Amount:", tipAmount); // Debugging log
+
             const total = subTotal + fee + tipAmount;
 
             const totalCostElement = document.getElementById('totalCost');
 
-            // Only display totals if the subtotal is greater than 0
             if (subTotal > 0) {
                 totalCostElement.innerHTML = `
-                <div style="display: flex; justify-content: space-between; font-size: 18px;">
-                    <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; font-size: 18px;">
-                    <span>Delivery Fee</span> <span>$${fee.toFixed(2)}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; font-size: 18px;">
-                    <span>Tip</span> <span>$${tipAmount.toFixed(2)}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; font-weight: bold;">
-                    <span>Total</span> <span>$${total.toFixed(2)}</span>
-                </div>
-                <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
-                          placeholder="Enter any special requests (e.g., no pickles, extra sauce)"></textarea>
-                `;
+        <div style="display: flex; justify-content: space-between; font-size: 18px;">
+            <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 18px;">
+            <span>Delivery Fee</span> <span>$${fee.toFixed(2)}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 18px;">
+            <span>Tip</span> <span>$${tipAmount.toFixed(2)}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-weight: bold;">
+            <span>Total</span> <span>$${total.toFixed(2)}</span>
+        </div>
+        <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
+                  placeholder="Enter any special requests (e.g., no pickles, extra sauce)"></textarea>
+        `;
             } else {
-                totalCostElement.innerHTML = ''; // Clear the total cost display when cart is empty
+                totalCostElement.innerHTML = ''; // Clear display if cart is empty
             }
         }
 
@@ -1382,6 +1481,24 @@
                 alert("Failed to proceed with payment.");
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const tipInput = document.getElementById("tipAmount");
+
+            function updateTipAndTotal() {
+                let tipValue = tipInput.value.trim().replace(/[^0-9.]/g, ''); // Remove invalid characters
+                tipInput.value = tipValue; // Ensure only valid values remain in input
+                updateTotalCost(); // Recalculate total with new tip
+            }
+
+            // Attach event listeners for real-time updates
+            tipInput.addEventListener("input", updateTipAndTotal);   // Detect typing changes
+            tipInput.addEventListener("change", updateTipAndTotal);  // Detect pasting or losing focus
+        });
+
+
+
+
     </script>
 
 </body>
