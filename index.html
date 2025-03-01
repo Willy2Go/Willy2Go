@@ -259,6 +259,63 @@
             background-color: #6A0DAD;
             color: #FFD700;
         }
+
+        /* Sticky Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #4B0082;
+
+            top: 0;
+            width: 100%;
+            color: white;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        /* Table Styling */
+        .table-container {
+            margin-top: 60px;
+            /* Prevent overlap with fixed navbar */
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Offset for fixed navbar */
+        tr:before {
+            content: "";
+            display: block;
+            height: 60px;
+            /* Adjust based on navbar height */
+            margin-top: -60px;
+            visibility: hidden;
+        }
     </style>
 </head>
 
@@ -268,7 +325,7 @@
             <img src="images/PurpleWilly.png" alt="WillyGo Logo" class="header-image"
                 style="width:250px; height: auto;">
         </div>
-        <h4 style>Order your McDonald's favorites in seconds!</h4>
+        <h4 style="font-family: Inter;">Order your McDonald's favorites in seconds!</h4>
     </header>
 
     <div class="container">
@@ -348,13 +405,20 @@
             <label style="font-family: Inter;" for="emailAddress">Email:</label>
             <input type="text" id="emailAddress" name="emailAddress" placeholder="Enter Email Address" maxlength="30">
         </div>
+        <hr>
+        <nav class="navbar">
+            <a href="#sandwiches">Sandwiches</a>
+            <a href="#nuggets-fries">Nuggets & Fries</a>
+            <a href="#drinks">Drinks</a>
+            <a href="#sweets">Sweets & Treats</a>
+        </nav>
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
                 <tbody>
-                    <tr>
+                    <tr id="sandwiches">
                         <td colspan="2"
-                            style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
-                            Burgers
+                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Sandwhiches
                         </td>
                     </tr>
                     <tr>
@@ -371,7 +435,7 @@
                                 <button type="button" onclick="adjustQuantity('bigMac', 1)">+</button>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/quarter_pounder.jpeg" alt="Quarter Pounder" width="125" height="100"
                                 style="vertical-align: middle;"><br>
                             Quarter Pounder<br>
@@ -385,7 +449,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/double_quarter_pounder.jpg" alt="Double Quarter Pounder" width="100"
                                 height="100" style="vertical-align: middle;"><br>
                             Double Quarter Pounder<br>
@@ -397,7 +461,7 @@
                                 <button type="button" onclick="adjustQuantity('doubleQuarterPounder', 1)">+</button>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/cheeseburger.jpg" alt="cheeseburger" width="125" height="100"
                                 style="vertical-align: middle;"><br>
                             Cheeseburger<br>
@@ -411,8 +475,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <img src="images/mcdouble.jpg" alt="mcDouble" width="125" height="100"
+                        <td style="font-weight: bold;">
+                            <img src="images/mcdouble.jpg" alt="mcDouble" width="150" height="100"
                                 style="vertical-align: middle;"><br>
                             McDouble<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.59</div>
@@ -423,7 +487,7 @@
                                 <button type="button" onclick="adjustQuantity('mcDouble', 1)">+</button>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/hamburger.jpg" alt="hamburger" width="125" height="100"
                                 style="vertical-align: middle;"><br>
                             Hamburger<br>
@@ -437,11 +501,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/mc_crispy.jpg" alt="McCrispy" width="125" height="100"
                                 style="vertical-align: middle;"><br>
                             McCrispy
-                            <div style="font-size: 14px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$7.69</div>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('mcCrispy', -1)">-</button>
@@ -450,34 +513,15 @@
                                 <button type="button" onclick="adjustQuantity('mcCrispy', 1)">+</button>
                             </div>
                         </td>
-                        <td>
-                            <div
-                                style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/french_fries.jpg" alt="fries" width="100" height="100"
-                                    style="vertical-align: middle;">
-                                Fries<br>
-                                <select style="font-family: Inter; max-width: 90px;" id="friesSize"
-                                    onchange="updatePriceAndQuantity('fries', 'friesSize')">
-                                    <option value="4.79">S ($4.79)</option>
-                                    <option value="5.79">M ($5.79)</option>
-                                    <option value="6.69">L ($6.69)</option>
-                                </select>
-                                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
-
-                                    <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
-                                        <button type="button" onclick="adjustQuantity('fries', -1)">-</button>
-                                        <input type="number" id="fries" name="fries" placeholder="0" min="0" value="0"
-                                            size="small" data-price="4.79" readonly
-                                            style="text-align: center; width: 40px;">
-                                        <button type="button" onclick="adjustQuantity('fries', 1)">+</button>
-                                    </div>
-                                </div>
-                            </div>
+                    </tr>
+                    <tr id="nuggets-fries">
+                        <td colspan="2"
+                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Nuggets and Fries
                         </td>
-
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/4_Mc_Nuggets.jpg" alt="4PcMcNuggets" width="150" height="100"
                                 style="vertical-align: middle;"><br>
                             4pc McNuggets<br>
@@ -489,7 +533,7 @@
                                 <button type="button" onclick="adjustQuantity('4PcMcNuggets', 1)">+</button>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/mc_nuggets.jpg" alt="6PcMcNuggets" width="150" height="100"
                                 style="vertical-align: middle;"><br>
                             6pc McNuggets<br>
@@ -504,7 +548,7 @@
 
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/10_Mc_Nuggets.jpg" alt="10PcMcNuggets" width="150" height="100"
                                 style="vertical-align: middle;"><br>
                             10pc McNuggets<br>
@@ -516,7 +560,7 @@
                                 <button type="button" onclick="adjustQuantity('10PcMcNuggets', 1)">+</button>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <img src="images/20_mcnuggets.jpg" alt="20PcMcNuggets" width="150" height="100"
                                 style="vertical-align: middle;"><br>
                             20pc McNuggets<br>
@@ -530,30 +574,77 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
+                            <div
+                                style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                <img src="images/french_fries.jpg" alt="fries" width="100" height="100"
+                                    style="vertical-align: middle;">
+                                Fries<br>
+                                <select style="font-family: Inter; max-width: 90px;" id="friesSize"
+                                    onchange="updatePriceAndQuantity('fries', 'friesSize')">
+                                    <option value="4.79" data-size="Small">S ($4.79)</option>
+                                    <option value="5.79" data-size="Medium">M ($5.79)</option>
+                                    <option value="6.69" data-size="Large">L ($6.69)</option>
+                                </select>
+                                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
+
+                                    <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
+                                        <button type="button" onclick="adjustQuantity('fries', -1)">-</button>
+                                        <input type="number" id="fries" name="fries" placeholder="0" min="0" value="0"
+                                            size="small" data-price="4.79" readonly
+                                            style="text-align: center; width: 40px;">
+                                        <button type="button" onclick="adjustQuantity('fries', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="drinks">
+                        <td colspan="2"
+                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Drinks
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/sprite.jpeg" alt="sprite" width="100" height="150"
                                     style="vertical-align: middle;">
                                 Sprite<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
+                                <select style="font-family: Inter; max-width: 90px;" id="spriteSize"
+                                    onchange="updatePriceAndQuantity('sprite', 'spriteSize')">
+                                    <option value="2.79" data-size="Small">S</option>
+                                    <option value="2.79" data-size="Medium">M</option>
+                                    <option value="2.79" data-size="Large">L</option>
+                                </select>
+
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
                                         <button type="button" onclick="adjustQuantity('sprite', -1)">-</button>
                                         <input type="number" id="sprite" name="sprite" placeholder="0" min="0" value="0"
-                                            data-price="4.79" readonly style="text-align: center; width: 40px;">
+                                            data-price="2.79" size="small" readonly
+                                            style="text-align: center; width: 40px;">
                                         <button type="button" onclick="adjustQuantity('sprite', 1)">+</button>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/coca_cola.jpg" alt="cocaCola" width="100" height="150"
                                     style="vertical-align: middle;">
                                 Coca-Cola<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
+                                <select style="font-family: Inter; max-width: 90px;" id="cocaColaSize"
+                                    onchange="updatePriceAndQuantity('cocaCola', 'cocaColaSize')">
+                                    <option value="2.79" data-size="Small">S</option>
+                                    <option value="2.79" data-size="Medium">M</option>
+                                    <option value="2.79" data-size="Large">L</option>
+                                </select>
+
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
@@ -569,13 +660,20 @@
 
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/diet_coke.jpg" alt="dietCoke" width="100" height="150"
                                     style="vertical-align: middle;">
                                 Diet Coke<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
+                                <select style="font-family: Inter; max-width: 90px;" id="dietCokeSize"
+                                    onchange="updatePriceAndQuantity('dietCoke', 'dietCokeSize')">
+                                    <option value="2.79" data-size="Small">S</option>
+                                    <option value="2.79" data-size="Medium">M</option>
+                                    <option value="2.79" data-size="Large">L</option>
+                                </select>
+
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
@@ -588,13 +686,20 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/dr_pepper.jpg" alt="drPepper" width="100" height="150"
                                     style="vertical-align: middle;">
                                 Dr.Pepper<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
+                                <select style="font-family: Inter; max-width: 90px;" id="drPepperSize"
+                                    onchange="updatePriceAndQuantity('drPepper', 'drPepperSize')">
+                                    <option value="2.79" data-size="Small">S</option>
+                                    <option value="2.79" data-size="Medium">M</option>
+                                    <option value="2.79" data-size="Large">L</option>
+                                </select>
+
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
@@ -609,13 +714,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/root_beer.jpg" alt="rootBeer" width="100" height="150"
                                     style="vertical-align: middle;">
                                 Root Beer<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
+                                <select style="font-family: Inter; max-width: 90px;" id="drPepperSize"
+                                    onchange="updatePriceAndQuantity('drPepper', 'drPepperSize')">
+                                    <option value="2.79" data-size="Small">S</option>
+                                    <option value="2.79" data-size="Medium">M</option>
+                                    <option value="2.79" data-size="Large">L</option>
+                                </select>
+
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
@@ -628,34 +740,45 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/fanta.jpg" alt="rootBeer" width="100" height="150"
                                     style="vertical-align: middle;">
                                 Fanta<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
+                                <select style="font-family: Inter; max-width: 90px;" id="fantaSize"
+                                    onchange="updatePriceAndQuantity('fanta', 'fantaSize')">
+                                    <option value="2.79" data-size="Small">S</option>
+                                    <option value="2.79" data-size="Medium">M</option>
+                                    <option value="2.79" data-size="Large">L</option>
+                                </select>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
-
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
-                                        <button type="button" onclick="adjustQuantity('Fanta', -1)">-</button>
-                                        <input type="number" id="Fanta" name="Fanta" placeholder="0" min="0" value="0"
+                                        <button type="button" onclick="adjustQuantity('fanta', -1)">-</button>
+                                        <input type="number" id="fanta" name="fanta" placeholder="0" min="0" value="0"
                                             data-price="4.79" size="small" readonly
                                             style="text-align: center; width: 40px;">
-                                        <button type="button" onclick="adjustQuantity('Fanta', 1)">+</button>
+                                        <button type="button" onclick="adjustQuantity('fanta', 1)">+</button>
                                     </div>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/lemonade.jpg" alt="minuteMaidLemonade" width="120" height="120"
                                     style="vertical-align: middle;">
                                 Minute Maid Lemonade<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
+                                <select style="font-family: Inter; max-width: 90px;" id="fantaSize"
+                                    onchange="updatePriceAndQuantity('fanta', 'fantaSize')">
+                                    <option value="2.79" data-size="Small">S</option>
+                                    <option value="2.79" data-size="Medium">M</option>
+                                    <option value="2.79" data-size="Large">L</option>
+                                </select>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
@@ -670,13 +793,14 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/bottled_water.jpg" alt="dasaniWaterBottle" width="120" height="130"
+                                <img src="images/bottled_water.jpg" alt="dasaniWaterBottle" width="115" height="125"
                                     style="vertical-align: middle;">
-                                Dasani Water Bottle<br>
+                                Dasani Water Bottle
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.29</div>
+                                <div style="font-size: 17px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
                                         <button type="button"
@@ -691,8 +815,14 @@
                             </div>
                         </td>
                     </tr>
+                    <tr id="sweets">
+                        <td colspan="2"
+                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            Sweets and Treats
+                        </td>
+                    </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/m&m_mcflurry.jpg" alt="m&mMcFlurry" width="100" height="100"
@@ -700,49 +830,46 @@
                                 M&M McFlurry<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="m&mMcFlurrySize"
                                     onchange="updatePriceAndQuantity('m&mMcFlurry', 'm&mMcFlurrySize')">
-                                    <option value="4.79">S ($4.79)</option>
-                                    <option value="5.79">M ($5.79)</option>
-                                    <option value="7.09">L ($7.09)</option>
+                                    <option value="6.19" data-size="Regular">Regular ($6.19)</option>
+                                    <option value="3.99" data-size="Mini">Mini ($3.99)</option>
                                 </select>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
-
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
                                         <button type="button" onclick="adjustQuantity('m&mMcFlurry', -1)">-</button>
                                         <input type="number" id="m&mMcFlurry" name="m&mMcFlurry" placeholder="0" min="0"
-                                            value="0" data-price="4.79" size="small" readonly
+                                            value="0" data-price="4.79" size="Regular" readonly
                                             style="text-align: center; width: 40px;">
                                         <button type="button" onclick="adjustQuantity('m&mMcFlurry', 1)">+</button>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/oreo_mcflurry.jpg" alt="strawberryShake" width="100" height="100"
+                                <img src="images/oreo_mcflurry.jpg" alt="oreoMcFlurry" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Oreo McFlurry<br>
-                                <select style="font-family: Inter; max-width: 90px;" id="strawberryShakeSize"
-                                    onchange="updatePriceAndQuantity('strawberryShake', 'strawberryShakeSize')">
-                                    <option value="4.79">S ($4.79)</option>
-                                    <option value="5.79">M ($5.79)</option>
-                                    <option value="7.09">L ($7.09)</option>
+                                <select style="font-family: Inter; max-width: 90px;" id="oreoMcFlurrySize"
+                                    onchange="updatePriceAndQuantity('oreoMcFlurry', 'oreoMcFlurrySize')">
+                                    <option value="6.19" data-size="Regular">Regular ($6.19)</option>
+                                    <option value="3.99" data-size="Mini">Mini ($3.99)</option>
                                 </select>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
-                                        <button type="button" onclick="adjustQuantity('strawberryShake', -1)">-</button>
-                                        <input type="number" id="strawberryShake" name="strawberryShake" placeholder="0"
-                                            min="0" value="0" data-price="4.79" size="small" readonly
+                                        <button type="button" onclick="adjustQuantity('oreoMcFlurry', -1)">-</button>
+                                        <input type="number" id="oreoMcFlurry" name="oreoMcFlurry" placeholder="0"
+                                            min="0" value="0" data-price="4.79" size="Small" readonly
                                             style="text-align: center; width: 40px;">
-                                        <button type="button" onclick="adjustQuantity('strawberryShake', 1)">+</button>
+                                        <button type="button" onclick="adjustQuantity('oreoMcFlurry', 1)">+</button>
                                     </div>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/shamrock_mcflurry.jpg" alt="shamrockMcFlurry" width="100" height="150"
@@ -750,9 +877,9 @@
                                 Shamrock McFlurry<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="shamrockMcFlurrySize"
                                     onchange="updatePriceAndQuantity('shamrockMcFlurry', 'shamrockMcFlurrySize')">
-                                    <option value="4.79">S ($4.79)</option>
-                                    <option value="5.79">M ($5.79)</option>
-                                    <option value="7.09">L ($7.09)</option>
+                                    <option value="4.79" data-size="Small">S ($4.79)</option>
+                                    <option value="5.79" data-size="Medium">M ($5.79)</option>
+                                    <option value="7.09" data-size="Large">L ($7.09)</option>
                                 </select>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
@@ -767,7 +894,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/choco_Shake.jpg" alt="chocoShake" width="100" height="150"
@@ -775,9 +902,9 @@
                                 Chocolate Shake<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="chocoShakeSize"
                                     onchange="updatePriceAndQuantity('chocoShake', 'chocoShakeSize')">
-                                    <option value="4.79">S ($4.79)</option>
-                                    <option value="5.79">M ($5.79)</option>
-                                    <option value="7.09">L ($7.09)</option>
+                                    <option value="5.59" data-size="Small">S ($5.59)</option>
+                                    <option value="6.19" data-size="Medium">M ($6.19)</option>
+                                    <option value="6.59" data-size="Large">L ($6.59)</option>
                                 </select>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
@@ -793,7 +920,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/strawberry_shake.jpg" alt="strawberryShake" width="100" height="150"
@@ -801,9 +928,9 @@
                                 Strawberry Shake<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="strawberryShakeSize"
                                     onchange="updatePriceAndQuantity('strawberryShake', 'strawberryShakeSize')">
-                                    <option value="4.79">S ($4.79)</option>
-                                    <option value="5.79">M ($5.79)</option>
-                                    <option value="7.09">L ($7.09)</option>
+                                    <option value="5.59" data-size="Small">S ($5.59)</option>
+                                    <option value="6.19" data-size="Medium">M ($6.19)</option>
+                                    <option value="6.59" data-size="Large">L ($6.59)</option>
                                 </select>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
 
@@ -817,12 +944,41 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td style="font-weight: bold;">
+                            <div
+                                style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                <img src="images/vanilla_shake.jpg" alt="vanillaShake" width="100" height="150"
+                                    style="vertical-align: middle;">
+                                Vanilla Shake<br>
+                                <select style="font-family: Inter; max-width: 90px;" id="vanillaShakeSize"
+                                    onchange="updatePriceAndQuantity('vanillaShake', 'vanillaShakeSize')">
+                                    <option value="5.59" data-size="Small">S ($5.59)</option>
+                                    <option value="6.19" data-size="Medium">M ($6.19)</option>
+                                    <option value="6.59" data-size="Large">L ($6.59)</option>
+                                </select>
+                                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
+
+                                    <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
+                                        <button type="button" onclick="adjustQuantity('vanillaShake', -1)">-</button>
+                                        <input type="number" id="vanillaShake" name="vanillaShake" placeholder="0"
+                                            min="0" value="0" data-price="4.79" size="small" readonly
+                                            style="text-align: center; width: 40px;">
+                                        <button type="button" onclick="adjustQuantity('vanillaShake', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">
+                            <br><br>
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/apple_pie.jpg" alt="applePie" width="150" height="100"
                                     style="vertical-align: middle;">
                                 Apple Pie<br>
+                                <div style="font-size: 16px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
+                                <br>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
                                         <button type="button" onclick="adjustQuantity('applePie', -1)">-</button>
@@ -853,7 +1009,7 @@
 
                 </tbody>
             </table>
-            <h3 style="font-family:Georgia;color: #6A0DAD;">Current Cart</h3>
+            <h3 style="font-family: Inter;color: #6A0DAD;">Current Cart</h3>
             <ul id="cartItems"></ul>
             <div id="totalCost"></div>
             <hr>
@@ -887,7 +1043,7 @@
 
                 // Update the name attribute dynamically based on flavor
                 const newItemId = `${product}_${flavor}`;
-                sodaInput.name = newItemId;
+
 
                 // Fetch the current selected size
                 const productSizeSelect = document.getElementById(product + "Size");
@@ -994,22 +1150,20 @@
             updateTotalCost();
         }
 
-
-
         // Helper function to format item names (capitalize first letter)
         function formatItemName(itemKey) {
-            // Split the itemKey by underscores (assumed to be in "category_name" format)
-            const parts = itemKey.split('_');
-
-            // If the name has multiple parts (e.g., "soda_cocaCola"), remove the first part
-            if (parts.length > 1) {
-                return parts.slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-            }
-
-            // If the name is a single word (e.g., "bigMac"), just capitalize it
-            return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+            return itemKey
+        // Temporarily insert a space after "Mc" only if followed by multiple capital letters (to preserve words like "McNuggets")
+        .replace(/Mc(?=[A-Z][a-z])/g, 'Mc ')
+        // Insert spaces before uppercase letters that follow a lowercase letter (e.g., "DoubleQuarterPounder" → "Double Quarter Pounder")
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        // Insert spaces before numbers followed by letters (e.g., "10PcMcNuggets" → "10 Pc McNuggets")
+        .replace(/(\d)([A-Za-z])/g, '$1 $2')
+        // Remove the temporary space in "Mc " to restore words like "McNuggets"
+        .replace(/Mc (\w)/g, 'Mc$1')
+        // Capitalize the first letter of each word except inside "McNuggets", "McDouble", etc.
+        .replace(/\b(?!Mc)\w/g, (match) => match.toUpperCase());
         }
-
 
         function updateCart(itemId) {
             const inputElement = document.getElementById(itemId);
