@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Willy2Go</title>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
     <style>
@@ -34,7 +34,7 @@
         h4 {
             margin: 0;
             text-align: center;
-            font-family: Montserrat;
+            font-family: Inter;
             color: #808080
         }
 
@@ -336,8 +336,7 @@
     </header>
 
     <div class="container">
-            <h1 style="font-family:Inter; color:#6A0DAD; text-align: center;"> Enter Your Order</h1>
-
+            <h1 style="font-family:Inter; text-align: center; color:#6A0DAD"> Enter Your Order</h1>
         <div class="image-container">
             <img src="images/McDonalds.jpg" alt="McDonald's Logo" class="header-image"
                 style="width:130px; height: auto;">
@@ -355,18 +354,17 @@
                 <h4 style="font-size: 16px;">*will send you what to put in this section*</h4>
             </div>
         </div>
+
         <br>
         <br>
-        
         <div class="form-group">
-            <label style="font-family: Inter;" for="Name">Name:</label>
+            <label style="font-family: Inter; color:#575757" for="Name">Name:</label>
             <input type="text" placeholder="Enter Name"
             style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
-
         <div class="form-group">
-            <label for="Dorm" style="font-family: Inter;">Residence:</label>
-            <select style="font-family: Inter; outline: none; border: 0px solid #808080; padding: 8px; border-radius: 5px;" id="Dorm" name="Dorm" required>
+            <label for="Dorm" style="font-family: Inter; color:#575757">Residence:</label>
+            <select style="font-family: Inter;" id="Dorm" name="Dorm" required>
                 <option value="" disabled selected>Select Your Residence</option>
                 <option value="Agard">Agard</option>
                 <option value="Brooks">Brooks</option>
@@ -400,6 +398,7 @@
                 <option value="West">West</option>
                 <option value="Willy">Williams (Willy)</option>
                 <option value="Wood">Wood</option>
+                <option value="66 Hoxsey">63 Hoxsey</option>
                 <option value="66 Hoxsey">66 Hoxsey</option>
                 <option value="70 Hoxsey">70 Hoxsey</option>
                 <option value="71 Hoxsey">71 Hoxsey</option>
@@ -408,18 +407,19 @@
 
         </div>
         <div class="form-group">
-            <label style="font-family: Inter;" for="phoneNumber">Phone Number:</label>
+            <label style="font-family: Inter; color:#575757" for="phoneNumber">Phone Number:</label>
             <input type="text" id="phoneNumber" name="phoneNumber" 
                 placeholder="Enter Phone Number" maxlength="16"
                 style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         <div class="form-group">
-            <label style="font-family: Inter;" for="emailAddress">Email:</label>
+            <label style="font-family: Inter; color:#575757" for="emailAddress">Email:</label>
             <input type="text" id="emailAddress" name="emailAddress" 
                 placeholder="Enter Email Address" maxlength="30"
                 style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         &nbsp
+
         <nav class="navbar" style="border-radius: 5px">
             <a href="#sandwiches" style="font-family: Inter, sans-serif; font-size: 14px;">Sandwiches</a>
             <a href="#nuggets-fries" style="font-family: Inter, sans-serif; font-size: 14px;">Nuggets & Fries</a>
@@ -430,13 +430,8 @@
             <table class="menu-table">
                 <tbody>
                     <tr id="sandwiches">
-<<<<<<< HEAD
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #000000; background-color: #e9e5e5; padding: 10px; border-radius: 5px;">
-=======
-                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
-           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
->>>>>>> 04c2de452ee2e9a3d5ff5cf46eadd665314cef98
+                        <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
+                            color: #434242; padding: 10px; border-radius: 10px;">
                             Sandwiches
                         </td>
 
@@ -446,7 +441,7 @@
                             <img src="images/big_mac.jpeg" alt="Big Mac" width="100" height="100"
                                 style="vertical-align: middle;"><br>
                             Big Mac<br>
-                            <div style="font-size: 14px; font-style: italic ;width: 100%; color: #000000">$8.29</div>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$8.29</div>
 
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('bigMac', -1)">-</button>
@@ -546,9 +541,11 @@
                             </div>
                         </td>
                     </tr>
+                    
                     <tr id="nuggets-fries">
-                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
-           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        
+                        <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
+                            color: #434242; padding: 10px; border-radius: 10px;">
                             Nuggets & Fries
                         </td>
 
@@ -633,8 +630,8 @@
                         </td>
                     </tr>
                     <tr id="drinks">
-                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
-           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
+           color: #434242; padding: 10px; border-radius: 10px;">
                             Drinks
                         </td>
 
@@ -850,8 +847,8 @@
                         </td>
                     </tr>
                     <tr id="sweets">
-                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
-           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
+                            color: #434242; padding: 10px; border-radius: 10px;">
                             Sweets & Treats
                         </td>
 
@@ -1027,8 +1024,8 @@
                         </td>
                     </tr>
                     <tr id="sweets">
-                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
-           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
+                            color: #434242; padding: 10px; border-radius: 10px;">
                             Condiments
                         </td>
 
