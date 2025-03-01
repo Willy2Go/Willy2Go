@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: Roboto Mono;
-            background-color: #4B0082;
+            background-color: #FFFFFF;
             color: #FFD700;
             margin: 0;
             padding: 0;
@@ -20,7 +20,7 @@
         header {
             text-align: center;
             padding: 7px;
-            background-color: #6A0DAD;
+            background-color: #FFFFFF;
             border-radius: 15px;
             color: #efbf04;
         }
@@ -28,7 +28,14 @@
         header h1 {
             margin: 0;
             text-align: center;
-            font-family: Montserrat
+            font-family: Inter
+        }
+
+        h4 {
+            margin: 0;
+            text-align: center;
+            font-family: Montserrat;
+            color: #808080
         }
 
         header img.align-left {
@@ -47,7 +54,7 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #E6E6FA;
+            background-color: #f6f6f6;
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -165,10 +172,10 @@
             width: 50px;
             text-align: center;
             padding: 5px;
-            border: 1px solid #6A0DAD;
+            border: 1px solid #808080;
             border-radius: 5px;
             font-size: 16px;
-            color: #4B0082;
+            color: #808080;
             margin: 0 5px;
         }
 
@@ -264,7 +271,7 @@
         .navbar {
             display: flex;
             justify-content: space-around;
-            background-color: #4B0082;
+            background-color: #6A0DAD;
 
             top: 0;
             width: 100%;
@@ -322,41 +329,44 @@
 <body>
     <header>
         <div class="image-container">
-            <img src="images/PurpleWilly.png" alt="WillyGo Logo" class="header-image"
+            <img src="images/NewWillyLogo.png" alt="WillyGo Logo" class="header-image"
                 style="width:250px; height: auto;">
         </div>
         <h4 style="font-family: Inter;">Order your McDonald's favorites in seconds!</h4>
     </header>
 
     <div class="container">
-        <header>
-            <h1 style="font-family:Montserrat"> Enter Your Order</h1>
-        </header>
+            <h1 style="font-family:Inter; color:#6A0DAD; text-align: center;"> Enter Your Order</h1>
+
         <div class="image-container">
             <img src="images/McDonalds.jpg" alt="McDonald's Logo" class="header-image"
                 style="width:130px; height: auto;">
         </div>
         <div style="display: flex; justify-content: center; gap: 50px;">
-            <div style="font-family: Inter; color: #6A0DAD; text-align: left; font-size: 26px;">
-                <h3>Open:</h3>
-                <h4 style="font-size: 22px;">Friday: 8:00 PM - 2:30 AM</h4>
-                <h4 style="font-size: 22px;">Saturday: 8:00 PM - 2:30 AM</h4>
+            <div style="font-family: Inter; color: #6A0DAD; text-align: center; font-size: 26px;">
+                <h3 style="font-size: 22px;">Hours</h3>
+                <h4 style="font-size: 16px;">Friday: 8:00 PM - 2:30 AM</h4>
+                <h4 style="font-size: 16px;">Saturday: 8:00 PM - 2:30 AM</h4>
             </div>
 
-            <div style="font-family: Inter; color: #6A0DAD; text-align: left; font-size: 26px;">
-                <h3>Add delivery explanation section</h3>
-                <h4 style="font-size: 22px;">Deliveries are made within ...</h4>
-                <h4 style="font-size: 22px;">*will send you what to put in this section*</h4>
+            <div style="font-family: Inter; color: #6A0DAD; text-align: center; font-size: 26px;">
+                <h3 style="font-size: 22px;">*Delivery Info*</h3>
+                <h4 style="font-size: 16px;">Deliveries are made within ...</h4>
+                <h4 style="font-size: 16px;">*will send you what to put in this section*</h4>
             </div>
         </div>
-        <hr>
+        <br>
+        <br>
+        
         <div class="form-group">
-            <label for="Name" style="font-family: Inter;">Name:</label>
-            <input placeholder="Enter Name">
+            <label style="font-family: Inter;" for="Name">Name:</label>
+            <input type="text" placeholder="Enter Name"
+            style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
+
         <div class="form-group">
             <label for="Dorm" style="font-family: Inter;">Residence:</label>
-            <select style="font-family: Inter;" id="Dorm" name="Dorm" required>
+            <select style="font-family: Inter; outline: none; border: 0px solid #808080; padding: 8px; border-radius: 5px;" id="Dorm" name="Dorm" required>
                 <option value="" disabled selected>Select Your Residence</option>
                 <option value="Agard">Agard</option>
                 <option value="Brooks">Brooks</option>
@@ -399,26 +409,30 @@
         </div>
         <div class="form-group">
             <label style="font-family: Inter;" for="phoneNumber">Phone Number:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" maxlength="16">
+            <input type="text" id="phoneNumber" name="phoneNumber" 
+                placeholder="Enter Phone Number" maxlength="16"
+                style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         <div class="form-group">
             <label style="font-family: Inter;" for="emailAddress">Email:</label>
-            <input type="text" id="emailAddress" name="emailAddress" placeholder="Enter Email Address" maxlength="30">
+            <input type="text" id="emailAddress" name="emailAddress" 
+                placeholder="Enter Email Address" maxlength="30"
+                style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
-        <hr>
-        <nav class="navbar">
-            <a href="#sandwiches">Sandwiches</a>
-            <a href="#nuggets-fries">Nuggets & Fries</a>
-            <a href="#drinks">Drinks</a>
-            <a href="#sweets">Sweets & Treats</a>
+        &nbsp
+        <nav class="navbar" style="border-radius: 5px">
+            <a href="#sandwiches" style="font-family: Inter, sans-serif; font-size: 14px;">Sandwiches</a>
+            <a href="#nuggets-fries" style="font-family: Inter, sans-serif; font-size: 14px;">Nuggets & Fries</a>
+            <a href="#drinks" style="font-family: Inter, sans-serif; font-size: 14px;">Drinks</a>
+            <a href="#sweets" style="font-family: Inter, sans-serif; font-size: 14px;">Sweets & Treats</a>
         </nav>
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
                 <tbody>
                     <tr id="sandwiches">
                         <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
-                            Sandwhiches
+                            style="font-size: 22px; text-align: center; font-weight: bold; color: #000000; background-color: #e9e5e5; padding: 10px; border-radius: 5px;">
+                            Sandwiches
                         </td>
                     </tr>
                     <tr>
@@ -426,7 +440,7 @@
                             <img src="images/big_mac.jpeg" alt="Big Mac" width="100" height="100"
                                 style="vertical-align: middle;"><br>
                             Big Mac<br>
-                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$8.29</div>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%; color: #000000">$8.29</div>
 
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('bigMac', -1)">-</button>
