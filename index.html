@@ -338,7 +338,7 @@
     </header>
 
     <div class="container">
-            <h1 style="font-family:Inter; text-align: center; color:#6A0DAD"> Enter Your Order</h1>
+        <h1 style="font-family:Inter; text-align: center; color:#6A0DAD"> Enter Your Order</h1>
         <div class="image-container">
             <img src="images/McDonalds.jpg" alt="McDonald's Logo" class="header-image"
                 style="width:130px; height: auto;">
@@ -362,7 +362,7 @@
         <div class="form-group">
             <label style="font-family: Inter; color:#575757" for="Name">Name:</label>
             <input type="text" placeholder="Enter Name"
-            style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
+                style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         <div class="form-group">
             <label for="Dorm" style="font-family: Inter; color:#575757">Residence:</label>
@@ -410,23 +410,24 @@
         </div>
         <div class="form-group">
             <label style="font-family: Inter; color:#575757" for="phoneNumber">Phone Number:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" 
-                placeholder="Enter Phone Number" maxlength="16"
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" maxlength="16"
                 style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         <div class="form-group">
             <label style="font-family: Inter; color:#575757" for="emailAddress">Email:</label>
-            <input type="text" id="emailAddress" name="emailAddress" 
-                placeholder="Enter Email Address" maxlength="30"
+            <input type="text" id="emailAddress" name="emailAddress" placeholder="Enter Email Address" maxlength="30"
                 style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         &nbsp
 
         <nav class="navbar" style="border-radius: 5px">
-            <a href="#sandwiches" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Sandwiches</a>
-            <a href="#nuggets-fries" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Nuggets & Fries</a>
+            <a href="#sandwiches"
+                style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Sandwiches</a>
+            <a href="#nuggets-fries"
+                style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Nuggets & Fries</a>
             <a href="#drinks" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Drinks</a>
-            <a href="#sweets" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Sweets & Treats</a>
+            <a href="#sweets" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Sweets &
+                Treats</a>
         </nav>
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
@@ -543,10 +544,10 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr style="height: 20px;"></tr>
                     <tr id="nuggets-fries">
-                        
+
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
                             color: #434242; padding: 10px; border-radius: 10px;">
                             Nuggets & Fries
@@ -632,7 +633,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr style="height: 20px;"></tr>
                     <tr id="drinks">
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
@@ -1336,7 +1337,7 @@
         function updateTotalCost() {
             let subTotal = 0;
 
-            // Iterate through the cart to calculate the subtotal
+            // Calculate subtotal
             for (let itemKey in cart) {
                 const itemData = cart[itemKey];
 
@@ -1350,19 +1351,24 @@
                 }
             }
 
-            const fee = calculateFee(subTotal);
-            let tipAmount = parseFloat(document.getElementById("tipAmount").value.replace(/[^0-9.]/g, '')) || 0; // Remove non-numeric characters
-            console.log("Updated Tip Amount:", tipAmount); // Debugging log
+            const taxRate = 0.0625; // 6.25% tax
+            const taxAmount = subTotal * taxRate;
 
-            const total = subTotal + fee + tipAmount;
+            const fee = calculateFee(subTotal);
+            let tipAmount = parseFloat(document.getElementById("tipAmount").value.replace(/[^0-9.]/g, '')) || 0;
+
+            const total = subTotal + taxAmount + fee + tipAmount;
 
             const totalCostElement = document.getElementById('totalCost');
 
             if (subTotal > 0) {
                 totalCostElement.innerHTML = `
-                <hr>
+        <hr>
         <div style="display: flex; justify-content: space-between; font-size: 16px; font-family: Inter; color: #808080;">
             <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 16px; font-family: Inter; color: #808080;">
+            <span>Tax (6.25%)</span> <span>$${taxAmount.toFixed(2)}</span>
         </div>
         <div style="display: flex; justify-content: space-between; font-size: 16px; font-family: Inter; color: #808080;">
             <span>Delivery Fee</span> <span>$${fee.toFixed(2)}</span>
@@ -1373,9 +1379,6 @@
         <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 20px; font-family: Inter; color: #808080;">
             <span>Total</span> <span>$${total.toFixed(2)}</span>
         </div>
-        <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
-                  placeholder="Enter any special requests (e.g., no pickles, extra sauce)"
-                  style="margin-top: 30px; display: block; width: 100%;"></textarea></textarea>
         `;
             } else {
                 totalCostElement.innerHTML = ''; // Clear display if cart is empty
