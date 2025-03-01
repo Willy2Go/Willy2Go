@@ -411,16 +411,16 @@
             <a href="#nuggets-fries">Nuggets & Fries</a>
             <a href="#drinks">Drinks</a>
             <a href="#sweets">Sweets & Treats</a>
-            <a href="#condiments">Condiments</a>
         </nav>
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
                 <tbody>
                     <tr id="sandwiches">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Sandwiches
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
@@ -514,12 +514,25 @@
                                 <button type="button" onclick="adjustQuantity('mcCrispy', 1)">+</button>
                             </div>
                         </td>
+                        <td style="font-weight: bold;">
+                            <img src="images/mcChicken.jpeg" alt="mcChicken" width="120" height="80"
+                                style="vertical-align: middle;"><br>
+                            McChicken
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$7.69</div>
+                            <div class="quantity-wrapper">
+                                <button type="button" onclick="adjustQuantity('mcChicken', -1)">-</button>
+                                <input type="number" id="mcChicken" name="mcChicken" placeholder="0" value="0" min="0"
+                                    data-price="3.59" readonly>
+                                <button type="button" onclick="adjustQuantity('mcChicken', 1)">+</button>
+                            </div>
+                        </td>
                     </tr>
                     <tr id="nuggets-fries">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Nuggets & Fries
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
@@ -601,10 +614,11 @@
                         </td>
                     </tr>
                     <tr id="drinks">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Drinks
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
@@ -817,16 +831,17 @@
                         </td>
                     </tr>
                     <tr id="sweets">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Sweets & Treats
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <div style="font-size: 2px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
+                                <div style="font-size: 3px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
                                 <img src="images/m&m_mcflurry.jpg" alt="m&mMcFlurry" width="100" height="100"
                                     style="vertical-align: middle;">
                                 M&M McFlurry<br>
@@ -993,10 +1008,11 @@
                         </td>
                     </tr>
                     <tr id="sweets">
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                        <td colspan="2" style="font-size: 22px; text-align: center; font-weight: bold; text-decoration: underline; 
+           color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
                             Condiments
                         </td>
+
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
@@ -1017,7 +1033,7 @@
                             Sweet 'N Sour<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
                             <div class="quantity-wrapper">
-                                <button type="button" onclick="adjustQuantity('sweetNSourSaucee', -1)">-</button>
+                                <button type="button" onclick="adjustQuantity('sweetNSourSauce', -1)">-</button>
                                 <input type="number" id="sweetNSourSauce" name="sweetNSourSauce" placeholder="0"
                                     value="0" min="0" data-price="0.25" readonly>
                                 <button type="button" onclick="adjustQuantity('sweetNSourSauce', 1)">+</button>
@@ -1057,13 +1073,13 @@
                             Spicy Buffalo Sauce<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
                             <div class="quantity-wrapper">
-                                <button type="button" onclick="adjustQuantity('spicyBuffaloSaucee', -1)">-</button>
+                                <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', -1)">-</button>
                                 <input type="number" id="spicyBuffaloSauce" name="spicyBuffaloSauce" placeholder="0"
                                     value="0" min="0" data-price="0.25" readonly>
                                 <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', 1)">+</button>
                             </div>
                         </td>
-                                            </tr>
+                    </tr>
                     <tr>
                         <td colspan="2"
                             style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
