@@ -87,9 +87,10 @@
             padding: 0;
             /* Remove left indentation */
             margin: 0;
-            color: #4B0082;
+            color: #808080;
             /* Ensure no extra space */
-            font-size: 20px;
+            font-size: 16px;
+            font-family: Inter;
         }
 
         #cartItems div {
@@ -236,14 +237,14 @@
         }
 
         select {
-            flex: 0.6;
+            flex: 0.8;
             width: 100%;
             /* Adjust width */
             height: 28px;
             /* Adjust height */
             padding: 5px;
             /* Add padding for better appearance */
-            border: 1px solid gray;
+            border: none;
             border-radius: 5px;
             font-size: 13px;
             /* Control text size within the dropdown */
@@ -364,7 +365,7 @@
         </div>
         <div class="form-group">
             <label for="Dorm" style="font-family: Inter; color:#575757">Residence:</label>
-            <select style="font-family: Inter;" id="Dorm" name="Dorm" required>
+            <select style="font-family: Inter; font-size: 11px;" id="Dorm" name="Dorm" required>
                 <option value="" disabled selected>Select Your Residence</option>
                 <option value="Agard">Agard</option>
                 <option value="Brooks">Brooks</option>
@@ -421,10 +422,10 @@
         &nbsp
 
         <nav class="navbar" style="border-radius: 5px">
-            <a href="#sandwiches" style="font-family: Inter, sans-serif; font-size: 14px;">Sandwiches</a>
-            <a href="#nuggets-fries" style="font-family: Inter, sans-serif; font-size: 14px;">Nuggets & Fries</a>
-            <a href="#drinks" style="font-family: Inter, sans-serif; font-size: 14px;">Drinks</a>
-            <a href="#sweets" style="font-family: Inter, sans-serif; font-size: 14px;">Sweets & Treats</a>
+            <a href="#sandwiches" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Sandwiches</a>
+            <a href="#nuggets-fries" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Nuggets & Fries</a>
+            <a href="#drinks" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Drinks</a>
+            <a href="#sweets" style="font-family: Inter, sans-serif; font-size: 14px; text-align: center;">Sweets & Treats</a>
         </nav>
         <form id="orderForm" action="/.netlify/functions/create-checkout-session" method="POST">
             <table class="menu-table">
@@ -438,7 +439,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
-                            <img src="images/big_mac.jpeg" alt="Big Mac" width="100" height="100"
+                            <img src="images/big_mac.png" alt="Big Mac" width="100" height="100"
                                 style="vertical-align: middle;"><br>
                             Big Mac<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$8.29</div>
@@ -451,7 +452,7 @@
                             </div>
                         </td>
                         <td style="font-weight: bold;">
-                            <img src="images/quarter_pounder.jpeg" alt="Quarter Pounder" width="125" height="100"
+                            <img src="images/quarter_pounder.png" alt="Quarter Pounder" width="125" height="100"
                                 style="vertical-align: middle;"><br>
                             Quarter Pounder<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$8.09</div>
@@ -465,7 +466,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
-                            <img src="images/double_quarter_pounder.jpg" alt="Double Quarter Pounder" width="100"
+                            <img src="images/double_quarter_pounder.png" alt="Double Quarter Pounder" width="100"
                                 height="100" style="vertical-align: middle;"><br>
                             Double Quarter Pounder<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$8.99</div>
@@ -477,7 +478,7 @@
                             </div>
                         </td>
                         <td style="font-weight: bold;">
-                            <img src="images/cheeseburger.jpg" alt="cheeseburger" width="125" height="100"
+                            <img src="images/cheeseburger.png" alt="cheeseburger" width="125" height="100"
                                 style="vertical-align: middle;"><br>
                             Cheeseburger<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.79</div>
@@ -491,7 +492,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
-                            <img src="images/mcdouble.jpg" alt="mcDouble" width="150" height="100"
+                            <img src="images/mcdouble.png" alt="mcDouble" width="100" height="100"
                                 style="vertical-align: middle;"><br>
                             McDouble<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.59</div>
@@ -503,7 +504,7 @@
                             </div>
                         </td>
                         <td style="font-weight: bold;">
-                            <img src="images/hamburger.jpg" alt="hamburger" width="125" height="100"
+                            <img src="images/hamburger.png" alt="hamburger" width="100" height="100"
                                 style="vertical-align: middle;"><br>
                             Hamburger<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.09</div>
@@ -517,7 +518,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
-                            <img src="images/mc_crispy.jpg" alt="McCrispy" width="125" height="100"
+                            <img src="images/mc_crispy.png" alt="McCrispy" width="100" height="100"
                                 style="vertical-align: middle;"><br>
                             McCrispy
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$7.69</div>
@@ -529,7 +530,7 @@
                             </div>
                         </td>
                         <td style="font-weight: bold;">
-                            <img src="images/mcChicken.jpeg" alt="mcChicken" width="120" height="80"
+                            <img src="images/mc_chicken.png" alt="mcChicken" width="100" height="80"
                                 style="vertical-align: middle;"><br>
                             McChicken
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$7.69</div>
@@ -542,6 +543,7 @@
                         </td>
                     </tr>
                     
+                    <tr style="height: 20px;"></tr>
                     <tr id="nuggets-fries">
                         
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
@@ -629,6 +631,8 @@
                             </div>
                         </td>
                     </tr>
+                    
+                    <tr style="height: 20px;"></tr>
                     <tr id="drinks">
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
            color: #434242; padding: 10px; border-radius: 10px;">
@@ -846,6 +850,8 @@
                             </div>
                         </td>
                     </tr>
+
+                    <tr style="height: 20px;"></tr>
                     <tr id="sweets">
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
                             color: #434242; padding: 10px; border-radius: 10px;">
@@ -1023,7 +1029,9 @@
                             </div>
                         </td>
                     </tr>
-                    <tr id="sweets">
+
+                    <tr style="height: 20px;"></tr>
+                    <tr id="condiments">
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
                             color: #434242; padding: 10px; border-radius: 10px;">
                             Condiments
@@ -1096,9 +1104,11 @@
                             </div>
                         </td>
                     </tr>
+
+                    <tr style="height: 20px;"></tr>
                     <tr>
                         <td colspan="2"
-                            style="font-size: 22px; text-align: left; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
+                            style="font-size: 22px; text-align: left; font-weight: bold; color: #434242; padding: 10px; border-radius: 10px;">
                             Please Tip Our Drivers!
                         </td>
                     </tr>
@@ -1116,7 +1126,7 @@
 
                 </tbody>
             </table>
-            <h3 style="font-family: Inter;color: #6A0DAD;">Current Cart</h3>
+            <h3 style="font-family: Inter;color: #434242;">Current Cart</h3>
             <ul id="cartItems"></ul>
             <div id="totalCost"></div>
             <hr>
@@ -1350,20 +1360,22 @@
 
             if (subTotal > 0) {
                 totalCostElement.innerHTML = `
-        <div style="display: flex; justify-content: space-between; font-size: 18px;">
+                <hr>
+        <div style="display: flex; justify-content: space-between; font-size: 16px; font-family: Inter; color: #808080;">
             <span>Subtotal</span> <span>$${subTotal.toFixed(2)}</span>
         </div>
-        <div style="display: flex; justify-content: space-between; font-size: 18px;">
+        <div style="display: flex; justify-content: space-between; font-size: 16px; font-family: Inter; color: #808080;">
             <span>Delivery Fee</span> <span>$${fee.toFixed(2)}</span>
         </div>
-        <div style="display: flex; justify-content: space-between; font-size: 18px;">
+        <div style="display: flex; justify-content: space-between; font-size: 16px; font-family: Inter; color: #808080;">
             <span>Tip</span> <span>$${tipAmount.toFixed(2)}</span>
         </div>
-        <div style="display: flex; justify-content: space-between; font-weight: bold;">
+        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 20px; font-family: Inter; color: #808080;">
             <span>Total</span> <span>$${total.toFixed(2)}</span>
         </div>
         <textarea id="specialInstructions" name="specialInstructions" rows="4" cols="50" 
-                  placeholder="Enter any special requests (e.g., no pickles, extra sauce)"></textarea>
+                  placeholder="Enter any special requests (e.g., no pickles, extra sauce)"
+                  style="margin-top: 30px; display: block; width: 100%;"></textarea></textarea>
         `;
             } else {
                 totalCostElement.innerHTML = ''; // Clear display if cart is empty
