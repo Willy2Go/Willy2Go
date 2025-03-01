@@ -153,9 +153,9 @@
         .quantity-wrapper button {
             width: 30px;
             height: 30px;
-            background-color: #FFD700;
+            background-color: #FFFFFF;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             color: #4B0082;
             font-size: 16px;
             cursor: pointer;
@@ -166,14 +166,15 @@
         }
 
         .quantity-wrapper button:hover {
-            background-color: #E6BE8A;
+            background-color: #FFD700;
         }
 
         .quantity-wrapper input {
             width: 50px;
             text-align: center;
             padding: 5px;
-            border: 1px solid #808080;
+            outline: none;
+            border: none;
             border-radius: 5px;
             font-size: 16px;
             color: #808080;
@@ -187,8 +188,9 @@
         }
 
         .menu-table td {
-            color: #4B0082;
+            color: #000000;
             /* Purple color */
+            font-size: 14px;
             font-family: Inter;
         }
 
@@ -272,6 +274,7 @@
         .navbar {
             position: sticky;
             display: flex;
+            overflow-x: auto; /* Enables horizontal scrolling */
             justify-content: space-around;
             background-color: #6A0DAD;
 
@@ -329,18 +332,19 @@
 </head>
 
 <body>
+    
     <header>
         <div class="image-container">
             <img src="images/NewWillyLogo.png" alt="WillyGo Logo" class="header-image"
                 style="width:250px; height: auto;">
         </div>
-        <h4 style="font-family: Inter;">Order your McDonald's favorites in seconds!</h4>
+        
     </header>
 
     <div class="container">
-        <h1 style="font-family:Inter; text-align: center; color:#6A0DAD"> Enter Your Order</h1>
+        
         <div class="image-container">
-            <img src="images/McDonalds.jpg" alt="McDonald's Logo" class="header-image"
+            <img src="images/McDonalds_Logo.png" alt="McDonald's Logo" class="header-image"
                 style="width:130px; height: auto;">
         </div>
         <div style="display: flex; justify-content: center; gap: 50px;">
@@ -367,7 +371,7 @@
         <div class="form-group">
             <label for="Dorm" style="font-family: Inter; color:#575757">Residence:</label>
             <select style="font-family: Inter; font-size: 11px;" id="Dorm" name="Dorm" required>
-                <option value="" disabled selected>Select Your Residence</option>
+                <option value="" disabled selected>Select Here</option>
                 <option value="Agard">Agard</option>
                 <option value="Brooks">Brooks</option>
                 <option value="Bryant">Bryant</option>
@@ -583,7 +587,7 @@
                     </tr>
                     <tr>
                         <td style="font-weight: bold;">
-                            <img src="images/10_Mc_Nuggets.jpg" alt="10PcMcNuggets" width="150" height="100"
+                            <img src="images/10_mcnuggets.png" alt="10PcMcNuggets" width="150" height="100"
                                 style="vertical-align: middle;"><br>
                             10pc McNuggets<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$8.19</div>
@@ -595,7 +599,7 @@
                             </div>
                         </td>
                         <td style="font-weight: bold;">
-                            <img src="images/20_mcnuggets.jpg" alt="20PcMcNuggets" width="150" height="100"
+                            <img src="images/20_mcnuggets.png" alt="20PcMcNuggets" width="150" height="120"
                                 style="vertical-align: middle;"><br>
                             20pc McNuggets<br>
                             <div style="font-size: 14px; font-style: italic ;width: 100%;">$10.98</div>
@@ -611,7 +615,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/french_fries.jpg" alt="fries" width="100" height="100"
+                                <img src="images/french_fries.png" alt="fries" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Fries<br>
                                 <select style="font-family: Inter; max-width: 90px;" id="friesSize"
@@ -646,7 +650,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/sprite.jpeg" alt="sprite" width="100" height="150"
+                                <img src="images/sprite.png" alt="sprite" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Sprite<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
@@ -671,7 +675,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/coca_cola.jpg" alt="cocaCola" width="100" height="150"
+                                <img src="images/coca_cola.png" alt="cocaCola" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Coca-Cola<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
@@ -700,7 +704,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/diet_coke.jpg" alt="dietCoke" width="100" height="150"
+                                <img src="images/diet_coke.png" alt="dietCoke" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Diet Coke<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
@@ -726,7 +730,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/dr_pepper.jpg" alt="drPepper" width="100" height="150"
+                                <img src="images/dr_pepper.png" alt="drPepper" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Dr.Pepper<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
@@ -754,7 +758,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/root_beer.jpg" alt="rootBeer" width="100" height="150"
+                                <img src="images/root_beer.png" alt="rootBeer" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Root Beer<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
@@ -780,7 +784,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/fanta.jpg" alt="rootBeer" width="100" height="150"
+                                <img src="images/fanta.png" alt="rootBeer" width="100" height="100"
                                     style="vertical-align: middle;">
                                 Fanta<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
@@ -806,7 +810,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/lemonade.jpg" alt="minuteMaidLemonade" width="120" height="120"
+                                <img src="images/lemonade.png" alt="minuteMaidLemonade" width="120" height="120"
                                     style="vertical-align: middle;">
                                 Minute Maid Lemonade<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
@@ -833,7 +837,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/bottled_water.jpg" alt="dasaniWaterBottle" width="115" height="125"
+                                <img src="images/bottled_water.png" alt="dasaniWaterBottle" width="115" height="125"
                                     style="vertical-align: middle;">
                                 Dasani Water Bottle
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.29</div>
