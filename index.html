@@ -517,7 +517,7 @@
                     <tr id="nuggets-fries">
                         <td colspan="2"
                             style="font-size: 22px; text-align: center; font-weight: bold; color: #4B0082; background-color: #E6E6FA; padding: 10px; border-radius: 10px;">
-                            Nuggets and Fries
+                            Nuggets & Fries
                         </td>
                     </tr>
                     <tr>
@@ -974,11 +974,9 @@
                             <br><br>
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <img src="images/apple_pie.jpg" alt="applePie" width="150" height="100"
+                                <img src="images/apple_pie.jpg" alt="applePie" width="150" height="80"
                                     style="vertical-align: middle;">
-                                Apple Pie<br>
-                                <div style="font-size: 16px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
-                                <br>
+                                Apple Pie <br><br>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
                                         <button type="button" onclick="adjustQuantity('applePie', -1)">-</button>
@@ -1152,17 +1150,23 @@
 
         // Helper function to format item names (capitalize first letter)
         function formatItemName(itemKey) {
+            if (/^Mc[A-Z]/.test(itemKey)) {
+                return itemKey;
+            }
+
             return itemKey
-        // Temporarily insert a space after "Mc" only if followed by multiple capital letters (to preserve words like "McNuggets")
-        .replace(/Mc(?=[A-Z][a-z])/g, 'Mc ')
-        // Insert spaces before uppercase letters that follow a lowercase letter (e.g., "DoubleQuarterPounder" → "Double Quarter Pounder")
-        .replace(/([a-z])([A-Z])/g, '$1 $2')
-        // Insert spaces before numbers followed by letters (e.g., "10PcMcNuggets" → "10 Pc McNuggets")
-        .replace(/(\d)([A-Za-z])/g, '$1 $2')
-        // Remove the temporary space in "Mc " to restore words like "McNuggets"
-        .replace(/Mc (\w)/g, 'Mc$1')
-        // Capitalize the first letter of each word except inside "McNuggets", "McDouble", etc.
-        .replace(/\b(?!Mc)\w/g, (match) => match.toUpperCase());
+                // Capitalize "mc" at the start of a word (e.g., "mcDouble" → "McDouble")
+                .replace(/\bmc([A-Z])/g, 'Mc$1')
+                // Ensure "Mc" stays connected to its following word
+                .replace(/(Mc)([A-Z])/g, '$1 $2')
+                // Insert spaces before uppercase letters that follow a lowercase letter
+                .replace(/([a-z])([A-Z])/g, '$1 $2')
+                // Insert spaces before numbers followed by letters
+                .replace(/(\d)([A-Za-z])/g, '$1 $2')
+                // Remove the space between "Mc " and the next word to restore "McNuggets", "McDouble", etc.
+                .replace(/Mc (\w)/g, 'Mc$1')
+                // Capitalize the first letter of each word except inside "McNuggets", "McDouble", etc.
+                .replace(/\b(?!Mc)\w/g, (match) => match.toUpperCase());
         }
 
         function updateCart(itemId) {
