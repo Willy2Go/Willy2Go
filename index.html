@@ -1453,7 +1453,7 @@
             const checkbox = document.getElementById("termsCheckbox").checked;
             const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
-            if (!name || !residence || !phoneNumber || !userEmail || !checkbox) {
+            if (!name || !residence || !phoneNumber || !userEmail) {
                 alert("Please fill out your name, residence, phone number, email, and terms & conditions checkbox");
                 return;
             }
@@ -1473,10 +1473,10 @@
             //     return;
             // }
 
-            // if (!checkbox) {
-            //     alert("Please check the terms and conditions box.");
-            //     return;
-            // }
+            if (!checkbox) {
+                alert("Please check the terms and conditions box.");
+                return;
+            }
 
 
 
