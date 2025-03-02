@@ -546,7 +546,7 @@
                             <img src="images/mc_chicken.png" alt="mcChicken" width="100" height="80"
                                 style="vertical-align: middle;"><br>
                             McChicken
-                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$7.69</div>
+                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.59</div>
                             <div class="quantity-wrapper">
                                 <button type="button" onclick="adjustQuantity('mcChicken', -1)">-</button>
                                 <input type="number" id="mcChicken" name="mcChicken" placeholder="0" value="0" min="0"
@@ -1459,12 +1459,17 @@
             }
 
             if (!residence) {
-                alert("Please fill out your residence.");
+                alert("Please select your residence.");
                 return;
             }
 
             if (!phoneNumber) {
-                alert("Please fill out your phone number.");
+                alert("Please enter your phone number.");
+                return;
+            }
+
+            if (!userEmail) {
+                alert("Please enter your email address.");
                 return;
             }
 
@@ -1472,6 +1477,7 @@
                 alert("Please check the terms and conditions box.");
                 return;
             }
+
 
 
 
