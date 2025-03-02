@@ -288,7 +288,8 @@
         .navbar {
             position: sticky;
             display: flex;
-            overflow-x: auto; /* Enables horizontal scrolling */
+            overflow-x: auto;
+            /* Enables horizontal scrolling */
             justify-content: space-around;
             background-color: #6A0DAD;
 
@@ -347,8 +348,7 @@
 
 <body>
     <div class="image-container">
-        <img src="images/NewWillyLogo.png" alt="WillyGo Logo" class="header-image"
-            style="width:250px; height: auto;">
+        <img src="images/NewWillyLogo.png" alt="WillyGo Logo" class="header-image" style="width:250px; height: auto;">
     </div>
     <div class="container">
         <div class="image-container">
@@ -373,12 +373,12 @@
         <br>
         <br>
         <div class="form-group">
-            <label style="font-family: Inter; color:#575757" for="Name">Name:</label>
+            <label style="font-family: Inter; font-weight: bold;color:#575757" for="Name">Name:</label>
             <input type="text" placeholder="Enter Name"
                 style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         <div class="form-group">
-            <label for="Dorm" style="font-family: Inter; color:#575757">Residence:</label>
+            <label for="Dorm" style="font-family: Inter; color:#575757; ">Residence:</label>
             <select style="font-family: Inter; font-size: 11px;" id="Dorm" name="Dorm" required>
                 <option value="" disabled selected>Select Here</option>
                 <option value="Agard">Agard</option>
@@ -428,16 +428,15 @@
 
         </div>
         <div class="form-group">
-            <label style="font-family: Inter; color:#575757" for="phoneNumber">Phone Number:</label>
+            <label style="font-family: Inter; font-weight: bold; color:#575757 " for="phoneNumber">Phone Number:</label>
             <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" maxlength="16"
                 style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
         <div class="form-group">
-            <label style="font-family: Inter; color:#575757" for="emailAddress">Email:</label>
+            <label style="font-family: Inter; font-weight: bold; color:#575757" for="emailAddress">Email:</label>
             <input type="text" id="emailAddress" name="emailAddress" placeholder="Enter Email Address" maxlength="30"
                 style="outline: none; border: 0px solid #808080; padding: 5px; border-radius: 5px;">
         </div>
-        &nbsp
 
         <nav class="navbar" style="border-radius: 5px">
             <a href="#sandwiches"
@@ -828,8 +827,7 @@
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/lemonade.png" alt="minuteMaidLemonade" width="100" height="100
-                                "
-                                    style="vertical-align: middle;">
+                                " style="vertical-align: middle;">
                                 Minute Maid Lemonade<br>
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$2.79</div>
                                 <select style="font-family: Inter; max-width: 90px;" id="fantaSize"
@@ -859,7 +857,7 @@
                                     style="vertical-align: middle;">
                                 Dasani Water Bottle
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$3.29</div>
-                                <div style="font-size: 17px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
+                                <div style="font-size: 17px; color: #f6f6f6;font-style: italic ;width: 100%;">None</div>
                                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
                                     <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
                                         <button type="button"
@@ -888,7 +886,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <div style="font-size: 3px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
+                                <div style="font-size: 3px; color: #f6f6f6;font-style: italic ;width: 100%;">None</div>
                                 <img src="images/m&m_mcflurry.png" alt="m&mMcFlurry" width="150" height="100"
                                     style="vertical-align: middle;">
                                 M&M McFlurry<br>
@@ -936,7 +934,7 @@
                         <td style="font-weight: bold;">
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                                <div style="font-size: 19px; color: #E6E6FA;font-style: italic ;width: 100%;">None</div>
+                                <div style="font-size: 19px; color: #f6f6f6;font-style: italic ;width: 100%;">None</div>
                                 <img src="images/shamrock_mcflurry.png" alt="shamrockMcFlurry" width="150" height="100"
                                     style="vertical-align: middle;">
                                 Shamrock McFlurry<br>
@@ -1040,136 +1038,136 @@
                             <div
                                 style="text-align: center; display: flex; flex-direction: column; align-items: center;">
                                 <img src="images/apple_pie.png" alt="applePie" width="150" height="80"
-                                    style="vertical-align: middle;"> 
+                                    style="vertical-align: middle;">
                                 Apple Pie
                                 <div style="font-size: 14px; font-style: italic ;width: 100%;">$4.79</div>
-                                    <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
-                                        <button type="button" onclick="adjustQuantity('applePie', -1)">-</button>
-                                        <input type="number" id="applePie" name="applePie" placeholder="0" min="0"
-                                            value="0" data-price="4.79" size="small" readonly
-                                            style="text-align: center; width: 40px;">
-                                        <button type="button" onclick="adjustQuantity('applePie', 1)">+</button>
-                                    </div>
+                                <div class="quantity-wrapper" style="display: flex; align-items: center; gap: 2px;">
+                                    <button type="button" onclick="adjustQuantity('applePie', -1)">-</button>
+                                    <input type="number" id="applePie" name="applePie" placeholder="0" min="0" value="0"
+                                        data-price="4.79" size="small" readonly
+                                        style="text-align: center; width: 40px;">
+                                    <button type="button" onclick="adjustQuantity('applePie', 1)">+</button>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-            
-                    <!-- <tr style="height: 20px;"></tr> -->
-                    <tr id="condiments">
-                        <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
+    </div>
+    </td>
+    </tr>
+
+    <!-- <tr style="height: 20px;"></tr> -->
+    <tr id="condiments">
+        <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
                             color: #434242; padding: 10px; border-radius: 10px;">
-                            <hr>
-                            Condiments
-                            
-                        </td>
+            <hr>
+            Condiments
 
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">
-                            <img src="images/ketchup.png" alt="Ketchup" width="100
-                            " height="100"
-                                style="vertical-align: middle;"><br>
-                            Ketchup<br>
-                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
-                            <div class="quantity-wrapper">
-                                <button type="button" onclick="adjustQuantity('ketchup', -1)">-</button>
-                                <input type="number" id="ketchup" name="ketchup" placeholder="0" value="0" min="0"
-                                    data-price="0.25" readonly>
-                                <button type="button" onclick="adjustQuantity('ketchup', 1)">+</button>
-                            </div>
-                        </td>
-                        <td style="font-weight: bold;">
-                            <img src="images/sweet_n_sour_sauce.png" alt="sweetNSourSauce" width="100" height="100"
-                                style="vertical-align: middle;"><br>
-                            Sweet 'N Sour<br>
-                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
-                            <div class="quantity-wrapper">
-                                <button type="button" onclick="adjustQuantity('sweetNSourSauce', -1)">-</button>
-                                <input type="number" id="sweetNSourSauce" name="sweetNSourSauce" placeholder="0"
-                                    value="0" min="0" data-price="0.25" readonly>
-                                <button type="button" onclick="adjustQuantity('sweetNSourSauce', 1)">+</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">
-                            <img src="images/bbq_sauce.png" alt="tangyBarbecueSauce" width="100"
-                            height="100"
-                                style="vertical-align: middle;"><br>
-                            Tangy BBQ<br>
-                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
-                            <div class="quantity-wrapper">
-                                <button type="button" onclick="adjustQuantity('tangyBarbecueSauce', -1)">-</button>
-                                <input type="number" id="tangyBarbecueSauce" name="tangyBarbecueSauce" placeholder="0"
-                                    value="0" min="0" data-price="0.25" readonly>
-                                <button type="button" onclick="adjustQuantity('tangyBarbecueSauce', 1)">+</button>
-                            </div>
-                        </td>
-                        <td style="font-weight: bold;">
-                            <img src="images/ranch.png" alt="ranch" width="100" height="100"
-                                style="vertical-align: middle;"><br>
-                            Ranch<br>
-                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
-                            <div class="quantity-wrapper">
-                                <button type="button" onclick="adjustQuantity('ranch', -1)">-</button>
-                                <input type="number" id="ranch" name="ranch" placeholder="0" value="0" min="0"
-                                    data-price="0.25" readonly>
-                                <button type="button" onclick="adjustQuantity('ranch', 1)">+</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">
-                            <img src="images/spicy_buffalo_sauce.png" alt="spicyBuffaloSauce" width="100" height="100"
-                                style="vertical-align: middle;"><br>
-                            Spicy Buffalo Sauce<br>
-                            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
-                            <div class="quantity-wrapper">
-                                <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', -1)">-</button>
-                                <input type="number" id="spicyBuffaloSauce" name="spicyBuffaloSauce" placeholder="0"
-                                    value="0" min="0" data-price="0.25" readonly>
-                                <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', 1)">+</button>
-                            </div>
-                        </td>
-                    </tr>
+        </td>
 
-                    <tr style="height: 20px;"></tr>
-                    <tr>
-                        <td colspan="2"
-                            style="font-size: 22px; text-align: left; font-weight: bold; color: #434242; padding: 10px; border-radius: 10px;">
-                            <hr>
-                            Please Tip Our Drivers!
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td style="text-align: left;">
-                            <label for="tipAmount" style="font-size: 16px; color: #4B0082;">Tip Amount ($):</label>
-                            <input type="text" id="tipAmount" name="tipAmount" placeholder="0.00"
-                                style="width: 80px; text-align: center; padding: 5px; align-items: right;border: 1px solid #6A0DAD; border-radius: 5px; 
-                                font-size: 16px; color: #4B0082; appearance: none; -moz-appearance: textfield; border: none;">
-                            </input>
-                    </tr>
-
-                </tbody>
-            </table>
-            <h3 style="font-family: Inter;color: #434242;">Current Cart</h3>
-            <ul id="cartItems"></ul>
-            <div id="totalCost"></div>
-
-            <div style="text-align: center; margin-top: 15px;">
-                <input type="checkbox" id="termsCheckbox" onchange="togglePaymentButton()">
-                <label for="termsCheckbox" style="font-family: Inter; font-size: 14px; color: #808080;">
-                    By clicking, you are confirming that you agree to the <a href="https://willy2go.com/terms-and-conditions.html">terms and conditions.</a>
-                </label>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">
+            <img src="images/ketchup.png" alt="Ketchup" width="100
+                            " height="100" style="vertical-align: middle;"><br>
+            Ketchup<br>
+            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+            <div class="quantity-wrapper">
+                <button type="button" onclick="adjustQuantity('ketchup', -1)">-</button>
+                <input type="number" id="ketchup" name="ketchup" placeholder="0" value="0" min="0" data-price="0.25"
+                    readonly>
+                <button type="button" onclick="adjustQuantity('ketchup', 1)">+</button>
             </div>
-            
-            <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)" disabled>
-                Proceed with Payment
-            </button>
-            
-        </form>
+        </td>
+        <td style="font-weight: bold;">
+            <img src="images/sweet_n_sour_sauce.png" alt="sweetNSourSauce" width="100" height="100"
+                style="vertical-align: middle;"><br>
+            Sweet 'N Sour<br>
+            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+            <div class="quantity-wrapper">
+                <button type="button" onclick="adjustQuantity('sweetNSourSauce', -1)">-</button>
+                <input type="number" id="sweetNSourSauce" name="sweetNSourSauce" placeholder="0" value="0" min="0"
+                    data-price="0.25" readonly>
+                <button type="button" onclick="adjustQuantity('sweetNSourSauce', 1)">+</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">
+            <img src="images/bbq_sauce.png" alt="tangyBarbecueSauce" width="100" height="100"
+                style="vertical-align: middle;"><br>
+            Tangy BBQ<br>
+            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+            <div class="quantity-wrapper">
+                <button type="button" onclick="adjustQuantity('tangyBarbecueSauce', -1)">-</button>
+                <input type="number" id="tangyBarbecueSauce" name="tangyBarbecueSauce" placeholder="0" value="0" min="0"
+                    data-price="0.25" readonly>
+                <button type="button" onclick="adjustQuantity('tangyBarbecueSauce', 1)">+</button>
+            </div>
+        </td>
+        <td style="font-weight: bold;">
+            <img src="images/ranch.png" alt="ranch" width="100" height="100" style="vertical-align: middle;"><br>
+            Ranch<br>
+            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+            <div class="quantity-wrapper">
+                <button type="button" onclick="adjustQuantity('ranch', -1)">-</button>
+                <input type="number" id="ranch" name="ranch" placeholder="0" value="0" min="0" data-price="0.25"
+                    readonly>
+                <button type="button" onclick="adjustQuantity('ranch', 1)">+</button>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">
+            <img src="images/spicy_buffalo_sauce.png" alt="spicyBuffaloSauce" width="100" height="100"
+                style="vertical-align: middle;"><br>
+            Spicy Buffalo Sauce<br>
+            <div style="font-size: 14px; font-style: italic ;width: 100%;">$0.25</div>
+            <div class="quantity-wrapper">
+                <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', -1)">-</button>
+                <input type="number" id="spicyBuffaloSauce" name="spicyBuffaloSauce" placeholder="0" value="0" min="0"
+                    data-price="0.25" readonly>
+                <button type="button" onclick="adjustQuantity('spicyBuffaloSauce', 1)">+</button>
+            </div>
+        </td>
+    </tr>
+
+    <tr style="height: 20px;"></tr>
+    <tr>
+        <td colspan="2"
+            style="font-size: 22px; text-align: left; font-weight: bold; color: #434242; padding: 10px; border-radius: 10px;">
+            <hr>
+            Please Tip Our Drivers!
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" style="text-align: left;">
+            <label for="tipAmount" style="font-size: 16px; color: #4B0082;">Tip Amount ($):</label>
+            <input type="text" id="tipAmount" name="tipAmount" placeholder="0.00"
+                style="width: 80px; text-align: center; padding: 5px; align-items: right;border: 1px solid #6A0DAD; border-radius: 5px; 
+                                font-size: 16px; color: #4B0082; appearance: none; -moz-appearance: textfield; border: none;">
+            </input>
+        </td>
+    </tr>
+
+    </tbody>
+    </table>
+    <h3 style="font-family: Inter;color: #434242;">Current Cart</h3>
+    <ul id="cartItems"></ul>
+    <div id="totalCost"></div>
+
+    <div style="text-align: center; margin-top: 15px;">
+        <input type="checkbox" id="termsCheckbox" onchange="togglePaymentButton()">
+        <label for="termsCheckbox" style="font-family: Inter; font-size: 14px; color: #808080;">
+            By clicking, you are confirming that you agree to the <a
+                href="https://willy2go.com/terms-and-conditions.html">terms and conditions.</a>
+        </label>
+    </div>
+
+    <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)" disabled>
+        Proceed with Payment
+    </button>
+    
+
+    </form>
 
     </div>
 
@@ -1313,7 +1311,6 @@
             const checkboxChecked = document.getElementById("termsCheckbox").checked;
             const paymentButton = document.getElementById("checkout-button");
 
-            // Enable button only if all fields are filled and checkbox is checked
             if (nameInput !== "" && phoneInput !== "" && emailInput !== "" && checkboxChecked) {
                 paymentButton.disabled = false;
             } else {
@@ -1321,7 +1318,7 @@
             }
         }
 
-        // Attach event listeners to all required fields
+        // Attach event listeners to trigger validation
         document.getElementById("emailAddress").addEventListener("input", togglePaymentButton);
         document.getElementById("phoneNumber").addEventListener("input", togglePaymentButton);
         document.getElementById("termsCheckbox").addEventListener("change", togglePaymentButton);
@@ -1469,7 +1466,7 @@
             const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
             if (!name || !residence || !phoneNumber || !userEmail || !checkbox) {
-                alert("Please fill out your name, residence, phone number, email, and terms & conditions checkbox");
+                alert("Please fill out your name, residence, phone number, email, and accept the terms & conditions");
                 return;
             }
 
