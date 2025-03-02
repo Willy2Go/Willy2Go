@@ -1150,7 +1150,7 @@
             <div style="text-align: center; margin-top: 15px;">
                 <input type="checkbox" id="termsCheckbox" onchange="togglePaymentButton()">
                 <label for="termsCheckbox" style="font-family: Inter; font-size: 14px; color: #808080;">
-                    By ticking, you are confirming that you agree to the <a href="https://willy2go.com/terms-and-conditions.html">terms and conditions.</a>
+                    By clicking, you are confirming that you agree to the <a href="https://willy2go.com/terms-and-conditions.html">terms and conditions.</a>
                 </label>
             </div>
             
@@ -1448,12 +1448,29 @@
             const userEmail = document.getElementById("emailAddress").value.trim();
             const tipAmount = parseFloat(document.getElementById("tipAmount").value) || 0;
             const checkbox = document.getElementById("termsCheckbox").checked;
-            // const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
+            const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
-            if (!name || !residence || !phoneNumber || !checkbox) {
-                alert("Please fill out your name, residence, and phone number.");
+            if (!name) {
+                alert("Please fill out your name.");
                 return;
             }
+
+            if (!residence) {
+                alert("Please fill out your residence.");
+                return;
+            }
+
+            if (!phoneNumber) {
+                alert("Please fill out your phone number.");
+                return;
+            }
+
+            if (!checkbox) {
+                alert("Please check the terms and conditions box.");
+                return;
+            }
+
+
 
             let items = [];
 
