@@ -1292,25 +1292,28 @@
         }
 
         function togglePaymentButton() {
-            const nameInput = document.querySelector('input[placeholder="Enter Name"]').value.trim();
-            const phoneInput = document.querySelector('input[placeholder="Enter Phone Number"]').value.trim();
-            const emailInput = document.getElementById("emailAddress").value.trim();
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phoneNumber").value.trim();
+            const email = document.getElementById("emailAddress").value.trim();
+            const residence = document.getElementById("Dorm").value;
             const checkboxChecked = document.getElementById("termsCheckbox").checked;
             const paymentButton = document.getElementById("checkout-button");
 
-            // Enable button only if all fields are filled and checkbox is checked
-            if (nameInput !== "" && phoneInput !== "" && emailInput !== "" && checkboxChecked) {
+            // Enable the button only if all fields are filled and the checkbox is checked
+            if (name && phone && email && residence && checkboxChecked) {
                 paymentButton.disabled = false;
             } else {
                 paymentButton.disabled = true;
             }
         }
 
-        // Attach event listeners to all required fields
-        document.getElementById("emailAddress").addEventListener("input", togglePaymentButton);
+        // Attach event listeners to all required fields to validate them in real time
+        document.getElementById("name").addEventListener("input", togglePaymentButton);
         document.getElementById("phoneNumber").addEventListener("input", togglePaymentButton);
+        document.getElementById("emailAddress").addEventListener("input", togglePaymentButton);
+        document.getElementById("Dorm").addEventListener("change", togglePaymentButton);
         document.getElementById("termsCheckbox").addEventListener("change", togglePaymentButton);
-        document.querySelector('input[placeholder="Enter Name"]').addEventListener("input", togglePaymentButton);
+
 
         // Helper function to format item names (capitalize first letter)
         function formatItemName(itemKey) {
@@ -1453,7 +1456,7 @@
             const checkbox = document.getElementById("termsCheckbox").checked;
             const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
-            if (!name || !residence || !phoneNumber || !userEmail) {
+            if (!name || !residence || !phoneNumber || !userEmail || !checkbox) {
                 alert("Please fill out your name, residence, phone number, email, and terms & conditions checkbox");
                 return;
             }
@@ -1473,10 +1476,10 @@
             //     return;
             // }
 
-            if (!checkbox) {
-                alert("Please check the terms and conditions box.");
-                return;
-            }
+            // if (!checkbox) {
+            //     alert("Please check the terms and conditions box.");
+            //     return;
+            // }
 
 
 
