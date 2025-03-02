@@ -1453,30 +1453,30 @@
             const checkbox = document.getElementById("termsCheckbox").checked;
             const specialInstructions = document.getElementById("specialInstructions")?.value || "None";
 
-            if (!name) {
-                alert("Please fill out your name.");
+            if (!name || !residence || !phoneNumber || !userEmail || !checkbox) {
+                alert("Please fill out your name, residence, phone number, email, and terms & conditions checkbox");
                 return;
             }
 
-            if (!residence) {
-                alert("Please select your residence.");
-                return;
-            }
+            // if (!residence) {
+            //     alert("Please select your residence.");
+            //     return;
+            // }
 
-            if (!phoneNumber) {
-                alert("Please enter your phone number.");
-                return;
-            }
+            // if (!phoneNumber) {
+            //     alert("Please enter your phone number.");
+            //     return;
+            // }
 
-            if (!userEmail) {
-                alert("Please enter your email address.");
-                return;
-            }
+            // if (!userEmail) {
+            //     alert("Please enter your email address.");
+            //     return;
+            // }
 
-            if (!checkbox) {
-                alert("Please check the terms and conditions box.");
-                return;
-            }
+            // if (!checkbox) {
+            //     alert("Please check the terms and conditions box.");
+            //     return;
+            // }
 
 
 
