@@ -50,6 +50,13 @@
             top: auto;
         }
 
+        hr {
+            height: 0.5px;
+            color: #123455;
+            background-color: #575757;
+            border: none;
+        }
+
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -561,6 +568,7 @@
 
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
                             color: #434242; padding: 10px; border-radius: 10px;">
+                            <hr>
                             Nuggets & Fries
                         </td>
 
@@ -648,7 +656,8 @@
                     <tr style="height: 20px;"></tr>
                     <tr id="drinks">
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
-           color: #434242; padding: 10px; border-radius: 10px;">
+                            color: #434242; padding: 10px; border-radius: 10px;">
+                            <hr>
                             Drinks
                         </td>
 
@@ -869,6 +878,7 @@
                     <tr id="sweets">
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
                             color: #434242; padding: 10px; border-radius: 10px;">
+                            <hr>
                             Sweets & Treats
                         </td>
 
@@ -1043,12 +1053,14 @@
                             </div>
                         </td>
                     </tr>
-
-                    <tr style="height: 20px;"></tr>
+            
+                    <!-- <tr style="height: 20px;"></tr> -->
                     <tr id="condiments">
                         <td colspan="2" style="font-size: 22px; text-align: left; font-weight: bold;
                             color: #434242; padding: 10px; border-radius: 10px;">
+                            <hr>
                             Condiments
+                            
                         </td>
 
                     </tr>
@@ -1125,9 +1137,11 @@
                     <tr>
                         <td colspan="2"
                             style="font-size: 22px; text-align: left; font-weight: bold; color: #434242; padding: 10px; border-radius: 10px;">
+                            <hr>
                             Please Tip Our Drivers!
                         </td>
                     </tr>
+                    
                     <tr>
                         <td style="text-align: left;">
                             <label for="tipAmount" style="font-size: 16px; color: #4B0082;">Tip Amount ($):</label>
@@ -1457,29 +1471,6 @@
                 alert("Please fill out your name, residence, phone number, email, and terms & conditions checkbox");
                 return;
             }
-
-            // if (!residence) {
-            //     alert("Please select your residence.");
-            //     return;
-            // }
-
-            // if (!phoneNumber) {
-            //     alert("Please enter your phone number.");
-            //     return;
-            // }
-
-            // if (!userEmail) {
-            //     alert("Please enter your email address.");
-            //     return;
-            // }
-
-            // if (!checkbox) {
-            //     alert("Please check the terms and conditions box.");
-            //     return;
-            // }
-
-
-
 
             let items = [];
 
