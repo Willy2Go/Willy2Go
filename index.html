@@ -367,11 +367,9 @@
                 <h4 style="font-size: 16px;">Saturday: 8:00 PM - 2:30 AM</h4>
             </div>
 
-            <div style="font-family: Inter; color: #6A0DAD; text-align: center; font-size: 26px;">
-                <h3 style="font-size: 22px;">Delivery Info</h3>
-                <h4 style="font-size: 14px;">Orders placed in the first 30 minutes arrive within an hour. <br>
-                    Orders placed after 30 minutes arrive in the next cycle (top of the hour).<br>
-                    Example: Order at 8:32 PM → Delivery ~10:00 PM</h4>
+            <div id="estimatedDeliveryTime"
+                style="font-size: 16px; font-family: Inter; text-align: center; color: #4B0082; margin-top: 10px;">
+                Here
             </div>
         </div>
 
@@ -1144,18 +1142,18 @@
     <ul id="cartItems"></ul>
     <div id="totalCost"></div>
 
-    <div style="font-size: 22px;font-family: Inter; text-align: left; font-weight: bold; color: #434242; padding: 10px; border-radius: 10px;">
+    <div
+        style="font-size: 22px;font-family: Inter; text-align: left; font-weight: bold; color: #434242; padding: 10px; border-radius: 10px;">
         <hr>
         Please Tip Our Drivers!
     </div>
-    
+
     <div style="text-align: left;">
         <label for="tipAmount" style="font-size: 16px; color: #4B0082;font-family: Inter;">Tip Amount ($):</label>
-        <input type="text" id="tipAmount" name="tipAmount" placeholder="0.00"
-            style="width: 80px; text-align: center; padding: 5px; border: 1px solid #6A0DAD; border-radius: 5px; 
+        <input type="text" id="tipAmount" name="tipAmount" placeholder="0.00" style="width: 80px; text-align: center; padding: 5px; border: 1px solid #6A0DAD; border-radius: 5px; 
                    font-size: 16px; color: #4B0082; appearance: none; -moz-appearance: textfield; border: none;">
     </div>
-    
+
     <div style="text-align: center; margin-top: 15px;">
         <input type="checkbox" id="termsCheckbox" onchange="togglePaymentButton()">
         <label for="termsCheckbox" style="font-family: Inter; font-size: 14px; color: #808080;">
@@ -1167,7 +1165,7 @@
     <button type="button" class="submit-btn" id="checkout-button" onclick="submitOrder(event)" disabled>
         Proceed with Payment
     </button>
-    
+
 
     </form>
 
@@ -1569,7 +1567,31 @@
             tipInput.addEventListener("change", updateTipAndTotal);  // Detect pasting or losing focus
         });
 
+        function calculateEstimatedDeliveryTime() {
+            const now = new Date();
+            const minutes = now.getMinutes();
+            let eta = new Date();
 
+            if (minutes < 30) {
+                eta.setMinutes(eta.getMinutes() + (60 - minutes)); // Deliver within an hour
+            } else {
+                eta.setHours(eta.getHours() + 2); // Deliver in the next cycle (top of the hour)
+                eta.setMinutes(0);
+            }
+
+            const hours = eta.getHours();
+            const minutesFormatted = eta.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedHour = hours % 12 || 12; // Convert to 12-hour format
+
+            document.getElementById("estimatedDeliveryTime").innerHTML =
+                `<b>Estimated Delivery Time:</b> ~${formattedHour}:${minutesFormatted} ${ampm}`;
+        }
+
+        setInterval(calculateEstimatedDeliveryTime, 60000);
+
+        // Call once immediately when the page loads
+        document.addEventListener("DOMContentLoaded", calculateEstimatedDeliveryTime);
 
 
     </script>
