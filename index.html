@@ -360,18 +360,18 @@
             <img src="images/McDonalds_Logo.png" alt="McDonald's Logo" class="header-image"
                 style="width:130px; height: auto;">
         </div>
-        <div style="display: flex; justify-content: center; gap: 50px;">
-            <div style="font-family: Inter; color: #6A0DAD; text-align: center; font-size: 26px;">
-                <h3 style="font-size: 22px;">Hours</h3>
-                <h4 style="font-size: 16px;">Friday: 8:00 PM - 2:30 AM</h4>
-                <h4 style="font-size: 16px;">Saturday: 8:00 PM - 2:30 AM</h4>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div style="font-family: Inter; color: #6A0DAD; text-align: center; font-size: 26px; width: 50%;">
+                <h3 style="font-size: 22px; margin: 0;">Hours</h3>
+                <h4 style="font-size: 16px; margin: 5px 0;">Friday: 8:00 PM - 2:30 AM</h4>
+                <h4 style="font-size: 16px; margin: 5px 0;">Saturday: 8:00 PM - 2:30 AM</h4>
             </div>
-
-            <div id="estimatedDeliveryTime"
-                style="font-size: 16px; font-family: Inter; text-align: center; color: #4B0082; margin-top: 10px;">
-                Here
+        
+            <div id="estimatedDeliveryTime" 
+                style="font-size: 16px; font-family: Inter; text-align: center; color: #4B0082; width: 50%;">
+                Estimated Delivery Time will appear here.
             </div>
-        </div>
+        </div>        
 
         <br>
         <br>
@@ -1190,45 +1190,6 @@
         // General object to store product quantities
         const cart = {};
 
-        function updateProductFlavor(product, productFlavor) {
-            const productFlavorSelect = document.getElementById(productFlavor);
-            productFlavorSelect.addEventListener("change", function () {
-                const selectedFlavorOption = this.options[this.selectedIndex];
-                const flavor = selectedFlavorOption.getAttribute("data-flavor"); // Get selected flavor
-                const sodaInput = document.getElementById(product);
-
-                // Update the name attribute dynamically based on flavor
-                const newItemId = `${product}_${flavor}`;
-
-
-                // Fetch the current selected size
-                const productSizeSelect = document.getElementById(product + "Size");
-                const selectedSizeOption = productSizeSelect.options[productSizeSelect.selectedIndex];
-                const size = selectedSizeOption.getAttribute("data-size");
-
-                // Reset quantity to 0 if switching to a new flavor
-                if (!(newItemId in cart) || !(size in cart[newItemId])) {
-                    sodaInput.value = 0;
-                } else {
-                    sodaInput.value = cart[newItemId][size].quantity; // Retrieve quantity from cart if exists
-                }
-
-                // Ensure cart is structured correctly for new flavor
-                if (!(newItemId in cart)) {
-                    cart[newItemId] = {};
-                }
-                if (!(size in cart[newItemId])) {
-                    cart[newItemId][size] = { price: parseFloat(selectedSizeOption.value), quantity: 0 };
-                }
-
-                // Update price and quantity based on size
-                updatePriceAndQuantity(newItemId, product + "Size");
-            });
-        }
-
-        // Ensure the function runs on page load to initialize correct values
-        updateProductFlavor();
-
         function updatePriceAndQuantity(itemId, itemSizeId) {
             const optionElement = document.getElementById(itemSizeId);
             const selectedOption = optionElement.options[optionElement.selectedIndex];
@@ -1447,7 +1408,9 @@
         // Ensure the textarea is empty on page load
         document.addEventListener("DOMContentLoaded", function () {
             const specialInstructions = document.getElementById("specialInstructions");
-            specialInstructions.value = "";  // Ensure the textarea is empty on load
+            if (specialInstructions) {
+                specialInstructions.innerText = "";  // Ensure the textarea is empty on load
+            }
         });
 
         async function submitOrder(event) {
@@ -1569,29 +1532,64 @@
 
         function calculateEstimatedDeliveryTime() {
             const now = new Date();
-            const minutes = now.getMinutes();
-            let eta = new Date();
+            let currentHour = now.getHours();
+            let currentMinutes = now.getMinutes();
 
-            if (minutes < 30) {
-                eta.setMinutes(eta.getMinutes() + (60 - minutes)); // Deliver within an hour
-            } else {
-                eta.setHours(eta.getHours() + 2); // Deliver in the next cycle (top of the hour)
-                eta.setMinutes(0);
+            // Convert hours to 24-hour format for easier comparisons
+            const startHour = 20; // 8:00 PM
+            const endHour = 2; // 2:30 AM (next day)
+
+            // Check if order is outside of operating hours
+            if ((currentHour < startHour && currentHour >= 3) || (currentHour === 2 && currentMinutes > 30)) {
+                document.getElementById("estimatedDeliveryTime").innerHTML =
+                    `<b>Ordering is currently closed.</b> Orders can be placed between 8:00 PM and 2:30 AM.`;
+                return;
             }
 
-            const hours = eta.getHours();
-            const minutesFormatted = eta.getMinutes().toString().padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            const formattedHour = hours % 12 || 12; // Convert to 12-hour format
+            let orderSentHour = currentHour;
+            let orderSentMinutes = 30; // Default to next half-hour mark
 
+            if (currentMinutes < 30) {
+                orderSentMinutes = 30; // Orders before XX:30 get sent at XX:30
+            } else {
+                // Orders after XX:30 get sent at the next full hour's :30 mark
+                orderSentHour += 1;
+                orderSentMinutes = 30;
+            }
+
+            // Handle past-midnight scenario (e.g., 1:30 AM → 2:15 AM delivery)
+            if (orderSentHour >= 24) {
+                orderSentHour -= 24;
+            }
+
+            // Delivery happens 45 minutes after order is sent
+            let deliveryHour = orderSentHour;
+            let deliveryMinutes = orderSentMinutes + 45;
+
+            if (deliveryMinutes >= 60) {
+                deliveryHour += 1;
+                deliveryMinutes -= 60;
+            }
+
+            // Handle AM/PM formatting
+            const orderAmPm = orderSentHour >= 12 ? 'PM' : 'AM';
+            const deliveryAmPm = deliveryHour >= 12 ? 'PM' : 'AM';
+
+            const formattedOrderHour = (orderSentHour % 12) || 12;
+            const formattedDeliveryHour = (deliveryHour % 12) || 12;
+            const formattedDeliveryMinutes = deliveryMinutes.toString().padStart(2, '0');
+
+            // Update the UI
             document.getElementById("estimatedDeliveryTime").innerHTML =
-                `<b>Estimated Delivery Time:</b> ~${formattedHour}:${minutesFormatted} ${ampm}`;
+                `<b>Estimated Delivery Time:</b> Your order will be sent at ${formattedOrderHour}:30 ${orderAmPm} and will arrive around ${formattedDeliveryHour}:${formattedDeliveryMinutes} ${deliveryAmPm}.`;
         }
 
-        setInterval(calculateEstimatedDeliveryTime, 60000);
-
         // Call once immediately when the page loads
-        document.addEventListener("DOMContentLoaded", calculateEstimatedDeliveryTime);
+        // Ensure the function runs immediately on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            calculateEstimatedDeliveryTime();
+            setInterval(calculateEstimatedDeliveryTime, 60000); // Update every 60 seconds
+        });
 
 
     </script>
